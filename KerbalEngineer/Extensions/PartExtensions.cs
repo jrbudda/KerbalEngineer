@@ -123,41 +123,18 @@ namespace KerbalEngineer.Extensions
 
         public static double getCrewAdjustment(this Part part)
         {
-            if (HighLogic.LoadedSceneIsEditor && PhysicsGlobals.KerbalCrewMass != 0 && ShipConstruction.ShipManifest != null)
-            { //fix weird stock behavior with this physics setting.
-
-                var crewlist = ShipConstruction.ShipManifest.GetAllCrew(false);
-
-                int crew = 0;
-
-                foreach (var crewmem in crewlist)
-                {
-                    if (crewmem != null) crew++;
-                }
-
-                if (crew > 0)
-                {
-                    var pcm = ShipConstruction.ShipManifest.GetPartCrewManifest(part.craftID);
-
-                    int actualCrew = 0;
-
-                    foreach (var crewmem in pcm.GetPartCrew())
-                    {
-                        if (crewmem != null)
-                            actualCrew++;
-                    }
-
-                    if (actualCrew < crew)
-                    {
-                        return -PhysicsGlobals.KerbalCrewMass * (crew - actualCrew);
-                    }
-
-                }
+            if (!HighLogic.LoadedSceneIsEditor) return 0;
+            if (part.CrewCapacity <= 0) return 0;
+            if (ShipConstruction.ShipManifest == null) return 0;
+            int nCrew = 0;
+            var pcm = ShipConstruction.ShipManifest.GetPartCrewManifest(part.craftID);
+            foreach (var crew in pcm.GetPartCrew()) {
+                if (crew != null) nCrew++;
             }
-
-            return 0;
+            if (part.HasModule<KerbalSeat>()) return 0.09375 * nCrew;
+            return PhysicsGlobals.KerbalCrewMass * nCrew;
         }
-   
+
 
         /// <summary>
         ///     Gets the maximum thrust of the part if it's an engine.
