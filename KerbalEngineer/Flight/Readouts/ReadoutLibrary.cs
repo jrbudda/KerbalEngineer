@@ -33,6 +33,7 @@ namespace KerbalEngineer.Flight.Readouts {
     using TimeToApoapsis = Orbital.TimeToApoapsis;
     using TimeToPeriapsis = Orbital.TimeToPeriapsis;
     using Sections;
+    using KSP.Localization;
 
     public static class ReadoutLibrary {
         private static List<ReadoutModule> readouts = new List<ReadoutModule>();
@@ -42,13 +43,13 @@ namespace KerbalEngineer.Flight.Readouts {
         /// </summary>
         static ReadoutLibrary() {
             try {
-                ReadoutCategory.SetCategory("Orbital", "Readout for orbital manovoeures.");
-                ReadoutCategory.SetCategory("Surface", "Surface and atmospheric readouts.");
-                ReadoutCategory.SetCategory("Vessel", "Vessel performance statistics.");
-                ReadoutCategory.SetCategory("Rendezvous", "Readouts for rendezvous manovoeures.");
-                ReadoutCategory.SetCategory("Thermal", "Thermal characteristics readouts.");
-                ReadoutCategory.SetCategory("Body", "Characteristics of the current SOI.");
-                ReadoutCategory.SetCategory("Miscellaneous", "Miscellaneous readouts.");
+                ReadoutCategory.SetCategory("Orbital", Localizer.Format("#KE_Orbital_desc"));//"Readout for orbital manovoeures."
+                ReadoutCategory.SetCategory("Surface", Localizer.Format("#KE_Surface_desc"));//"Surface and atmospheric readouts."
+                ReadoutCategory.SetCategory("Vessel", Localizer.Format("#KE_Vessel_desc"));//"Vessel performance statistics."
+                ReadoutCategory.SetCategory("Rendezvous", Localizer.Format("#KE_Rendezvous_desc"));//"Readouts for rendezvous manovoeures."
+                ReadoutCategory.SetCategory("Thermal", Localizer.Format("#KE_Thermal_desc"));//"Thermal characteristics readouts."
+                ReadoutCategory.SetCategory("Body", Localizer.Format("#KE_Body_desc"));//"Characteristics of the current SOI."
+                ReadoutCategory.SetCategory("Miscellaneous", Localizer.Format("#KE_Miscellaneous_desc"));//"Miscellaneous readouts."
                 ReadoutCategory.Selected = ReadoutCategory.GetCategory("Orbital");
 
                 // Orbital
