@@ -21,14 +21,15 @@ namespace KerbalEngineer.Flight.Readouts.Surface
     using Extensions;
     using Sections;
     using Vessel = global::Vessel;
+    using KSP.Localization;
 
     public class AltitudeTerrain : ReadoutModule
     {
         public AltitudeTerrain()
         {
-            Name = "Altitude (Terrain)";
+            Name = Localizer.Format("#KE_SurAltitudeTerrain");//"Altitude (Terrain)"
             Category = ReadoutCategory.GetCategory("Surface");
-            HelpString = "Shows the vessel's altitude above the terrain and water's surface, or altitude above underwater terrain whilst splashed down.";
+            HelpString = Localizer.Format("#KE_SurAltitudeTerrain_desc");//"Shows the vessel's altitude above the terrain and water's surface, or altitude above underwater terrain whilst splashed down."
             IsDefault = true;
         }
 

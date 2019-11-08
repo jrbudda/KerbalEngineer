@@ -22,6 +22,8 @@
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Surface
@@ -32,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Surface
 
         public AltitudeSeaLevel()
         {
-            this.Name = "Altitude (Sea Level)";
+            this.Name = Localizer.Format("#KE_SurAltitudeSeaLevel");//"Altitude (Sea Level)"
             this.Category = ReadoutCategory.GetCategory("Surface");
-            this.HelpString = "Shows the vessel's altitude above sea level.";
+            this.HelpString = Localizer.Format("#KE_SurAltitudeSeaLevel_desc");//"Shows the vessel's altitude above sea level."
             this.IsDefault = false;
         }
 

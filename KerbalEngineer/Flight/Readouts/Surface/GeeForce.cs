@@ -23,6 +23,8 @@ using KerbalEngineer.Flight.Sections;
 
 using UnityEngine;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Surface {
@@ -36,9 +38,9 @@ namespace KerbalEngineer.Flight.Readouts.Surface {
         #region Constructors
 
         public GeeForce() {
-            this.Name = "G-Force";
+            this.Name = Localizer.Format("#KE_GeeForce");//"G-Force"
             this.Category = ReadoutCategory.GetCategory("Surface");
-            this.HelpString = "Shows the current g-force and maximum g-force experienced.";
+            this.HelpString = Localizer.Format("#KE_GeeForce_desc");//"Shows the current g-force and maximum g-force experienced."
             this.IsDefault = true;
         }
 

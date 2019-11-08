@@ -21,14 +21,15 @@ namespace KerbalEngineer.Flight.Readouts.Surface
 {
     using Helpers;
     using Sections;
+    using KSP.Localization;
 
     public class Longitude : ReadoutModule
     {
         public Longitude()
         {
-            Name = "Longitude";
+            Name = Localizer.Format("#KE_Longitude");//"Longitude"
             Category = ReadoutCategory.GetCategory("Surface");
-            HelpString = "Shows the vessel's longitude around a celestial body. Longitude is the angle from the bodies prime meridian.";
+            HelpString = Localizer.Format("#KE_Longitude_desc");//"Shows the vessel's longitude around a celestial body. Longitude is the angle from the bodies prime meridian."
             IsDefault = true;
         }
 

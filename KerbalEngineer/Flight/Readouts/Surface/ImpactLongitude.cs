@@ -23,6 +23,8 @@ using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Surface
@@ -33,9 +35,9 @@ namespace KerbalEngineer.Flight.Readouts.Surface
 
         public ImpactLongitude()
         {
-            this.Name = "Impact Longitude";
+            this.Name = Localizer.Format("#KE_ImpactLongitude");//"Impact Longitude"
             this.Category = ReadoutCategory.GetCategory("Surface");
-            this.HelpString = "Longditude of the impact position.";
+            this.HelpString = Localizer.Format("#KE_ImpactLongitude_desc");//"Longditude of the impact position."
             this.IsDefault = false;
         }
 

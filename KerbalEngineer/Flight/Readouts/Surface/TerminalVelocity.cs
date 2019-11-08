@@ -22,6 +22,8 @@
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Surface
@@ -32,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Surface
 
         public TerminalVelocity()
         {
-            this.Name = "Terminal Velocity";
+            this.Name = Localizer.Format("#KE_TerminalVelocity");//"Terminal Velocity"
             this.Category = ReadoutCategory.GetCategory("Surface");
-            this.HelpString = "Shows the velocity where the efforts of thrust and drag are equalled out.";
+            this.HelpString = Localizer.Format("#KE_TerminalVelocity_desc");//"Shows the velocity where the efforts of thrust and drag are equalled out."
             this.IsDefault = false;
         }
 

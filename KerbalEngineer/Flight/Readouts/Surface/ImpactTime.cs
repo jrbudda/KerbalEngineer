@@ -21,6 +21,7 @@
 
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
+using KSP.Localization;
 
 #endregion
 
@@ -32,9 +33,9 @@ namespace KerbalEngineer.Flight.Readouts.Surface
 
         public ImpactTime()
         {
-            this.Name = "Impact Time";
+            this.Name = Localizer.Format("#KE_ImpactTime");//"Impact Time"
             this.Category = ReadoutCategory.GetCategory("Surface");
-            this.HelpString = "Shows time until the vessel impacts the central object.";
+            this.HelpString = Localizer.Format("#KE_ImpactTime_desc");//"Shows time until the vessel impacts the central object."
             this.IsDefault = false;
         }
 

@@ -21,14 +21,15 @@ namespace KerbalEngineer.Flight.Readouts.Surface
 {
     using Extensions;
     using Sections;
+    using KSP.Localization;
 
     public class MachNumber : ReadoutModule
     {
         public MachNumber()
         {
-            Name = "Mach Number";
+            Name = Localizer.Format("#KE_MachNumber");//"Mach Number"
             Category = ReadoutCategory.GetCategory("Surface");
-            HelpString = "Shows the vessel's mach number.";
+            HelpString = Localizer.Format("#KE_MachNumber_desc");//"Shows the vessel's mach number."
             IsDefault = true;
         }
 

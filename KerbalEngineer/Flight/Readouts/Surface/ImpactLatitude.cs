@@ -23,6 +23,7 @@ using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
 
+using KSP.Localization;
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Surface
@@ -33,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Surface
 
         public ImpactLatitude()
         {
-            this.Name = "Impact Latitude";
+            this.Name = Localizer.Format("#KE_ImpactLatitude");//"Impact Latitude"
             this.Category = ReadoutCategory.GetCategory("Surface");
-            this.HelpString = "Latitude of the impact position.";
+            this.HelpString = Localizer.Format("#KE_ImpactLatitude_desc");//"Latitude of the impact position."
             this.IsDefault = false;
         }
 

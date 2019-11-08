@@ -21,14 +21,15 @@ namespace KerbalEngineer.Flight.Readouts.Surface
 {
     using Extensions;
     using Sections;
+    using KSP.Localization;
 
     public class AtmosphericEfficiency : ReadoutModule
     {
         public AtmosphericEfficiency()
         {
-            Name = "Atmos. Efficiency";
+            Name = Localizer.Format("#KE_AtmosphericEfficiency");//"Atmos. Efficiency"
             Category = ReadoutCategory.GetCategory("Surface");
-            HelpString = "Shows you vessel's efficiency as a ratio of the current velocity and terminal velocity.  Less than 100% means that you are losing efficiency due to gravity and greater than 100% is due to drag.";
+            HelpString = Localizer.Format("#KE_AtmosphericEfficiency_desc");//"Shows you vessel's efficiency as a ratio of the current velocity and terminal velocity.  Less than 100% means that you are losing efficiency due to gravity and greater than 100% is due to drag."
             IsDefault = false;
         }
 

@@ -26,6 +26,8 @@ using KerbalEngineer.Helpers;
 
 using UnityEngine;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Surface
@@ -36,9 +38,9 @@ namespace KerbalEngineer.Flight.Readouts.Surface
 
         public Slope()
         {
-            this.Name = "Slope";
+            this.Name = Localizer.Format("#KE_Slope");//"Slope"
             this.Category = ReadoutCategory.GetCategory("Surface");
-            this.HelpString = "Shows the slope of the terrain below your vessel.";
+            this.HelpString = Localizer.Format("#KE_Slope_desc");//"Shows the slope of the terrain below your vessel."
             this.IsDefault = true;
         }
 

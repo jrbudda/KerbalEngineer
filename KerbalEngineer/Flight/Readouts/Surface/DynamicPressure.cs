@@ -21,14 +21,15 @@ namespace KerbalEngineer.Flight.Readouts.Surface
 {
     using Extensions;
     using Sections;
+    using KSP.Localization;
 
     public class DynamicPressure: ReadoutModule
     {
         public DynamicPressure()
         {
-            Name = "Dynamic Pressure";
+            Name = Localizer.Format("#KE_DynamicPressure");//"Dynamic Pressure"
             Category = ReadoutCategory.GetCategory("Surface");
-            HelpString = "Displays the current dynamic pressure on the vessel";
+            HelpString = Localizer.Format("#KE_DynamicPressure_desc");//"Displays the current dynamic pressure on the vessel"
             IsDefault = false;
         }
 

@@ -23,6 +23,8 @@ using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 using System;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Surface
@@ -33,9 +35,9 @@ namespace KerbalEngineer.Flight.Readouts.Surface
 
         public HorizontalSpeed()
         {
-            this.Name = "Horizontal Speed";
+            this.Name = Localizer.Format("#KE_HorizontalSpeed");//"Horizontal Speed"
             this.Category = ReadoutCategory.GetCategory("Surface");
-            this.HelpString = "Shows the vessel's horizontal speed across a celestial body's surface.";
+            this.HelpString = Localizer.Format("#KE_HorizontalSpeed_desc");//"Shows the vessel's horizontal speed across a celestial body's surface."
             this.IsDefault = true;
         }
 

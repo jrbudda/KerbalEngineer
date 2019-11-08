@@ -23,6 +23,8 @@ using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 using UnityEngine;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Surface {
@@ -30,9 +32,9 @@ namespace KerbalEngineer.Flight.Readouts.Surface {
         #region Constructors
 
         public ImpactMarker() {
-            this.Name = "Impact Marker";
+            this.Name = Localizer.Format("#KE_ImpactMarker");//"Impact Marker"
             this.Category = ReadoutCategory.GetCategory("Surface");
-            this.HelpString = "Shows your estimated impact position on the surface and the map.";
+            this.HelpString = Localizer.Format("#KE_ImpactMarker_desc") ;//"Shows your estimated impact position on the surface and the map."
             this.IsDefault = false;
         }
 

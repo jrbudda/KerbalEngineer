@@ -21,6 +21,7 @@
 
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
+using KSP.Localization;
 
 #endregion
 
@@ -39,9 +40,9 @@ namespace KerbalEngineer.Flight.Readouts.Surface
 
         public VerticalAcceleration()
         {
-            this.Name = "Vertical Acceleration";
+            this.Name = Localizer.Format("#KE_VerticalAcceleration");//"Vertical Acceleration"
             this.Category = ReadoutCategory.GetCategory("Surface");
-            this.HelpString = "Shows the vessel's vertical acceleration up and down.";
+            this.HelpString = Localizer.Format("#KE_VerticalAcceleration_desc");//"Shows the vessel's vertical acceleration up and down."
             this.IsDefault = false;
         }
 

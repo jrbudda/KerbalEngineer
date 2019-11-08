@@ -22,6 +22,8 @@
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Surface
@@ -32,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Surface
 
         public ImpactAltitude()
         {
-            this.Name = "Impact Altitude";
+            this.Name = Localizer.Format("#KE_ImpactAltitude");//"Impact Altitude"
             this.Category = ReadoutCategory.GetCategory("Surface");
-            this.HelpString = "Altitude at which the Vessel will impact.";
+            this.HelpString = Localizer.Format("#KE_ImpactAltitude_desc");//"Altitude at which the Vessel will impact."
             this.IsDefault = false;
         }
 

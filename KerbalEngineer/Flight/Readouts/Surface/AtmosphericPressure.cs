@@ -21,14 +21,15 @@ namespace KerbalEngineer.Flight.Readouts.Surface
 {
     using Extensions;
     using Sections;
+    using KSP.Localization;
 
     public class AtmosphericPressure : ReadoutModule
     {
         public AtmosphericPressure()
         {
-            Name = "Atmos. Pressure";
+            Name = Localizer.Format("#KE_AtmosphericPressure");//"Atmos. Pressure"
             Category = ReadoutCategory.GetCategory("Surface");
-            HelpString = "Displays the current atmospheric pressure.";
+            HelpString = Localizer.Format("#KE_AtmosphericPressure_desc");//"Displays the current atmospheric pressure."
             IsDefault = false;
         }
 

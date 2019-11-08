@@ -21,6 +21,8 @@
 
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Surface
@@ -31,9 +33,9 @@ namespace KerbalEngineer.Flight.Readouts.Surface
 
         public ImpactBiome()
         {
-            this.Name = "Impact Biome";
+            this.Name = Localizer.Format("#KE_ImpactBiome");//"Impact Biome"
             this.Category = ReadoutCategory.GetCategory("Surface");
-            this.HelpString = "Biome the Vessel will impact in.";
+            this.HelpString = Localizer.Format("#KE_ImpactBiome_desc");//"Biome the Vessel will impact in."
             this.IsDefault = false;
         }
 

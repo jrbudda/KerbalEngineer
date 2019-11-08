@@ -21,6 +21,8 @@
 
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Surface
@@ -31,9 +33,9 @@ namespace KerbalEngineer.Flight.Readouts.Surface
 
         public Biome()
         {
-            this.Name = "Biome";
+            this.Name = Localizer.Format("#KE_Biome");//"Biome"
             this.Category = ReadoutCategory.GetCategory("Surface");
-            this.HelpString = "Shows the biome which the vessel is currently flying over.";
+            this.HelpString = Localizer.Format("#KE_Biome_desc");//"Shows the biome which the vessel is currently flying over."
             this.IsDefault = true;
         }
 
