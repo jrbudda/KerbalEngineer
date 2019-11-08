@@ -21,14 +21,15 @@ namespace KerbalEngineer.Flight.Readouts.Thermal
 {
     using Helpers;
     using Sections;
+    using KSP.Localization;
 
     public class CoolestTemperature : ReadoutModule
     {
         public CoolestTemperature()
         {
-            Name = "Coolest Temperature";
+            Name = Localizer.Format("#KE_CoolestTemperature");//"Coolest Temperature"
             Category = ReadoutCategory.GetCategory("Thermal");
-            HelpString = "Lowest internal Temperature on the Vessel.";
+            HelpString = Localizer.Format("#KE_CoolestTemperature_desc");//"Lowest internal Temperature on the Vessel."
             IsDefault = true;
         }
 

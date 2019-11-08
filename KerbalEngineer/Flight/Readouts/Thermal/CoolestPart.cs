@@ -20,14 +20,14 @@
 namespace KerbalEngineer.Flight.Readouts.Thermal
 {
     using Sections;
-
+    using KSP.Localization;
     public class CoolestPart : ReadoutModule
     {
         public CoolestPart()
         {
-            Name = "Coolest Part";
+            Name = Localizer.Format("#KE_CoolestPart");//"Coolest Part"
             Category = ReadoutCategory.GetCategory("Thermal");
-            HelpString = "The part of the vessel that is enduring the lowest temperature.";
+            HelpString = Localizer.Format("#KE_CoolestPart_desc");//"The part of the vessel that is enduring the lowest temperature."
             IsDefault = true;
         }
 

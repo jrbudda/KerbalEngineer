@@ -21,14 +21,15 @@ namespace KerbalEngineer.Flight.Readouts.Thermal
 {
     using Extensions;
     using Sections;
+    using KSP.Localization;
 
     public class InternalFlux : ReadoutModule
     {
         public InternalFlux()
         {
-            Name = "Internal Flux";
+            Name = Localizer.Format("#KE_InternalFlux");//"Internal Flux"
             Category = ReadoutCategory.GetCategory("Thermal");
-            HelpString = string.Empty;
+            HelpString = Localizer.Format("#KE_InternalFlux_desc");//string.Empty
             IsDefault = true;
         }
 

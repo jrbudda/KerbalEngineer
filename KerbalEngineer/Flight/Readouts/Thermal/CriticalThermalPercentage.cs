@@ -21,14 +21,15 @@ namespace KerbalEngineer.Flight.Readouts.Thermal
 {
     using Extensions;
     using Sections;
+    using KSP.Localization;
 
     public class CriticalThermalPercentage : ReadoutModule
     {
         public CriticalThermalPercentage()
         {
-            Name = "Critical Thermal Percentage";
+            Name = Localizer.Format("#KE_CriticalThermalPercentage");//"Critical Thermal Percentage"
             Category = ReadoutCategory.GetCategory("Thermal");
-            HelpString = "Shows how high a temperature the critical Part is enduring relative to it's maximal temperature.";
+            HelpString = Localizer.Format("#KE_CriticalThermalPercentage_desc");//"Shows how high a temperature the critical Part is enduring relative to it's maximal temperature."
             IsDefault = true;
         }
 

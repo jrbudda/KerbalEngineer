@@ -20,14 +20,15 @@
 namespace KerbalEngineer.Flight.Readouts.Thermal
 {
     using Sections;
+    using KSP.Localization;
 
     public class HottestPart : ReadoutModule
     {
         public HottestPart()
         {
-            Name = "Hottest Part";
+            Name = Localizer.Format("#KE_HottestPart");//"Hottest Part"
             Category = ReadoutCategory.GetCategory("Thermal");
-            HelpString = "The part of the vessel that is enduring the highest temperature.";
+            HelpString = Localizer.Format("#KE_HottestPart_desc");//"The part of the vessel that is enduring the highest temperature."
             IsDefault = true;
         }
 

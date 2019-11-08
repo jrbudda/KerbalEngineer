@@ -21,14 +21,15 @@ namespace KerbalEngineer.Flight.Readouts.Thermal
 {
     using Extensions;
     using Sections;
+    using KSP.Localization;
 
     public class ConvectionFlux : ReadoutModule
     {
         public ConvectionFlux()
         {
-            Name = "Convection Flux";
+            Name = Localizer.Format("#KE_ConvectionFlux");//"Convection Flux"
             Category = ReadoutCategory.GetCategory("Thermal");
-            HelpString = string.Empty;
+            HelpString = Localizer.Format("#KE_ConvectionFlux_desc");//string.Empty
             IsDefault = true;
         }
 

@@ -21,14 +21,15 @@ namespace KerbalEngineer.Flight.Readouts.Thermal
 {
     using Helpers;
     using Sections;
+    using KSP.Localization;
 
     public class CriticalTemperature : ReadoutModule
     {
         public CriticalTemperature()
         {
-            Name = "Critical Temperature";
+            Name = Localizer.Format("#KE_CriticalTemperature");//"Critical Temperature"
             Category = ReadoutCategory.GetCategory("Thermal");
-            HelpString = "Internal Temperature on the part of the Vessel that is structually most critical.";
+            HelpString = Localizer.Format("#KE_CriticalTemperature_desc");//"Internal Temperature on the part of the Vessel that is structually most critical."
             IsDefault = true;
         }
 

@@ -20,14 +20,15 @@
 namespace KerbalEngineer.Flight.Readouts.Thermal
 {
     using Sections;
+    using KSP.Localization;
 
     public class CriticalPart : ReadoutModule
     {
         public CriticalPart()
         {
-            Name = "Critical Part";
+            Name = Localizer.Format("#KE_CriticalPart");//"Critical Part"
             Category = ReadoutCategory.GetCategory("Thermal");
-            HelpString = "This part is structually most critical. If it endures too high temperature there is a high chance for major structual failure!";
+            HelpString = Localizer.Format("#KE_CriticalPart_desc");//"This part is structually most critical. If it endures too high temperature there is a high chance for major structual failure!"
             IsDefault = true;
         }
 

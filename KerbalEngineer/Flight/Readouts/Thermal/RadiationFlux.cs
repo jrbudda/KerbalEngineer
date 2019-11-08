@@ -21,14 +21,15 @@ namespace KerbalEngineer.Flight.Readouts.Thermal
 {
     using Extensions;
     using Sections;
+    using KSP.Localization;
 
     public class RadiationFlux : ReadoutModule
     {
         public RadiationFlux()
         {
-            Name = "Radiation Flux";
+            Name = Localizer.Format("#KE_RadiationFlux");//"Radiation Flux"
             Category = ReadoutCategory.GetCategory("Thermal");
-            HelpString = string.Empty;
+            HelpString = Localizer.Format("#KE_RadiationFlux_desc");//string.Empty
             IsDefault = true;
         }
 
