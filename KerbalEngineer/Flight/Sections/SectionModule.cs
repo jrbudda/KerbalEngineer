@@ -26,6 +26,7 @@ using System.Xml.Serialization;
 using KerbalEngineer.Flight.Readouts;
 
 using UnityEngine;
+using KSP.Localization;
 
 #endregion
 
@@ -340,7 +341,7 @@ namespace KerbalEngineer.Flight.Sections {
                     this.LineCount += readout.LineCount;
                 }
             } else {
-                GUILayout.Label("No readouts are installed.", this.messageStyle);
+                GUILayout.Label(Localizer.Format("#KE_Noreadouts"), this.messageStyle);//"No readouts are installed."
                 this.LineCount = 1;
             }
 
@@ -364,8 +365,8 @@ namespace KerbalEngineer.Flight.Sections {
         private void DrawSectionTitleBar() {
             GUILayout.BeginHorizontal();
             GUILayout.Label(this.Name.ToUpper(), this.titleStyle);
-            if (showEditButton) this.IsEditorVisible = GUILayout.Toggle(this.IsEditorVisible, "EDIT", this.buttonStyle);
-            if (showFloatButton) this.IsFloating = GUILayout.Toggle(this.IsFloating, "FLOAT", this.buttonStyle);
+            if (showEditButton) this.IsEditorVisible = GUILayout.Toggle(this.IsEditorVisible, Localizer.Format("#KE_EditButton"), this.buttonStyle);//"EDIT"
+            if (showFloatButton) this.IsFloating = GUILayout.Toggle(this.IsFloating, Localizer.Format("#KE_FLOATButton"), this.buttonStyle);//"FLOAT"
             GUILayout.EndHorizontal();
         }
 

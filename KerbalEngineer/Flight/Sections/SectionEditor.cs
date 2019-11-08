@@ -25,6 +25,7 @@ using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Presets;
 using KerbalEngineer.Flight.Readouts;
 using KerbalEngineer.UIControls;
+using KSP.Localization;
 
 using UnityEngine;
 
@@ -137,7 +138,7 @@ namespace KerbalEngineer.Flight.Sections {
                 return;
             }
 
-            this.position = GUILayout.Window(this.GetInstanceID(), this.position, this.Window, "EDIT SECTION - " + this.ParentSection.Name.ToUpper(), this.windowStyle).ClampToScreen();
+            this.position = GUILayout.Window(this.GetInstanceID(), this.position, this.Window, Localizer.Format("#KE_SECTIONEDIT_title", this.ParentSection.Name.ToUpper()), this.windowStyle).ClampToScreen();//"EDIT SECTION - " +
             this.ParentSection.EditorPositionX = this.position.x;
             this.ParentSection.EditorPositionY = this.position.y;
         }
@@ -150,14 +151,14 @@ namespace KerbalEngineer.Flight.Sections {
             this.scrollPositionAvailable = GUILayout.BeginScrollView(this.scrollPositionAvailable, false, true, GUILayout.Height(200.0f));
             GUI.skin = null;
 
-            GUILayout.Label("AVAILABLE", this.panelTitleStyle);
+            GUILayout.Label(Localizer.Format("#KE_ReadoutsAvailable"), this.panelTitleStyle);//"AVAILABLE"
 
             foreach (var readout in ReadoutLibrary.GetCategory(ReadoutCategory.Selected)) {
                 if (!this.ParentSection.ReadoutModules.Contains(readout) || readout.Cloneable) {
                     GUILayout.BeginHorizontal(GUILayout.Height(30.0f));
                     GUILayout.Label(readout.Name, this.readoutNameStyle);
                     readout.ShowHelp = GUILayout.Toggle(readout.ShowHelp, "?", this.readoutButtonStyle, GUILayout.Width(30.0f));
-                    if (GUILayout.Button("INSTALL", this.readoutButtonStyle, GUILayout.Width(75.0f))) {
+                    if (GUILayout.Button(Localizer.Format("#KE_ReadoutsINSTALL"), this.readoutButtonStyle, GUILayout.Width(75.0f))) {//"INSTALL"
                         this.ParentSection.ReadoutModules.Add(readout);
                     }
                     GUILayout.EndHorizontal();
@@ -190,7 +191,7 @@ namespace KerbalEngineer.Flight.Sections {
         ///     Draws the readoutCategories selection list.
         /// </summary>
         private void DrawCategorySelector() {
-            this.categoryList.enabled = GUILayout.Toggle(this.categoryList.enabled, "▼ SELECTED CATEGORY: " + ReadoutCategory.Selected.ToString().ToUpper() + " ▼", this.categoryTitleButtonStyle);
+            this.categoryList.enabled = GUILayout.Toggle(this.categoryList.enabled, Localizer.Format("#KE_CategorySelector", ReadoutCategory.Selected.ToString().ToUpper()), this.categoryTitleButtonStyle);//"▼ SELECTED CATEGORY: " +  + " ▼"
             if (Event.current.type == EventType.Repaint) {
                 this.categoryList.SetPosition(GUILayoutUtility.GetLastRect().Translate(this.position), GUILayoutUtility.GetLastRect());
             }
@@ -207,14 +208,14 @@ namespace KerbalEngineer.Flight.Sections {
 
             ParentSection.IsHud = GUILayout.Toggle(this.ParentSection.IsHud, "HUD", this.readoutButtonStyle, GUILayout.Width(50.0f));
             if (ParentSection.IsHud) {
-                this.ParentSection.IsHudBackground = GUILayout.Toggle(this.ParentSection.IsHudBackground, "BG", this.readoutButtonStyle, GUILayout.Width(50.0f));
+                this.ParentSection.IsHudBackground = GUILayout.Toggle(this.ParentSection.IsHudBackground, Localizer.Format("#KE_IsHudBackground"), this.readoutButtonStyle, GUILayout.Width(50.0f));//"BG"
             }
 
             if (isShowingInControlBar && string.IsNullOrEmpty(this.ParentSection.Abbreviation)) {
                 DisplayStack.Instance.RequestResize();
             }
 
-            if (GUILayout.Button("DELETE SECTION", this.readoutButtonStyle, GUILayout.Width(150.0f))) {
+            if (GUILayout.Button(Localizer.Format("#KE_DelSECTION"), this.readoutButtonStyle, GUILayout.Width(150.0f))) {//"DELETE SECTION"
                 this.ParentSection.IsFloating = false;
                 this.ParentSection.IsEditorVisible = false;
                 this.ParentSection.IsDeleted = true;
@@ -242,7 +243,7 @@ namespace KerbalEngineer.Flight.Sections {
 
             GUI.skin = null;
 
-            GUILayout.Label("INSTALLED", this.panelTitleStyle);
+            GUILayout.Label(Localizer.Format("#KE_ReadoutsINSTALLED"), this.panelTitleStyle);//"INSTALLED"
             var removeReadout = false;
             var removeReadoutIndex = 0;
 
@@ -289,7 +290,7 @@ namespace KerbalEngineer.Flight.Sections {
 
                 readout.ShowHelp = GUILayout.Toggle(readout.ShowHelp, "?", this.readoutButtonStyle, GUILayout.Width(30.0f));
 
-                if (GUILayout.Button("REMOVE", this.readoutButtonStyle, GUILayout.Width(75.0f))) {
+                if (GUILayout.Button(Localizer.Format("#KE_ReadoutsREMOVE"), this.readoutButtonStyle, GUILayout.Width(75.0f))) {//"REMOVE"
                     removeReadout = true;
                     removeReadoutIndex = i;
                 }
@@ -320,7 +321,7 @@ namespace KerbalEngineer.Flight.Sections {
         }
 
         private void DrawPresetSaveButton() {
-            if (!GUILayout.Button("<b>SAVE PRESET</b>", this.categoryButtonStyle)) {
+            if (!GUILayout.Button(Localizer.Format("#KE_PresetSaveButton"), this.categoryButtonStyle)) {//"<b>SAVE PRESET</b>"
                 return;
             }
 
@@ -331,7 +332,7 @@ namespace KerbalEngineer.Flight.Sections {
         ///     Draws the presetsList selection list.
         /// </summary>
         private void DrawPresetSelector() {
-            this.presetList.enabled = GUILayout.Toggle(this.presetList.enabled, "▼ PRESETS ▼", this.categoryTitleButtonStyle, GUILayout.Width(150.0f));
+            this.presetList.enabled = GUILayout.Toggle(this.presetList.enabled, Localizer.Format("#KE_PresetSelector"), this.categoryTitleButtonStyle, GUILayout.Width(150.0f));//"▼ PRESETS ▼"
             if (Event.current.type == EventType.Repaint) {
                 this.presetList.SetPosition(GUILayoutUtility.GetLastRect().Translate(this.position), GUILayoutUtility.GetLastRect());
             }
@@ -479,7 +480,7 @@ namespace KerbalEngineer.Flight.Sections {
             }
 
             GUILayout.BeginVertical(this.helpBoxStyle);
-            GUILayout.Label(!String.IsNullOrEmpty(readout.HelpString) ? readout.HelpString : "Sorry, no help information has been provided for this readout module.", this.helpTextStyle);
+            GUILayout.Label(!String.IsNullOrEmpty(readout.HelpString) ? readout.HelpString : Localizer.Format("#KE_noHelpMessage"), this.helpTextStyle);//"Sorry, no help information has been provided for this readout module."
             GUILayout.EndVertical();
         }
 
@@ -497,7 +498,7 @@ namespace KerbalEngineer.Flight.Sections {
                 GUILayout.Space(5.0f);
                 this.DrawInstalledReadouts();
 
-                if (GUILayout.Button("CLOSE EDITOR", this.categoryTitleButtonStyle)) {
+                if (GUILayout.Button(Localizer.Format("#KE_CloseEditorButton"), this.categoryTitleButtonStyle)) {//"CLOSE EDITOR"
                     this.ParentSection.IsEditorVisible = false;
                 }
 
