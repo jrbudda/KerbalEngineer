@@ -25,6 +25,7 @@ using System.Collections.Generic;
 using KerbalEngineer.Flight.Sections;
 
 using UnityEngine;
+using KSP.Localization;
 
 #endregion
 
@@ -164,8 +165,8 @@ namespace KerbalEngineer.Flight {
         private void DrawControlBarButton() {
             try {
                 GUILayout.BeginHorizontal();
-                DisplayStack.Instance.Hidden = !GUILayout.Toggle(!DisplayStack.Instance.Hidden, "SHOW ENGINEER", this.buttonStyle);
-                if (GUILayout.Toggle(DisplayStack.Instance.ShowControlBar, "CONTROL BAR", this.buttonStyle) != DisplayStack.Instance.ShowControlBar) {
+                DisplayStack.Instance.Hidden = !GUILayout.Toggle(!DisplayStack.Instance.Hidden, Localizer.Format("#KE_ShowButton"), this.buttonStyle);//"SHOW ENGINEER"
+                if (GUILayout.Toggle(DisplayStack.Instance.ShowControlBar, Localizer.Format("#KE_ShowControlBar"), this.buttonStyle) != DisplayStack.Instance.ShowControlBar) {//"CONTROL BAR"
                     DisplayStack.Instance.ShowControlBar = !DisplayStack.Instance.ShowControlBar;
                     DisplayStack.Instance.RequestResize();
                 }
@@ -183,7 +184,7 @@ namespace KerbalEngineer.Flight {
                 foreach (var section in sections) {
                     GUILayout.BeginHorizontal();
                     section.IsVisible = GUILayout.Toggle(section.IsVisible, section.Name.ToUpper(), this.buttonStyle);
-                    section.IsEditorVisible = GUILayout.Toggle(section.IsEditorVisible, "EDIT", this.buttonStyle, GUILayout.Width(50.0f));
+                    section.IsEditorVisible = GUILayout.Toggle(section.IsEditorVisible, Localizer.Format("#KE_EditButton"), this.buttonStyle, GUILayout.Width(50.0f));//"EDIT"
                     GUILayout.EndHorizontal();
                 }
             } catch (Exception ex) {
@@ -198,7 +199,7 @@ namespace KerbalEngineer.Flight {
             try {
                 GUILayout.BeginHorizontal();
 
-                if (GUILayout.Button("NEW CUSTOM SECTION", this.buttonStyle)) {
+                if (GUILayout.Button(Localizer.Format(""), this.buttonStyle)) {//"NEW CUSTOM SECTION"
                     SectionLibrary.CustomSections.Add(new SectionModule {
                         Name = "Custom " + (SectionLibrary.CustomSections.Count + 1),
                         Abbreviation = "CUST " + (SectionLibrary.CustomSections.Count + 1),
