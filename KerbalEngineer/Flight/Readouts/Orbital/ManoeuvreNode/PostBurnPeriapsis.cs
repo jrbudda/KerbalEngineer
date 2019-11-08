@@ -24,6 +24,8 @@ using System;
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
@@ -34,9 +36,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
 
         public PostBurnPeriapsis()
         {
-            this.Name = "Post-burn Periapsis";
+            this.Name = Localizer.Format("#KE_PostBurnPeriapsis");//"Post-burn Periapsis"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = "Closest point of the vessel's orbit after the burn.";
+            this.HelpString = Localizer.Format("#KE_PostBurnPeriapsis_desc");//"Closest point of the vessel's orbit after the burn."
             this.IsDefault = false;
         }
 

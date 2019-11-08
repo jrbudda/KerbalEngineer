@@ -24,6 +24,8 @@ using System;
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Orbital
@@ -34,9 +36,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
 
         public AngleToPrograde()
         {
-            this.Name = "Angle to Prograde";
+            this.Name = Localizer.Format("#KE_AngleToPrograde");//"Angle to Prograde"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = "Angular Distance from the vessel to crossing the Orbit of the central body on it's retrograde side.";
+            this.HelpString = Localizer.Format("#KE_AngleToPrograde_desc");//"Angular Distance from the vessel to crossing the Orbit of the central body on it's retrograde side."
             this.IsDefault = true;
         }
 

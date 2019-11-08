@@ -23,6 +23,7 @@ using System;
 
 using KerbalEngineer.Helpers;
 using KerbalEngineer.Flight.Sections;
+using KSP.Localization;
 
 #endregion
 
@@ -34,9 +35,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
 
         public PostBurnPeriod()
         {
-            this.Name = "Post-burn Period";
+            this.Name = Localizer.Format("#KE_PostBurnPeriod");//"Post-burn Period"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = "The period of the vessel's orbit after the burn.";
+            this.HelpString = Localizer.Format("#KE_PostBurnPeriod_desc");//"The period of the vessel's orbit after the burn."
             this.IsDefault = false;
         }
 

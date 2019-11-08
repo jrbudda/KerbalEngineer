@@ -24,6 +24,8 @@ using System;
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
@@ -34,9 +36,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
 
         public PostBurnInclination()
         {
-            this.Name = "Post-burn Inclination";
+            this.Name = Localizer.Format("#KE_PostBurnInclination");//"Post-burn Inclination"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = "The inclination of the vessel's orbit after the burn.";
+            this.HelpString = Localizer.Format("#KE_PostBurnInclination_desc");//"The inclination of the vessel's orbit after the burn."
             this.IsDefault = false;
         }
 

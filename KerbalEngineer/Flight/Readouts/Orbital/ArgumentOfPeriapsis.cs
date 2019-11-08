@@ -24,6 +24,8 @@ using System;
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Orbital
@@ -34,9 +36,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
 
         public ArgumentOfPeriapsis()
         {
-            this.Name = "Arg. Of Periapsis";
+            this.Name = Localizer.Format("#KE_ArgumentOfPeriapsis");//"Arg. Of Periapsis"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = String.Empty;
+            this.HelpString = Localizer.Format("#KE_ArgumentOfPeriapsis_desc");//String.Empty
             this.IsDefault = false;
         }
 

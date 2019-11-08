@@ -21,6 +21,8 @@
 
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Orbital
@@ -31,9 +33,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
 
         public Eccentricity()
         {
-            this.Name = "Eccentricity";
+            this.Name = Localizer.Format("#KE_Eccentricity");//"Eccentricity"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = "Shows the vessel's orbital eccentricity.";
+            this.HelpString = Localizer.Format("#KE_Eccentricity_desc");//"Shows the vessel's orbital eccentricity."
             this.IsDefault = true;
         }
 

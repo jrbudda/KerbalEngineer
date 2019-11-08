@@ -22,6 +22,8 @@
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Orbital
@@ -32,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
 
         public TimeToPeriapsis()
         {
-            this.Name = "Time to Periapsis";
+            this.Name = Localizer.Format("#KE_TimeToPeriapsis");//"Time to Periapsis"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = "Shows the time until the vessel reaches periapsis, the lowest point of the orbit.";
+            this.HelpString = Localizer.Format("#KE_TimeToPeriapsis_desc");//"Shows the time until the vessel reaches periapsis, the lowest point of the orbit."
             this.IsDefault = true;
         }
 

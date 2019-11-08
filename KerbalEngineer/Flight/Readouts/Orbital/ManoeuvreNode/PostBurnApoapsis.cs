@@ -24,6 +24,8 @@ using System;
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
@@ -34,9 +36,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
 
         public PostBurnApoapsis()
         {
-            this.Name = "Post-burn Apoapsis";
+            this.Name = Localizer.Format("#KE_PostBurnApoapsis");//"Post-burn Apoapsis"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = "Farthest point of the vessel's orbit after the burn.";
+            this.HelpString = Localizer.Format("#KE_PostBurnApoapsis_desc");//"Farthest point of the vessel's orbit after the burn."
             this.IsDefault = false;
         }
 

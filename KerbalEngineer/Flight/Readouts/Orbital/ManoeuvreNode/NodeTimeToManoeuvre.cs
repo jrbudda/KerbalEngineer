@@ -24,6 +24,8 @@ using System;
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
@@ -34,9 +36,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
 
         public NodeTimeToManoeuvre()
         {
-            this.Name = "Time to Manoeuvre Node";
+            this.Name = Localizer.Format("#KE_NodeTimeToManoeuvre");//"Time to Manoeuvre Node"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = "Time until the vessel reaches the position of the Manoeuvre Node.";
+            this.HelpString = Localizer.Format("#KE_NodeTimeToManoeuvre_desc");//"Time until the vessel reaches the position of the Manoeuvre Node."
             this.IsDefault = true;
         }
 

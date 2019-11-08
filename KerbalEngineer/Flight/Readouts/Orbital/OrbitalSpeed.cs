@@ -22,6 +22,8 @@
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Orbital
@@ -32,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
 
         public OrbitalSpeed()
         {
-            this.Name = "Orbital Speed";
+            this.Name = Localizer.Format("#KE_OrbitalSpeed");//"Orbital Speed"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = "Shows the vessel's orbital speed.";
+            this.HelpString = Localizer.Format("#KE_OrbitalSpeed_desc");//"Shows the vessel's orbital speed."
             this.IsDefault = false;
         }
 

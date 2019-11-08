@@ -24,6 +24,8 @@ using System;
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
@@ -34,9 +36,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
 
         public NodeAngleToRetrograde()
         {
-            this.Name = "Manoeuvre Node Angle to Retrograde";
+            this.Name = Localizer.Format("#KE_NodeAngleToRetrograde");//"Manoeuvre Node Angle to Retrograde"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = "Angular Distance from the Node to crossing the Orbit of the central body on it's retrograde side.";
+            this.HelpString = Localizer.Format("#KE_NodeAngleToRetrograde_desc");//"Angular Distance from the Node to crossing the Orbit of the central body on it's retrograde side."
             this.IsDefault = true;
         }
 

@@ -24,6 +24,8 @@ using System;
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
@@ -34,9 +36,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
 
         public NodeTimeToHalfBurn()
         {
-            this.Name = "Time to Manoeuvre Burn";
+            this.Name = Localizer.Format("#KE_NodeTimeToHalfBurn");//"Time to Manoeuvre Burn"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = "Time until the Manoeuvre should be started.";
+            this.HelpString = Localizer.Format("#KE_NodeTimeToHalfBurn_desc");//"Time until the Manoeuvre should be started."
             this.IsDefault = true;
         }
 

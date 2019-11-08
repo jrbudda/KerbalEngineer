@@ -22,6 +22,8 @@
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Orbital
@@ -32,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
 
         public TimeToApoapsis()
         {
-            this.Name = "Time to Apoapsis";
+            this.Name = Localizer.Format("#KE_TimeToApoapsis");//"Time to Apoapsis"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = "Shows the time until the vessel reaches apoapsis, the highest point of the orbit.";
+            this.HelpString = Localizer.Format("#KE_TimeToApoapsis_desc");//"Shows the time until the vessel reaches apoapsis, the highest point of the orbit."
             this.IsDefault = true;
         }
 

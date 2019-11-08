@@ -22,14 +22,15 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
     using Extensions;
     using Helpers;
     using Sections;
+    using KSP.Localization;
 
     public class EccentricAnomaly : ReadoutModule
     {
         public EccentricAnomaly()
         {
-            Name = "Eccentric Anomaly";
+            Name = Localizer.Format("#KE_EccentricAnomaly");//"Eccentric Anomaly"
             Category = ReadoutCategory.GetCategory("Orbital");
-            HelpString = string.Empty;
+            HelpString = Localizer.Format("#KE_EccentricAnomaly_desc");//string.Empty
             IsDefault = false;
         }
 

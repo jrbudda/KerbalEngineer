@@ -24,6 +24,8 @@ using System;
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
@@ -34,9 +36,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
 
         public NodeRadialDeltaV()
         {
-            this.Name = "Manoeuvre Node DeltaV (Radial)";
+            this.Name = Localizer.Format("#KE_NodeRadialDeltaV");//"Manoeuvre Node DeltaV (Radial)"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = "Radial component of the total change in velocity.";
+            this.HelpString = Localizer.Format("#KE_NodeRadialDeltaV_desc");//"Radial component of the total change in velocity."
             this.IsDefault = true;
         }
 

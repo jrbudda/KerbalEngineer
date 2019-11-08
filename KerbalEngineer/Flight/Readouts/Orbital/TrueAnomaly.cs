@@ -25,6 +25,8 @@ using KerbalEngineer.Extensions;
 using KerbalEngineer.Helpers;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Orbital
@@ -35,9 +37,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
 
         public TrueAnomaly()
         {
-            this.Name = "True Anomaly";
+            this.Name = Localizer.Format("#KE_TrueAnomaly");//"True Anomaly"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = String.Empty;
+            this.HelpString = Localizer.Format("#KE_TrueAnomaly_desc");//String.Empty
             this.IsDefault = false;
         }
 

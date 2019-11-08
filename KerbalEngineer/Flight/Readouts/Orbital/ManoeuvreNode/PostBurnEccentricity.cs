@@ -24,6 +24,8 @@ using System;
 using KerbalEngineer.Helpers;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
@@ -34,9 +36,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
 
         public PostBurnEccentricity()
         {
-            this.Name = "Post-burn Eccentricity";
+            this.Name = Localizer.Format("#KE_PostBurnEccentricity");//"Post-burn Eccentricity"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = "The eccentricity of the vessel's orbit after the burn.";
+            this.HelpString = Localizer.Format("#KE_PostBurnEccentricity_desc");//"The eccentricity of the vessel's orbit after the burn."
             this.IsDefault = false;
         }
 

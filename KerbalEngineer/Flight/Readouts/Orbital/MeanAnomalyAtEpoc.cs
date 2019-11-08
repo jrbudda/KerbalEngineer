@@ -23,13 +23,15 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
     using Helpers;
     using Sections;
 
+    using KSP.Localization;
+
     public class MeanAnomalyAtEpoc : ReadoutModule
     {
         public MeanAnomalyAtEpoc()
         {
-            Name = "Mean Anomaly at Epoc";
+            Name = Localizer.Format("#KE_MeanAnomalyAtEpoc");//"Mean Anomaly at Epoc"
             Category = ReadoutCategory.GetCategory("Orbital");
-            HelpString = string.Empty;
+            HelpString = Localizer.Format("#KE_MeanAnomalyAtEpoc_desc");//string.Empty
             IsDefault = false;
         }
 

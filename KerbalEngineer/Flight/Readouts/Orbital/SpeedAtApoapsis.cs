@@ -24,6 +24,8 @@ using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
 using KerbalEngineer.Extensions;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Orbital
@@ -34,9 +36,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
 
         public SpeedAtApoapsis()
         {
-            this.Name = "Speed at Apoapsis";
+            this.Name = Localizer.Format("#KE_SpeedAtApoapsis");//"Speed at Apoapsis"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = "Shows the orbital speed of the vessel when at apoapsis, the highest point of the orbit.";
+            this.HelpString = Localizer.Format("#KE_SpeedAtApoapsis_desc");//"Shows the orbital speed of the vessel when at apoapsis, the highest point of the orbit."
             this.IsDefault = false;
         }
 

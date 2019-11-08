@@ -23,6 +23,8 @@ using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Orbital
@@ -33,9 +35,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
 
         public TimeToEquatorialAscendingNode()
         {
-            this.Name = "Time to Equ. AN";
+            this.Name = Localizer.Format("#KE_TimeToEquatorialAscendingNode");//"Time to Equ. AN"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = "Shows the time until the vessel corsses the Equator, going north of it.";
+            this.HelpString = Localizer.Format("#KE_TimeToEquatorialAscendingNode_desc");//"Shows the time until the vessel corsses the Equator, going north of it."
             this.IsDefault = false;
         }
 

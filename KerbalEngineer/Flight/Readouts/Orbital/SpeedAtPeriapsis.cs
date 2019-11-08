@@ -24,6 +24,8 @@ using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
 using KerbalEngineer.Extensions;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Orbital
@@ -34,9 +36,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
 
         public SpeedAtPeriapsis()
         {
-            this.Name = "Speed at Periapsis";
+            this.Name = Localizer.Format("#KE_SpeedAtPeriapsis");//"Speed at Periapsis"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = "Shows the orbital speed of the vessel when at periapsis, the lowest point of the orbit.";
+            this.HelpString = Localizer.Format("#KE_SpeedAtPeriapsis_desc");//"Shows the orbital speed of the vessel when at periapsis, the lowest point of the orbit."
             this.IsDefault = false;
         }
 

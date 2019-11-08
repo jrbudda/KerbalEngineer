@@ -24,6 +24,8 @@ using System;
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
@@ -34,9 +36,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
 
         public NodeProgradeDeltaV()
         {
-            this.Name = "Manoeuvre Node DeltaV (Prograde)";
+            this.Name = Localizer.Format("#KE_NodeProgradeDeltaV");//"Manoeuvre Node DeltaV (Prograde)"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = "Prograde/Retrograde component of the total change in velocity.";
+            this.HelpString = Localizer.Format("#KE_NodeProgradeDeltaV_desc");//"Prograde/Retrograde component of the total change in velocity."
             this.IsDefault = true;
         }
 

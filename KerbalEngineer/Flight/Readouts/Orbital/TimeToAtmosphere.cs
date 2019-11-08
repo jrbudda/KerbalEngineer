@@ -23,6 +23,8 @@ using System;
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Orbital
@@ -35,9 +37,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
 
         public TimeToAtmosphere()
         {
-            this.Name = "Time to Atmosphere";
+            this.Name = Localizer.Format("#KE_TimeToAtmosphere");//"Time to Atmosphere"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = "Shows the time until the vessel enters or leaves the atmosphere.";
+            this.HelpString = Localizer.Format("#KE_TimeToAtmosphere_desc");//"Shows the time until the vessel enters or leaves the atmosphere."
             this.IsDefault = false;
         }
 

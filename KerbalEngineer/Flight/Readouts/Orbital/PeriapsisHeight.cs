@@ -22,6 +22,7 @@
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Orbital
@@ -32,9 +33,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
 
         public PeriapsisHeight()
         {
-            this.Name = "Periapsis Height";
+            this.Name = Localizer.Format("#KE_PeriapsisHeight");//"Periapsis Height"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = "Shows the vessel's periapsis height relative to sea level. (Periapsis is the lowest point of an orbit.)";
+            this.HelpString = Localizer.Format("#KE_PeriapsisHeight_orbitdesc");//"Shows the vessel's periapsis height relative to sea level. (Periapsis is the lowest point of an orbit.)"
             this.IsDefault = true;
         }
 

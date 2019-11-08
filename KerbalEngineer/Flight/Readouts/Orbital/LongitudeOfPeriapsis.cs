@@ -21,6 +21,7 @@
 
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
+using KSP.Localization;
 
 #endregion
 
@@ -32,9 +33,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
 
         public LongitudeOfPeriapsis()
         {
-            this.Name = "Longitude of Pe";
+            this.Name = Localizer.Format("#KE_LongitudeOfPeriapsis");//"Longitude of Pe"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = "Shows the vessel's longitude of periapsis.";
+            this.HelpString = Localizer.Format("#KE_LongitudeOfPeriapsis_desc");//"Shows the vessel's longitude of periapsis."
             this.IsDefault = false;
         }
 

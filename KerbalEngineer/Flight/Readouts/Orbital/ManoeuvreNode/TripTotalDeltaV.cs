@@ -24,6 +24,8 @@ using System;
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
@@ -34,9 +36,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
 
         public TripTotalDeltaV()
         {
-            this.Name = "Trip Total DeltaV (Normal)";
+            this.Name = Localizer.Format("#KE_TripTotalDeltaV") ;//"Trip Total DeltaV (Normal)"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = "Total DeltaV of all maneuver nodes.";
+            this.HelpString = Localizer.Format("#KE_TripTotalDeltaV_desc");//"Total DeltaV of all maneuver nodes."
             this.IsDefault = true;
         }
 

@@ -22,6 +22,8 @@
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Orbital
@@ -32,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
 
         public SemiMinorAxis()
         {
-            this.Name = "Semi-minor Axis";
+            this.Name = Localizer.Format("#KE_SemiMinorAxis");//"Semi-minor Axis"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = "Shows the distance from the centre of an orbit to the nearest edge.";
+            this.HelpString = Localizer.Format("#KE_SemiMinorAxis_desc");//"Shows the distance from the centre of an orbit to the nearest edge."
             this.IsDefault = false;
         }
 

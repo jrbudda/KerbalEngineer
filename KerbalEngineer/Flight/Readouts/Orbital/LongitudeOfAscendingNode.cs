@@ -22,6 +22,8 @@
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Orbital
@@ -32,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
 
         public LongitudeOfAscendingNode()
         {
-            this.Name = "Longitude of AN";
+            this.Name = Localizer.Format("#KE_LongitudeOfAscendingNode");//"Longitude of AN"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = "Shows the vessel's longitude of the ascending node.";
+            this.HelpString = Localizer.Format("#KE_LongitudeOfAscendingNode_desc");//"Shows the vessel's longitude of the ascending node."
             this.IsDefault = false;
         }
 

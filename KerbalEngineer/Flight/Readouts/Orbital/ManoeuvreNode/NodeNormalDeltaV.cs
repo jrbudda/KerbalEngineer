@@ -24,6 +24,8 @@ using System;
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
@@ -34,9 +36,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
 
         public NodeNormalDeltaV()
         {
-            this.Name = "Manoeuvre Node DeltaV (Normal)";
+            this.Name = Localizer.Format("#KE_NodeNormalDeltaV");//"Manoeuvre Node DeltaV (Normal)"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = "Normal component of the total change in velocity.";
+            this.HelpString = Localizer.Format("#KE_NodeNormalDeltaV_desc");//"Normal component of the total change in velocity."
             this.IsDefault = true;
         }
 

@@ -23,6 +23,7 @@ using System;
 
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
+using KSP.Localization;
 
 #endregion
 
@@ -34,9 +35,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
 
         public NodeAngleToPrograde()
         {
-            this.Name = "Manoeuvre Node Angle to Prograde";
+            this.Name = Localizer.Format("#KE_NodeAngleToPrograde");//"Manoeuvre Node Angle to Prograde"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = "Angular Distance from the Node to crossing the Orbit of the central body on it's prograde side.";
+            this.HelpString = Localizer.Format("#KE_NodeAngleToPrograde_desc");//"Angular Distance from the Node to crossing the Orbit of the central body on it's prograde side."
             this.IsDefault = true;
         }
 

@@ -24,6 +24,8 @@ using System;
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
@@ -34,9 +36,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
 
         public NodeTotalDeltaV()
         {
-            this.Name = "Manoeuvre Node DeltaV (Total)";
+            this.Name = Localizer.Format("#KE_NodeTotalDeltaV");//"Manoeuvre Node DeltaV (Total)"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = "Total change in velocity during the burn.";
+            this.HelpString = Localizer.Format("#KE_NodeTotalDeltaV_desc");//"Total change in velocity during the burn."
             this.IsDefault = true;
         }
 

@@ -22,14 +22,15 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
     using Extensions;
     using Helpers;
     using Sections;
+    using KSP.Localization;
 
     public class MeanAnomaly : ReadoutModule
     {
         public MeanAnomaly()
         {
-            Name = "Mean Anomaly";
+            Name = Localizer.Format("#KE_MeanAnomaly");//"Mean Anomaly"
             Category = ReadoutCategory.GetCategory("Orbital");
-            HelpString = string.Empty;
+            HelpString = Localizer.Format("#KE_MeanAnomaly_desc");//string.Empty
             IsDefault = false;
         }
 

@@ -22,6 +22,8 @@
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Orbital
@@ -32,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
 
         public Inclination()
         {
-            this.Name = "Inclination";
+            this.Name = Localizer.Format("#KE_Inclination");//"Inclination"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = "Shows the vessel's orbital inclination relative to the Equator.";
+            this.HelpString = Localizer.Format("#KE_Inclination_desc");//"Shows the vessel's orbital inclination relative to the Equator."
             this.IsDefault = true;
         }
 

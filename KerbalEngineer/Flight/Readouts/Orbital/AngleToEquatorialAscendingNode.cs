@@ -22,6 +22,8 @@
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Orbital
@@ -32,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
 
         public AngleToEquatorialAscendingNode()
         {
-            this.Name = "Angle to Equ. AN";
+            this.Name = Localizer.Format("#KE_AngleToEquatorialAscendingNode");//"Angle to Equ. AN"
             this.Category = ReadoutCategory.GetCategory("Orbital");
-            this.HelpString = "Angular Distance from the vessel to crossing the Equator of the central body, going north of it.";
+            this.HelpString = Localizer.Format("#KE_AngleToEquatorialAscendingNode_desc");//"Angular Distance from the vessel to crossing the Equator of the central body, going north of it."
             this.IsDefault = false;
         }
 
