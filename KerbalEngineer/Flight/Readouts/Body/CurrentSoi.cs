@@ -23,6 +23,7 @@ using System;
 
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
+using KSP.Localization;
 
 #endregion
 
@@ -31,9 +32,9 @@ namespace KerbalEngineer.Flight.Readouts.Body {
         #region Constructors
 
         public CurrentSoi() {
-            this.Name = "SOI Alt.";
+            this.Name = Localizer.Format("#KE_CurrentSoi");//"SOI Alt."
             this.Category = ReadoutCategory.GetCategory("Body");
-            this.HelpString = "The altitude of the SOI edge.";
+            this.HelpString = Localizer.Format("#KE_CurrentSoi_desc");//"The altitude of the SOI edge."
             this.IsDefault = true;
         }
 

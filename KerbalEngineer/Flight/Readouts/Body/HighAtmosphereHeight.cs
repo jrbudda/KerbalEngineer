@@ -21,6 +21,7 @@
 
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
+using KSP.Localization;
 
 #endregion
 
@@ -29,9 +30,9 @@ namespace KerbalEngineer.Flight.Readouts.Body {
         #region Constructors
 
         public HighAtmosphereHeight() {
-            this.Name = "High Atmosphere Alt.";
+            this.Name = Localizer.Format("#KE_HighAtmosphereHeight");//"High Atmosphere Alt."
             this.Category = ReadoutCategory.GetCategory("Body");
-            this.HelpString = "The altitude where the upper atmosphere begins.";
+            this.HelpString = Localizer.Format("#KE_HighAtmosphereHeight_desc");//"The altitude where the upper atmosphere begins."
             this.IsDefault = true;
         }
 

@@ -14,13 +14,14 @@
 // see <http://www.gnu.org/licenses/>.
 
 using KerbalEngineer.Flight.Sections;
+using KSP.Localization;
 
 namespace KerbalEngineer.Flight.Readouts.Body {
     public class BodyName : ReadoutModule {
         public BodyName() {
-            Name = "Current Body Name";
+            Name = Localizer.Format("#KE_BodyName");//"Current Body Name"
             Category = ReadoutCategory.GetCategory("Body");
-            HelpString = "Shows the name of the current body.";
+            HelpString = Localizer.Format("#KE_BodyName_desc");//"Shows the name of the current body."
             IsDefault = false;
         }
 

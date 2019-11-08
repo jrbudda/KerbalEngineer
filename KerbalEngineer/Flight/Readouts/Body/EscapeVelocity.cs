@@ -22,6 +22,7 @@
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 using System;
+using KSP.Localization;
 
 #endregion
 
@@ -30,9 +31,9 @@ namespace KerbalEngineer.Flight.Readouts.Body {
         #region Constructors
 
         public EscapeVelocity() {
-            this.Name = "Surface Escape Velocity";
+            this.Name = Localizer.Format("#KE_EscapeVelocity");//"Surface Escape Velocity"
             this.Category = ReadoutCategory.GetCategory("Body");
-            this.HelpString = "The velocity needed to escape the SOI, starting from sea level.";
+            this.HelpString = Localizer.Format("#KE_EscapeVelocity_desc");//"The velocity needed to escape the SOI, starting from sea level."
             this.IsDefault = true;
         }
 

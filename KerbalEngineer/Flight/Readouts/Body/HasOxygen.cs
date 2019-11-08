@@ -14,6 +14,7 @@
 // see <http://www.gnu.org/licenses/>.
 
 using KerbalEngineer.Flight.Sections;
+using KSP.Localization;
 
 namespace KerbalEngineer.Flight.Readouts.Body
 {
@@ -21,9 +22,9 @@ namespace KerbalEngineer.Flight.Readouts.Body
     {
         public HasOxygen()
         {
-            Name = "Has Oxygen";
+            Name = Localizer.Format("#KE_HasOxygen");//"Has Oxygen"
             Category = ReadoutCategory.GetCategory("Body");
-            HelpString = "Shows whether the current body has an oxygen rich atmosphere.";
+            HelpString = Localizer.Format("#KE_HasOxygen_desc");//"Shows whether the current body has an oxygen rich atmosphere."
             IsDefault = false;
         }
 

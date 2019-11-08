@@ -21,6 +21,7 @@
 
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
+using KSP.Localization;
 
 #endregion
 
@@ -29,9 +30,9 @@ namespace KerbalEngineer.Flight.Readouts.Body {
         #region Constructors
 
         public BodyOrbitalPeriod() {
-            this.Name = "Body Orbital Period";
+            this.Name = Localizer.Format("#KE_BodyOrbitalPeriod");//"Body Orbital Period"
             this.Category = ReadoutCategory.GetCategory("Body");
-            this.HelpString = "The time to complete one orbit about the body's parent.";
+            this.HelpString = Localizer.Format("#KE_BodyOrbitalPeriod_desc");//"The time to complete one orbit about the body's parent."
             this.IsDefault = true;
         }
 

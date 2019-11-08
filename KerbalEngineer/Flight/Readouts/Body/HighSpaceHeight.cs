@@ -21,6 +21,7 @@
 
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
+using KSP.Localization;
 
 #endregion
 
@@ -32,9 +33,9 @@ namespace KerbalEngineer.Flight.Readouts.Body
 
         public HighSpaceHeight()
         {
-            this.Name = "High Space Alt.";
+            this.Name = Localizer.Format("#KE_HighSpaceHeight");//"High Space Alt."
             this.Category = ReadoutCategory.GetCategory("Body");
-            this.HelpString = "The altitude where upper space begins.";
+            this.HelpString = Localizer.Format("#KE_HighSpaceHeight_desc");//"The altitude where upper space begins."
             this.IsDefault = true;
         }
 

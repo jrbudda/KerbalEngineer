@@ -21,6 +21,7 @@
 
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
+using KSP.Localization;
 
 #endregion
 
@@ -29,9 +30,9 @@ namespace KerbalEngineer.Flight.Readouts.Body {
         #region Constructors
 
         public MinOrbitHeight() {
-            this.Name = "Min. Safe Alt.";
+            this.Name = Localizer.Format("#KE_MinOrbitHeight");//"Min. Safe Alt."
             this.Category = ReadoutCategory.GetCategory("Body");
-            this.HelpString = "The minimum safe altitude for orbiting.";
+            this.HelpString = Localizer.Format("#KE_MinOrbitHeight_desc");//"The minimum safe altitude for orbiting."
             this.IsDefault = true;
         }
 

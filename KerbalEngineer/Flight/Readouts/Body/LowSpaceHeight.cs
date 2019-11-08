@@ -21,6 +21,7 @@
 
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
+using KSP.Localization;
 
 #endregion
 
@@ -29,9 +30,9 @@ namespace KerbalEngineer.Flight.Readouts.Body {
         #region Constructors
 
         public LowSpaceHeight() {
-            this.Name = "Low Space Alt.";
+            this.Name = Localizer.Format("#KE_LowSpaceHeight");//"Low Space Alt."
             this.Category = ReadoutCategory.GetCategory("Body");
-            this.HelpString = "The altitude where lower space begins.";
+            this.HelpString = Localizer.Format("#KE_LowSpaceHeight_desc");//"The altitude where lower space begins."
             this.IsDefault = true;
         }
 

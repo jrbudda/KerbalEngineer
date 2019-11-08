@@ -22,6 +22,7 @@
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 using System;
+using KSP.Localization;
 
 #endregion
 
@@ -30,9 +31,9 @@ namespace KerbalEngineer.Flight.Readouts.Body {
         #region Constructors
 
         public BodyGravity() {
-            this.Name = "Surface Gravity";
+            this.Name = Localizer.Format("#KE_BodyGravity");//"Surface Gravity"
             this.Category = ReadoutCategory.GetCategory("Body");
-            this.HelpString = "The surface gravity of the body.";
+            this.HelpString = Localizer.Format("#KE_BodyGravity_desc");//"The surface gravity of the body."
             this.IsDefault = true;
         }
 

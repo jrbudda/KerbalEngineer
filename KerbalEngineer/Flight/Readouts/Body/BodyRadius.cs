@@ -21,6 +21,7 @@
 
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
+using KSP.Localization;
 
 #endregion
 
@@ -29,9 +30,9 @@ namespace KerbalEngineer.Flight.Readouts.Body {
         #region Constructors
 
         public BodyRadius() {
-            this.Name = "Body Radius";
+            this.Name = Localizer.Format("#KE_BodyRadius");//"Body Radius"
             this.Category = ReadoutCategory.GetCategory("Body");
-            this.HelpString = "The radius of the body at sea level.";
+            this.HelpString = Localizer.Format("#KE_BodyRadius_desc");//"The radius of the body at sea level."
             this.IsDefault = false;
         }
 

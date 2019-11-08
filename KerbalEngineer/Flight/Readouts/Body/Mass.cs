@@ -21,7 +21,7 @@
 
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
-
+using KSP.Localization;
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Body {
@@ -29,9 +29,9 @@ namespace KerbalEngineer.Flight.Readouts.Body {
         #region Constructors
 
         public BodyMass() {
-            this.Name = "Body Mass";
+            this.Name = Localizer.Format("#KE_BodyMass");//"Body Mass"
             this.Category = ReadoutCategory.GetCategory("Body");
-            this.HelpString = "The mass of the body.";
+            this.HelpString = Localizer.Format("#KE_BodyMass_desc");//"The mass of the body."
             this.IsDefault = false;
         }
 

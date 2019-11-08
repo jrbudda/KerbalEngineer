@@ -22,6 +22,7 @@
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 using System;
+using KSP.Localization;
 
 #endregion
 
@@ -30,9 +31,9 @@ namespace KerbalEngineer.Flight.Readouts.Body {
         #region Constructors
 
         public GeostationaryHeight() {
-            this.Name = "Synchronous Alt.";
+            this.Name = Localizer.Format("#KE_GeostationaryHeight");//"Synchronous Alt."
             this.Category = ReadoutCategory.GetCategory("Body");
-            this.HelpString = "The altitude where the orbital period equals the body's rotation period.";
+            this.HelpString = Localizer.Format("#KE_GeostationaryHeight_desc");//"The altitude where the orbital period equals the body's rotation period."
             this.IsDefault = true;
         }
 

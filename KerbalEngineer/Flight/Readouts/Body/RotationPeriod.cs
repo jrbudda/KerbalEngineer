@@ -21,6 +21,7 @@
 
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
+using KSP.Localization;
 
 #endregion
 
@@ -29,9 +30,9 @@ namespace KerbalEngineer.Flight.Readouts.Body {
         #region Constructors
 
         public BodyRotationPeriod() {
-            this.Name = "Body Rotation Period";
+            this.Name = Localizer.Format("#KE_BodyRotationPeriod");//"Body Rotation Period"
             this.Category = ReadoutCategory.GetCategory("Body");
-            this.HelpString = "The time to complete one revolution about the body's axis.";
+            this.HelpString = Localizer.Format("#KE_BodyRotationPeriod_desc");//"The time to complete one revolution about the body's axis."
             this.IsDefault = true;
         }
 

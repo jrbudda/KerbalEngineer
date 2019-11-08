@@ -20,6 +20,7 @@
 #region Using Directives
 
 using KerbalEngineer.Flight.Sections;
+using KSP.Localization;
 
 #endregion
 
@@ -31,9 +32,9 @@ namespace KerbalEngineer.Flight.Readouts.Body
 
         public HasAtmosphere()
         {
-            this.Name = "Has Atmosphere";
+            this.Name = Localizer.Format("#KE_HasAtmosphere");//"Has Atmosphere"
             this.Category = ReadoutCategory.GetCategory("Body");
-            this.HelpString = "Shows whether the current body has an atmosphere.";
+            this.HelpString = Localizer.Format("#KE_HasAtmosphere_desc");//"Shows whether the current body has an atmosphere."
             this.IsDefault = false;
         }
 
