@@ -27,6 +27,7 @@ namespace KerbalEngineer.Editor
     using Unity;
     using UnityEngine;
     using KeyBinding = global::KeyBinding;
+    using KSP.Localization;
 
     public class BuildOverlayPartInfo : MonoBehaviour
     {
@@ -219,7 +220,7 @@ namespace KerbalEngineer.Editor
             ModuleAlternator moduleAlternator = selectedPart.GetModule<ModuleAlternator>();
             if (moduleAlternator != null)
             {
-                infoItems.Add(PartInfoItem.Create("Alternator"));
+                infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_Partinfo_Alternator")));//"Alternator"
                 for (int i = 0; i < moduleAlternator.resHandler.outputResources.Count; ++i)
                 {
                     var moduleResource = moduleAlternator.resHandler.outputResources[i];
@@ -230,7 +231,7 @@ namespace KerbalEngineer.Editor
 
         private void SetCostInfo()
         {
-            infoItems.Add(PartInfoItem.Create("Cost", Units.ConcatF(selectedPart.GetCostDry(), selectedPart.GetCostWet())));
+            infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_Partinfo_Cost"), Units.ConcatF(selectedPart.GetCostDry(), selectedPart.GetCostWet())));//"Cost"
         }
 
         private void SetDecouplerInfo()
@@ -238,10 +239,10 @@ namespace KerbalEngineer.Editor
             var protoModuleDecoupler = selectedPart.GetProtoModuleDecoupler();
             if (protoModuleDecoupler != null)
             {
-                infoItems.Add(PartInfoItem.Create("Ejection Force", protoModuleDecoupler.EjectionForce.ToForce()));
+                infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_Partinfo_EjectionForce"), protoModuleDecoupler.EjectionForce.ToForce()));//"Ejection Force"
                 if (protoModuleDecoupler.IsOmniDecoupler)
                 {
-                    infoItems.Add(PartInfoItem.Create("Omni-directional"));
+                    infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_Partinfo_Omni_directional")));//"Omni-directional"
                 }
             }
         }
@@ -251,11 +252,11 @@ namespace KerbalEngineer.Editor
             var protoModuleEngine = selectedPart.GetProtoModuleEngine();
             if (protoModuleEngine != null)
             {
-                infoItems.Add(PartInfoItem.Create("Thrust", Units.ToForce(protoModuleEngine.MinimumThrust, protoModuleEngine.MaximumThrust)));
-                infoItems.Add(PartInfoItem.Create("Isp", Units.ConcatF(protoModuleEngine.GetSpecificImpulse(1.0f), protoModuleEngine.GetSpecificImpulse(0.0f)) + "s"));
+                infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_Partinfo_Thrust"), Units.ToForce(protoModuleEngine.MinimumThrust, protoModuleEngine.MaximumThrust)));//"Thrust"
+                infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_Partinfo_Isp"), Units.ConcatF(protoModuleEngine.GetSpecificImpulse(1.0f), protoModuleEngine.GetSpecificImpulse(0.0f)) + "s"));//"Isp"
                 if (protoModuleEngine.Propellants.Count > 0)
                 {
-                    infoItems.Add(PartInfoItem.Create("Propellants"));
+                    infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_Partinfo_Propellants")));//"Propellants"
 
                     float totalRatio = 0.0f;
                     for (int i = 0; i < protoModuleEngine.Propellants.Count; ++i)
@@ -279,7 +280,7 @@ namespace KerbalEngineer.Editor
             {
                 if (moduleGenerator.resHandler.inputResources.Count > 0)
                 {
-                    infoItems.Add(PartInfoItem.Create("Generator Input"));
+                    infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_Partinfo_GeneratorInput")));//"Generator Input"
                     for (int i = 0; i < moduleGenerator.resHandler.inputResources.Count; ++i)
                     {
                         var generatorResource = moduleGenerator.resHandler.inputResources[i];
@@ -289,7 +290,7 @@ namespace KerbalEngineer.Editor
 
                 if (moduleGenerator.resHandler.outputResources.Count > 0)
                 {
-                    infoItems.Add(PartInfoItem.Create("Generator Output"));
+                    infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_Partinfo_GeneratorOnput")));//"Generator Output"
                     for (int i = 0; i < moduleGenerator.resHandler.outputResources.Count; ++i)
                     {
                         var generatorResource = moduleGenerator.resHandler.outputResources[i];
@@ -299,7 +300,7 @@ namespace KerbalEngineer.Editor
 
                 if (moduleGenerator.isAlwaysActive)
                 {
-                    infoItems.Add(PartInfoItem.Create("Generator is Always Active"));
+                    infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_Partinfo_GeneratorisAlwaysActive")));//"Generator is Always Active"
                 }
             }
         }
@@ -309,7 +310,7 @@ namespace KerbalEngineer.Editor
             var moduleGimbal = selectedPart.GetModule<ModuleGimbal>();
             if (moduleGimbal != null)
             {
-                infoItems.Add(PartInfoItem.Create("Thrust Vectoring", moduleGimbal.gimbalRange.ToString("F2")));
+                infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_Partinfo_ThrustVectoring"), moduleGimbal.gimbalRange.ToString("F2")));//"Thrust Vectoring"
             }
         }
 
@@ -317,7 +318,7 @@ namespace KerbalEngineer.Editor
         {
             if (selectedPart.physicalSignificance == Part.PhysicalSignificance.FULL)
             {
-                infoItems.Add(PartInfoItem.Create("Mass", Units.ToMass(selectedPart.GetDryMass(), selectedPart.GetWetMass())));
+                infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_Partinfo_Mass"), Units.ToMass(selectedPart.GetDryMass(), selectedPart.GetWetMass())));//"Mass"
             }
         }
 
@@ -326,9 +327,9 @@ namespace KerbalEngineer.Editor
             var moduleParachute = selectedPart.GetModule<ModuleParachute>();
             if (moduleParachute != null)
             {
-                infoItems.Add(PartInfoItem.Create("Deployed Drag", Units.ConcatF(moduleParachute.semiDeployedDrag, moduleParachute.fullyDeployedDrag)));
-                infoItems.Add(PartInfoItem.Create("Deployment Altitude", moduleParachute.deployAltitude.ToDistance()));
-                infoItems.Add(PartInfoItem.Create("Deployment Pressure", moduleParachute.minAirPressureToOpen.ToString("F2")));
+                infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_Partinfo_DeployedDrag"), Units.ConcatF(moduleParachute.semiDeployedDrag, moduleParachute.fullyDeployedDrag)));//"Deployed Drag"
+                infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_Partinfo_DeploymentAltitude"), moduleParachute.deployAltitude.ToDistance()));//"Deployment Altitude"
+                infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_Partinfo_DeploymentPressure"), moduleParachute.minAirPressureToOpen.ToString("F2")));//"Deployment Pressure"
             }
         }
 
@@ -337,8 +338,8 @@ namespace KerbalEngineer.Editor
             var moduleRcs = selectedPart.GetModule<ModuleRCS>();
             if (moduleRcs != null)
             {
-                infoItems.Add(PartInfoItem.Create("Thruster Power", moduleRcs.thrusterPower.ToForce()));
-                infoItems.Add(PartInfoItem.Create("Specific Impulse", Units.ConcatF(moduleRcs.atmosphereCurve.Evaluate(1.0f), moduleRcs.atmosphereCurve.Evaluate(0.0f)) + "s"));
+                infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_Partinfo_ThrusterPower"), moduleRcs.thrusterPower.ToForce()));//"Thruster Power"
+                infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_Partinfo_SpecificImpulse"), Units.ConcatF(moduleRcs.atmosphereCurve.Evaluate(1.0f), moduleRcs.atmosphereCurve.Evaluate(0.0f)) + "s"));//"Specific Impulse"
             }
         }
 
@@ -347,10 +348,10 @@ namespace KerbalEngineer.Editor
             var moduleReactionWheel = selectedPart.GetModule<ModuleReactionWheel>();
             if (moduleReactionWheel != null)
             {
-                infoItems.Add(PartInfoItem.Create("Reaction Wheel Torque"));
-                infoItems.Add(PartInfoItem.Create("\tPitch", moduleReactionWheel.PitchTorque.ToTorque()));
-                infoItems.Add(PartInfoItem.Create("\tRoll", moduleReactionWheel.RollTorque.ToTorque()));
-                infoItems.Add(PartInfoItem.Create("\tYaw", moduleReactionWheel.YawTorque.ToTorque()));
+                infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_Partinfo_ReactionWheelInfo")));//"Reaction Wheel Torque"
+                infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_Partinfo_ReactionWheelInfo_Pitch"), moduleReactionWheel.PitchTorque.ToTorque()));//"\tPitch"
+                infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_Partinfo_ReactionWheelInfo_Roll"), moduleReactionWheel.RollTorque.ToTorque()));//"\tRoll"
+                infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_Partinfo_ReactionWheelInfo_Yaw"), moduleReactionWheel.YawTorque.ToTorque()));//"\tYaw"
                 for (int i = 0; i < moduleReactionWheel.resHandler.inputResources.Count; ++i)
                 {
                     var moduleResource = moduleReactionWheel.resHandler.inputResources[i];
@@ -373,7 +374,7 @@ namespace KerbalEngineer.Editor
 
             if (visibleResources)
             {
-                infoItems.Add(PartInfoItem.Create("Resources"));
+                infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_Partinfo_Resources")));//"Resources"
                 for (int i = 0; i < selectedPart.Resources.dict.Count; ++i)
                 {
                     var partResource = selectedPart.Resources.dict.At(i);
@@ -392,7 +393,7 @@ namespace KerbalEngineer.Editor
         {
             if (selectedPart.HasModule<ModuleSAS>())
             {
-                infoItems.Add(PartInfoItem.Create("SAS Equiped"));
+                infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_Partinfo_SASEquiped")));//"SAS Equiped"
             }
         }
 
@@ -400,7 +401,7 @@ namespace KerbalEngineer.Editor
         {
             if (selectedPart.HasModule<ModuleScienceContainer>())
             {
-                infoItems.Add(PartInfoItem.Create("Science Container"));
+                infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_Partinfo_ScienceContainer")));//"Science Container"
             }
         }
 
@@ -409,11 +410,11 @@ namespace KerbalEngineer.Editor
             var moduleScienceExperiment = selectedPart.GetModule<ModuleScienceExperiment>();
             if (moduleScienceExperiment != null)
             {
-                infoItems.Add(PartInfoItem.Create("Science Experiment", moduleScienceExperiment.experimentActionName));
-                infoItems.Add(PartInfoItem.Create("\tTransmit Efficiency", moduleScienceExperiment.xmitDataScalar.ToPercent()));
+                infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_Partinfo_ScienceExperiment"), moduleScienceExperiment.experimentActionName));//"Science Experiment"
+                infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_Partinfo_TransmitEfficiency"), moduleScienceExperiment.xmitDataScalar.ToPercent()));//"\tTransmit Efficiency"
                 if (moduleScienceExperiment.rerunnable == false)
                 {
-                    infoItems.Add(PartInfoItem.Create("\tSingle Usage"));
+                    infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_Partinfo_SingleUsage")));//"\tSingle Usage"
                 }
             }
         }
@@ -422,7 +423,7 @@ namespace KerbalEngineer.Editor
         {
             if (selectedPart.HasModule<ModuleAnimateGeneric>(m => m.isOneShot))
             {
-                infoItems.Add(PartInfoItem.Create("Single Activation"));
+                infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_Partinfo_SingleActivation")));//"Single Activation"
             }
         }
 
@@ -431,15 +432,15 @@ namespace KerbalEngineer.Editor
             var moduleDeployableSolarPanel = selectedPart.GetModule<ModuleDeployableSolarPanel>();
             if (moduleDeployableSolarPanel != null)
             {
-                infoItems.Add(PartInfoItem.Create("Charge Rate", moduleDeployableSolarPanel.chargeRate.ToRate()));
+                infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_SolarPanelInfo_ChargeRate"), moduleDeployableSolarPanel.chargeRate.ToRate()));//"Charge Rate"
                 if (moduleDeployableSolarPanel.isBreakable)
                 {
-                    infoItems.Add(PartInfoItem.Create("Breakable"));
+                    infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_SolarPanelInfo_Breakable")));//"Breakable"
                 }
 
                 if (moduleDeployableSolarPanel.trackingBody == Sun.Instance)
                 {
-                    infoItems.Add(PartInfoItem.Create("Sun Tracking"));
+                    infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_SolarPanelInfo_SunTracking")));//"Sun Tracking"
                 }
             }
         }
@@ -449,11 +450,11 @@ namespace KerbalEngineer.Editor
             var moduleDataTransmitter = selectedPart.GetModule<ModuleDataTransmitter>();
             if (moduleDataTransmitter != null)
             {
-                infoItems.Add(PartInfoItem.Create("Packet Size", moduleDataTransmitter.packetSize.ToString("F2") + " Mits"));
-                infoItems.Add(PartInfoItem.Create("Bandwidth", (moduleDataTransmitter.packetInterval * moduleDataTransmitter.packetSize).ToString("F2") + "Mits/sec"));
+                infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_TransmitterInfo_PacketSize"), moduleDataTransmitter.packetSize.ToString("F2") + " Mits"));//"Packet Size"
+                infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_TransmitterInfo_Bandwidth"), (moduleDataTransmitter.packetInterval * moduleDataTransmitter.packetSize).ToString("F2") + "Mits/sec"));//"Bandwidth"
 
                 // TODO: allow for multiple consumed resources
-                infoItems.Add(PartInfoItem.Create(moduleDataTransmitter.GetConsumedResources()[0].name, moduleDataTransmitter.packetResourceCost.ToString("F2") + "/Packet"));
+                infoItems.Add(PartInfoItem.Create(moduleDataTransmitter.GetConsumedResources()[0].name, Localizer.Format("#KE_TransmitterInfo_Packet", moduleDataTransmitter.packetResourceCost.ToString("F2"))));// + "/Packet")
             }
         }
 
@@ -486,7 +487,7 @@ namespace KerbalEngineer.Editor
                 else if (clickToOpen && namesOnly == false)
                 {
                     GUILayout.Space(2.0f);
-                    GUILayout.Label("Click [" + KeyBinder.PartInfoShowHide + "] to show more info...", BuildOverlay.NameStyle);
+                    GUILayout.Label(Localizer.Format("",KeyBinder.PartInfoShowHide), BuildOverlay.NameStyle);//"Click [" +  + "] to show more info..."
                 }
             }
             catch (Exception ex)

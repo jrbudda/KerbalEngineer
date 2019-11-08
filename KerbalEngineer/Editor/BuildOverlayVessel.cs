@@ -30,6 +30,7 @@ namespace KerbalEngineer.Editor
     using Helpers;
     using UnityEngine;
     using VesselSimulator;
+    using KSP.Localization;
 
     #endregion
 
@@ -145,7 +146,7 @@ namespace KerbalEngineer.Editor
         {
             try
             {
-                tabContent = new GUIContent("VESSEL");
+                tabContent = new GUIContent(Localizer.Format("#KE_VESSELLabel"));//"VESSEL"
                 tabSize = BuildOverlay.TabStyle.CalcSize(tabContent);
             }
             catch (Exception ex)
@@ -223,10 +224,10 @@ namespace KerbalEngineer.Editor
             {
                 PartInfoItem.Release(infoItems);
                 infoItems.Clear();
-                infoItems.Add(PartInfoItem.Create("Delta-V", lastStage.deltaV.ToString("N0") + " / " + lastStage.totalDeltaV.ToString("N0") + "m/s"));
-                infoItems.Add(PartInfoItem.Create("Mass", Units.ToMass(lastStage.mass, lastStage.totalMass)));
-                infoItems.Add(PartInfoItem.Create("TWR", lastStage.thrustToWeight.ToString("F2") + " (" + lastStage.maxThrustToWeight.ToString("F2") + ")"));
-                infoItems.Add(PartInfoItem.Create("Parts", lastStage.partCount + " / " + lastStage.totalPartCount));
+                infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_VESSEL_DeltaV"), lastStage.deltaV.ToString("N0") + " / " + lastStage.totalDeltaV.ToString("N0") + "m/s"));//"Delta-V"
+                infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_VESSEL_Mass"), Units.ToMass(lastStage.mass, lastStage.totalMass)));//"Mass"
+                infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_VESSEL_TWR"), lastStage.thrustToWeight.ToString("F2") + " (" + lastStage.maxThrustToWeight.ToString("F2") + ")"));//"TWR"
+                infoItems.Add(PartInfoItem.Create(Localizer.Format("#KE_VESSEL_Parts"), lastStage.partCount + " / " + lastStage.totalPartCount));//"Parts"
             }
         }
 
