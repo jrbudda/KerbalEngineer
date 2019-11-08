@@ -23,6 +23,7 @@ using System;
 
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
+using KSP.Localization;
 
 using UnityEngine;
 
@@ -43,9 +44,9 @@ namespace KerbalEngineer.Flight.Readouts.Miscellaneous
 
         public ClearSeparator()
         {
-            this.Name = "Clear Separator";
+            this.Name = Localizer.Format("#KE_ClearSeparator");//"Clear Separator"
             this.Category = ReadoutCategory.GetCategory("Miscellaneous");
-            this.HelpString = "Creats a space to help seperate subsections in a module.";
+            this.HelpString = Localizer.Format("#KE_ClearSeparator_desc");//"Creats a space to help seperate subsections in a module."
             this.IsDefault = false;
             this.Cloneable = true;
 

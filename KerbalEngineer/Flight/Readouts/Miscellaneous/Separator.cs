@@ -25,6 +25,7 @@ using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
 
 using UnityEngine;
+using KSP.Localization;
 
 #endregion
 
@@ -43,9 +44,9 @@ namespace KerbalEngineer.Flight.Readouts.Miscellaneous
 
         public Separator()
         {
-            this.Name = "Separator";
+            this.Name = Localizer.Format("#KE_Separator");//"Separator"
             this.Category = ReadoutCategory.GetCategory("Miscellaneous");
-            this.HelpString = "Creats a line to help seperate subsections in a module.";
+            this.HelpString = Localizer.Format("#KE_Separator_desc");//"Creats a line to help seperate subsections in a module."
             this.IsDefault = false;
             this.Cloneable = true;
 

@@ -24,6 +24,7 @@ namespace KerbalEngineer.Flight.Readouts.Miscellaneous
     using Sections;
     using UnityEngine;
     using VesselSimulator;
+    using KSP.Localization;
 
     #endregion
 
@@ -33,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Miscellaneous
 
         public VectoredThrustToggle()
         {
-            this.Name = "Vectored Thrust";
+            this.Name = Localizer.Format("#KE_VectoredThrustToggle");//"Vectored Thrust"
             this.Category = ReadoutCategory.GetCategory("Miscellaneous");
-            this.HelpString = "Shows a control that will allow you to adjust whether the vessel simulation should account for vectored thrust.";
+            this.HelpString = Localizer.Format("#KE_VectoredThrustToggle_desc");//"Shows a control that will allow you to adjust whether the vessel simulation should account for vectored thrust."
             this.IsDefault = false;
         }
 

@@ -24,6 +24,7 @@ namespace KerbalEngineer.Flight.Readouts.Miscellaneous
     using Sections;
     using UnityEngine;
     using VesselSimulator;
+    using KSP.Localization;
 
     #endregion
 
@@ -33,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Miscellaneous
 
         public LogSimToggle()
         {
-            this.Name = "Log Simulation";
+            this.Name = Localizer.Format("#KE_LogSimToggle");//"Log Simulation"
             this.Category = ReadoutCategory.GetCategory("Miscellaneous");
-            this.HelpString = "Shows a button that allows you to make the next run of the simulation code dump extra debugging output.";
+            this.HelpString = Localizer.Format("#KE_LogSimToggle_desc");//"Shows a button that allows you to make the next run of the simulation code dump extra debugging output."
             this.IsDefault = false;
         }
 

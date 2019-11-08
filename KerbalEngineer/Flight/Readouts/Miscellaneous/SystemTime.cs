@@ -25,6 +25,7 @@ using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
 
 using UnityEngine;
+using KSP.Localization;
 
 #endregion
 
@@ -38,9 +39,9 @@ namespace KerbalEngineer.Flight.Readouts.Miscellaneous
 
         public SystemTime()
         {
-            this.Name = "System Time";
+            this.Name = Localizer.Format("#KE_SystemTime");//"System Time"
             this.Category = ReadoutCategory.GetCategory("Miscellaneous");
-            this.HelpString = "Shows the System Time in 12 hour format (AM/PM)";
+            this.HelpString = Localizer.Format("#KE_SystemTime_desc");//"Shows the System Time in 12 hour format (AM/PM)"
             this.IsDefault = false;
         }
 

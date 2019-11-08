@@ -22,6 +22,7 @@
 using KerbalEngineer.Flight.Sections;
 
 using UnityEngine;
+using KSP.Localization;
 
 #endregion
 
@@ -33,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Miscellaneous
 
         public GuiSizeAdjustor()
         {
-            this.Name = "GUI Size Adjustor";
+            this.Name = Localizer.Format("#KE_GuiSizeAdjustor");//"GUI Size Adjustor"
             this.Category = ReadoutCategory.GetCategory("Miscellaneous");
-            this.HelpString = "Shows a control that will allow you to adjust the GUI size.";
+            this.HelpString = Localizer.Format("#KE_GuiSizeAdjustor_desc");//"Shows a control that will allow you to adjust the GUI size."
             this.IsDefault = false;
         }
 

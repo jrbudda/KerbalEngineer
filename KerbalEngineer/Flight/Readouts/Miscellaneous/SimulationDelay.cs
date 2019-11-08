@@ -23,6 +23,7 @@ using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.VesselSimulator;
 
 using UnityEngine;
+using KSP.Localization;
 
 #endregion
 
@@ -36,9 +37,9 @@ namespace KerbalEngineer.Flight.Readouts.Miscellaneous
 
         public SimulationDelay()
         {
-            this.Name = "Minimum Simulation Delay";
+            this.Name = Localizer.Format("#KE_SimulationDelay");//"Minimum Simulation Delay"
             this.Category = ReadoutCategory.GetCategory("Miscellaneous");
-            this.HelpString = "Controls the minimum delay between processing vessel simulations.";
+            this.HelpString = Localizer.Format("#KE_SimulationDelay_desc");//"Controls the minimum delay between processing vessel simulations."
             this.IsDefault = true;
         }
 

@@ -25,6 +25,7 @@ using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
 
 using UnityEngine;
+using KSP.Localization;
 
 #endregion
 
@@ -38,9 +39,9 @@ namespace KerbalEngineer.Flight.Readouts.Miscellaneous
 
         public SystemDateTime()
         {
-            this.Name = "System Time";
+            this.Name = Localizer.Format("#KE_SystemDateTime");//"System Time"
             this.Category = ReadoutCategory.GetCategory("Miscellaneous");
-            this.HelpString = "Shows the System Date/Time in ISO 8601 format";
+            this.HelpString = Localizer.Format("#KE_SystemDateTime_desc");//"Shows the System Date/Time in ISO 8601 format"
             this.IsDefault = false;
         }
 
