@@ -22,6 +22,8 @@
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Rendezvous
@@ -32,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous
 
         public RelativeVelocity()
         {
-            this.Name = "Relative Velocity";
+            this.Name = Localizer.Format("#KE_RelativeVelocity");//"Relative Velocity"
             this.Category = ReadoutCategory.GetCategory("Rendezvous");
-            this.HelpString = "Shows the relative velocity between your vessel and the target object.";
+            this.HelpString = Localizer.Format("#KE_RelativeVelocity_desc");//"Shows the relative velocity between your vessel and the target object."
             this.IsDefault = false;
         }
 

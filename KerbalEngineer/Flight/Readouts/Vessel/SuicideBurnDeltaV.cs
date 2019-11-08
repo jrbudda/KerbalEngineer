@@ -24,6 +24,8 @@ using System;
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Vessel
@@ -34,9 +36,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public SuicideBurnDeltaV()
         {
-            this.Name = "Suicide Burn dV";
+            this.Name = Localizer.Format("#KE_SuicideBurnDeltaV");//"Suicide Burn dV"
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Shows the DeltaV of a suicide burn.";
+            this.HelpString = Localizer.Format("#KE_SuicideBurnDeltaV_desc");//"Shows the DeltaV of a suicide burn."
             this.IsDefault = false;
         }
 

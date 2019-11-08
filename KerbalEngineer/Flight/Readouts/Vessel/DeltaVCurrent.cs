@@ -22,6 +22,8 @@
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Vessel
@@ -32,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public DeltaVCurrent()
         {
-            this.Name = "DeltaV Current";
+            this.Name = Localizer.Format("#KE_DeltaVCurrent");//"DeltaV Current"
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Shows the vessel's current stage delta velocity.";
+            this.HelpString = Localizer.Format("#KE_DeltaVCurrent_desc");//"Shows the vessel's current stage delta velocity."
             this.IsDefault = false;
         }
 

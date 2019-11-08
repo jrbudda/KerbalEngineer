@@ -21,6 +21,7 @@
 
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
+using KSP.Localization;
 
 #endregion
 
@@ -32,9 +33,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public RCSDeltaV()
         {
-            this.Name = "RCS DeltaV";
+            this.Name = Localizer.Format("#KE_RCSDeltaV");//"RCS DeltaV"
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Shows the current possible DeltaV from RCS";
+            this.HelpString = Localizer.Format("#KE_RCSDeltaV_desc");//"Shows the current possible DeltaV from RCS"
             this.IsDefault = false;
         }
 

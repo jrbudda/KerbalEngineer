@@ -24,6 +24,8 @@ using System;
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Rendezvous
@@ -34,9 +36,9 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous
 
         public SemiMajorAxis()
         {
-            this.Name = "Semi-major Axis";
+            this.Name = Localizer.Format("#KE_SemiMajorAxis");//"Semi-major Axis"
             this.Category = ReadoutCategory.GetCategory("Rendezvous");
-            this.HelpString = "Shows the distance from the centre of the target's orbit to the farthest edge.";
+            this.HelpString = Localizer.Format("#KE_SemiMajorAxis_Rendezdesc");//"Shows the distance from the centre of the target's orbit to the farthest edge."
             this.IsDefault = true;
         }
 

@@ -22,6 +22,8 @@
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Rendezvous
@@ -32,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous
 
         public TimeTilClosestApproach()
         {
-            this.Name = "Time til Approach";
+            this.Name = Localizer.Format("#KE_TimeTilClosestApproach");//"Time til Approach"
             this.Category = ReadoutCategory.GetCategory("Rendezvous");
-            this.HelpString = "Time until the next closest approach to the target.";
+            this.HelpString = Localizer.Format("#KE_TimeTilClosestApproach_desc");//"Time until the next closest approach to the target."
             this.IsDefault = false;
         }
 

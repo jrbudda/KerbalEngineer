@@ -21,6 +21,7 @@
 
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
+using KSP.Localization;
 
 #endregion
 
@@ -36,9 +37,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public RCSTWR()
         {
-            this.Name = "RCS TWR";
+            this.Name = Localizer.Format("#KE_RCSTWR");//"RCS TWR"
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Shows the TWR for the RCS system at the current gravity";
+            this.HelpString = Localizer.Format("#KE_RCSTWR_desc");//"Shows the TWR for the RCS system at the current gravity"
             this.IsDefault = false;
         }
 

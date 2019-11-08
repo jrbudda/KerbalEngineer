@@ -20,6 +20,7 @@
 #region Using Directives
 
 using KerbalEngineer.Flight.Sections;
+using KSP.Localization;
 
 #endregion
 
@@ -31,9 +32,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public SpecificImpulse()
         {
-            this.Name = "Specific Impulse";
+            this.Name = Localizer.Format("#KE_SpecificImpulse");//"Specific Impulse"
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Shows the average Specific Impulse of all engines in the current stage.";
+            this.HelpString = Localizer.Format("#KE_SpecificImpulse_desc");//"Shows the average Specific Impulse of all engines in the current stage."
             this.IsDefault = false;
         }
 

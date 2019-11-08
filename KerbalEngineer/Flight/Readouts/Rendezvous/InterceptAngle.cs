@@ -22,6 +22,8 @@
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Rendezvous
@@ -32,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous
 
         public InterceptAngle()
         {
-            this.Name = "Transfer Angle";
+            this.Name = Localizer.Format("#KE_InterceptAngle");//"Transfer Angle"
             this.Category = ReadoutCategory.GetCategory("Rendezvous");
-            this.HelpString = "The phase angle for starting a Hohmann transfer.";
+            this.HelpString = Localizer.Format("#KE_InterceptAngle_desc");//"The phase angle for starting a Hohmann transfer."
             this.HelpString = string.Empty;
             this.IsDefault = true;
         }

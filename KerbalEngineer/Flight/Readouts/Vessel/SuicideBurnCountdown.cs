@@ -24,6 +24,7 @@ using System;
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
+using KSP.Localization;
 
 #endregion
 
@@ -35,9 +36,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public SuicideBurnCountdown()
         {
-            this.Name = "Suicide Burn Countdown";
+            this.Name = Localizer.Format("#KE_SuicideBurnCountdown");//"Suicide Burn Countdown"
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Time until suicide burn should start.";
+            this.HelpString = Localizer.Format("#KE_SuicideBurnCountdown_desc");//"Time until suicide burn should start."
             this.IsDefault = false;
         }
 

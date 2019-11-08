@@ -21,6 +21,7 @@
 
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
+using KSP.Localization;
 
 #endregion
 
@@ -32,9 +33,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public SuicideBurnDistance()
         {
-            this.Name = "Suicide Burn Dist.";
+            this.Name = Localizer.Format("#KE_SuicideBurnDistance");//"Suicide Burn Dist."
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Shows the distance to the point at which to start a suicide burn.";
+            this.HelpString = Localizer.Format("#KE_SuicideBurnDistance_desc");//"Shows the distance to the point at which to start a suicide burn."
             this.IsDefault = false;
         }
 

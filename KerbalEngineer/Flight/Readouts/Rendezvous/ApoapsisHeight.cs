@@ -22,6 +22,8 @@
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Rendezvous
@@ -32,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous
 
         public ApoapsisHeight()
         {
-            this.Name = "Apoapsis Height";
+            this.Name = Localizer.Format("#KE_ApoapsisHeight");//"Apoapsis Height"
             this.Category = ReadoutCategory.GetCategory("Rendezvous");
-            this.HelpString = "Shows the targets's apoapsis height relative to sea level. (Apoapsis is the highest point of an orbit.)";
+            this.HelpString = Localizer.Format("#KE_ApoapsisHeight_Rendezdesc");//"Shows the targets's apoapsis height relative to sea level. (Apoapsis is the highest point of an orbit.)"
             this.IsDefault = true;
         }
 

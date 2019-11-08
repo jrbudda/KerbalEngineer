@@ -23,6 +23,7 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
     using Helpers;
     using Sections;
+    using KSP.Localization;
 
     #endregion
 
@@ -32,9 +33,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public HeadingRate()
         {
-            this.Name = "Heading Rate";
+            this.Name = Localizer.Format("#KE_HeadingRate");//"Heading Rate"
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Shows the current change in Heading.";
+            this.HelpString = Localizer.Format("#KE_HeadingRate_desc");//"Shows the current change in Heading."
             this.IsDefault = false;
         }
 

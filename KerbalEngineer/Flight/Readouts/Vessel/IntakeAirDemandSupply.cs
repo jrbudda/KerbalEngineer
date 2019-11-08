@@ -22,6 +22,7 @@
 using System.Linq;
 
 using KerbalEngineer.Flight.Sections;
+using KSP.Localization;
 
 #endregion
 
@@ -40,9 +41,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public IntakeAirDemandSupply()
         {
-            this.Name = "Intake Air (D/S)";
+            this.Name = Localizer.Format("#KE_IntakeAirDemandSupply");//"Intake Air (D/S)"
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Displays the Ratio between required and available Intake Air.";
+            this.HelpString = Localizer.Format("#KE_IntakeAirDemandSupply_desc");//"Displays the Ratio between required and available Intake Air."
             this.IsDefault = false;
         }
 

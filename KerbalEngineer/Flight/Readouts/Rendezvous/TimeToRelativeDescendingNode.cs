@@ -22,6 +22,8 @@
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Rendezvous
@@ -32,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous
 
         public TimeToRelativeDescendingNode()
         {
-            this.Name = "Time to Rel. DN";
+            this.Name = Localizer.Format("#KE_TimeToRelativeDescendingNode");//"Time to Rel. DN"
             this.Category = ReadoutCategory.GetCategory("Rendezvous");
-            this.HelpString = "Time until the vessel crosses the target's orbit, going south.";
+            this.HelpString = Localizer.Format("#KE_TimeToRelativeDescendingNode_desc");//"Time until the vessel crosses the target's orbit, going south."
             this.IsDefault = true;
         }
 

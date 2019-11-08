@@ -20,6 +20,7 @@
 #region Using Directives
 
 using KerbalEngineer.Flight.Sections;
+using KSP.Localization;
 
 #endregion
 
@@ -39,9 +40,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public ThrustToWeight()
         {
-            this.Name = "Thrust to Weight Ratio";
+            this.Name = Localizer.Format("#KE_ThrustToWeight");//"Thrust to Weight Ratio"
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Shows the vessel's actual and total thrust to weight ratio.";
+            this.HelpString = Localizer.Format("#KE_ThrustToWeight_desc");//"Shows the vessel's actual and total thrust to weight ratio."
             this.IsDefault = true;
         }
 

@@ -23,6 +23,7 @@ using System;
 
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
+using KSP.Localization;
 
 #endregion
 
@@ -40,9 +41,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public IntakeAirUsage()
         {
-            this.Name = "Intake Air (Usage)";
+            this.Name = Localizer.Format("#KE_IntakeAirUsage");//"Intake Air (Usage)"
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Displays the consumption of Intake Air.";
+            this.HelpString = Localizer.Format("#KE_IntakeAirUsage_desc");//"Displays the consumption of Intake Air."
             this.IsDefault = true;
         }
 

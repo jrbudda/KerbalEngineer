@@ -19,6 +19,7 @@
 namespace KerbalEngineer.Flight.Readouts.Vessel {
     using System;
     using Sections;
+    using KSP.Localization;
 
     public class SurfaceThrustToWeight : ReadoutModule {
         private string m_Actual = string.Empty;
@@ -26,9 +27,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel {
         private string m_Total = string.Empty;
 
         public SurfaceThrustToWeight() {
-            Name = "Surface Thrust to Weight Ratio";
+            Name = Localizer.Format("#KE_SurfaceThrustToWeight");//"Surface Thrust to Weight Ratio"
             Category = ReadoutCategory.GetCategory("Vessel");
-            HelpString = "Shows the vessel's surface thrust to weight ratio.";
+            HelpString = Localizer.Format("#KE_SurfaceThrustToWeight_desc");//"Shows the vessel's surface thrust to weight ratio."
             IsDefault = true;
         }
 

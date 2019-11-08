@@ -21,6 +21,7 @@
 
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
+using KSP.Localization;
 
 #endregion
 
@@ -32,9 +33,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public Name()
         {
-            Name = "Name";
+            Name = Localizer.Format("#KE_Name");//"Name"
             Category = ReadoutCategory.GetCategory("Vessel");
-            HelpString = "Displays the name of the current vessel.";
+            HelpString = Localizer.Format("#KE_Name_desc");//"Displays the name of the current vessel."
             IsDefault = true;
         }
 

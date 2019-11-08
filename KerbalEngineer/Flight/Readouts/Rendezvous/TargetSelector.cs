@@ -23,6 +23,8 @@ using KerbalEngineer.Flight.Sections;
 
 using UnityEngine;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Rendezvous {
@@ -43,9 +45,9 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous {
         #region Initialisation
 
         public TargetSelector() {
-            this.Name = "Target Selector";
+            this.Name = Localizer.Format("#KE_TargetSelector");//"Target Selector"
             this.Category = ReadoutCategory.GetCategory("Rendezvous");
-            this.HelpString = "A tool to allow easy browsing, searching and selection of targets.";
+            this.HelpString = Localizer.Format("#KE_TargetSelector_desc");//"A tool to allow easy browsing, searching and selection of targets."
             this.IsDefault = true;
         }
 

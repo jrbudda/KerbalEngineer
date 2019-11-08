@@ -20,6 +20,7 @@
 #region Using Directives
 
 using KerbalEngineer.Flight.Sections;
+using KSP.Localization;
 
 #endregion
 
@@ -37,9 +38,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public IntakeAirSupply()
         {
-            this.Name = "Intake Air (Supply)";
+            this.Name = Localizer.Format("#KE_IntakeAirSupply");//"Intake Air (Supply)"
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Displays the available Intake Air.";
+            this.HelpString = Localizer.Format("#KE_IntakeAirSupply_desc");//"Displays the available Intake Air."
             this.IsDefault = false;
         }
 

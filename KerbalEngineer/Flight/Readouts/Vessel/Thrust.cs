@@ -21,6 +21,7 @@
 
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
+using KSP.Localization;
 
 #endregion
 
@@ -32,9 +33,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public Thrust()
         {
-            this.Name = "Thrust";
+            this.Name = Localizer.Format("#KE_Thrust");//"Thrust"
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Shows the current and maximum thrust the vessel can put out.";
+            this.HelpString = Localizer.Format("#KE_Thrust_desc");//"Shows the current and maximum thrust the vessel can put out."
             this.IsDefault = true;
         }
 

@@ -21,6 +21,7 @@
 
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
+using KSP.Localization;
 
 #endregion
 
@@ -32,9 +33,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public RCSThrust()
         {
-            this.Name = "RCS Thrust";
+            this.Name = Localizer.Format("#KE_RCSThrust");//"RCS Thrust"
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Shows the maximum thrust from RCS thrusters";
+            this.HelpString = Localizer.Format("#KE_RCSThrust_desc");//"Shows the maximum thrust from RCS thrusters"
             this.IsDefault = false;
         }
 

@@ -23,6 +23,8 @@ using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Rendezvous
@@ -33,9 +35,9 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous
 
         public TimeToTransferAngleTime()
         {
-            this.Name = "Time til Transfer";
+            this.Name = Localizer.Format("#KE_TimeToTransferAngleTime");//"Time til Transfer"
             this.Category = ReadoutCategory.GetCategory("Rendezvous");
-            this.HelpString = "The time until the phase angle equals the transfer angle.";
+            this.HelpString = Localizer.Format("#KE_TimeToTransferAngleTime_desc");//"The time until the phase angle equals the transfer angle."
             this.IsDefault = true;
         }
 

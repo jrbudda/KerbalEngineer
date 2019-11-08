@@ -22,6 +22,8 @@
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Rendezvous
@@ -32,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous
 
         public OrbitalPeriod()
         {
-            this.Name = "Orbital Period";
+            this.Name = Localizer.Format("#KE_OrbitalPeriod");//"Orbital Period"
             this.Category = ReadoutCategory.GetCategory("Rendezvous");
-            this.HelpString = "Shows the amount of time it will take the target object to complete a full orbit.";
+            this.HelpString = Localizer.Format("#KE_OrbitalPeriod_Rendezdesc");//"Shows the amount of time it will take the target object to complete a full orbit."
             this.IsDefault = false;
         }
 

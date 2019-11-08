@@ -21,6 +21,7 @@
 
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
+using KSP.Localization;
 
 #endregion
 
@@ -32,9 +33,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public ThrustOffsetAngle()
         {
-            this.Name = "Thrust offset angle";
+            this.Name = Localizer.Format("#KE_ThrustOffsetAngle");//"Thrust offset angle"
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Thrust angle offset due to vessel asymmetries and gimballing";
+            this.HelpString = Localizer.Format("#KE_ThrustOffsetAngle_desc");//"Thrust angle offset due to vessel asymmetries and gimballing"
             this.IsDefault = true;
         }
 

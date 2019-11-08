@@ -22,6 +22,8 @@
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Rendezvous
@@ -32,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous
 
         public SpeedAtClosestApproach()
         {
-            this.Name = "Rel. Speed at Approach";
+            this.Name = Localizer.Format("#KE_SpeedAtClosestApproach");//"Rel. Speed at Approach"
             this.Category = ReadoutCategory.GetCategory("Rendezvous");
-            this.HelpString = "Shows the difference in orbital speed between your vessel and the target object at the next closest approach.";
+            this.HelpString = Localizer.Format("#KE_SpeedAtClosestApproach_desc");//"Shows the difference in orbital speed between your vessel and the target object at the next closest approach."
             this.IsDefault = false;
         }
 

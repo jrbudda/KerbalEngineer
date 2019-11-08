@@ -23,6 +23,7 @@ using System;
 
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
+using KSP.Localization;
 
 #endregion
 
@@ -34,9 +35,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public SuicideBurnAltitude()
         {
-            this.Name = "Suicide Burn Alt.";
+            this.Name = Localizer.Format("#KE_SuicideBurnAltitude");//"Suicide Burn Alt."
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Shows the sea level altitude when to start a suicide burn.";
+            this.HelpString = Localizer.Format("#KE_SuicideBurnAltitude_desc");//"Shows the sea level altitude when to start a suicide burn."
             this.IsDefault = false;
         }
 

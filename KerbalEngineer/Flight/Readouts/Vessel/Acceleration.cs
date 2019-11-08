@@ -22,6 +22,8 @@
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Vessel
@@ -32,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public Acceleration()
         {
-            this.Name = "Acceleration";
+            this.Name = Localizer.Format("#KE_Acceleration");//"Acceleration"
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Shows the current and maximum acceleration of the craft.";
+            this.HelpString = Localizer.Format("#KE_Acceleration_desc");//"Shows the current and maximum acceleration of the craft."
             this.IsDefault = true;
         }
 

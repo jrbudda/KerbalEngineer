@@ -22,6 +22,8 @@
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Rendezvous
@@ -32,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous
 
         public AngleToRelativeDescendingNode()
         {
-            this.Name = "Angle to Rel. DN";
+            this.Name = Localizer.Format("#KE_AngleToRelativeDescendingNode");//"Angle to Rel. DN"
             this.Category = ReadoutCategory.GetCategory("Rendezvous");
-            this.HelpString = "Angular Distance from the vessel to crossing the orbit of the target object, going south of it.";
+            this.HelpString = Localizer.Format("#KE_AngleToRelativeDescendingNode_desc");//"Angular Distance from the vessel to crossing the orbit of the target object, going south of it."
             this.IsDefault = false;
         }
 

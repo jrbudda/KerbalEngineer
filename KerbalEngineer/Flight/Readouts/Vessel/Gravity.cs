@@ -22,6 +22,7 @@
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
 using KerbalEngineer.VesselSimulator;
+using KSP.Localization;
 
 #endregion
 
@@ -33,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public Gravity()
         {
-            this.Name = "Gravity";
+            this.Name = Localizer.Format("#KE_Gravity");//"Gravity"
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "The current gravity experienced by the vessel.";
+            this.HelpString = Localizer.Format("#KE_Gravity_desc");//"The current gravity experienced by the vessel."
             this.IsDefault = false;
         }
 

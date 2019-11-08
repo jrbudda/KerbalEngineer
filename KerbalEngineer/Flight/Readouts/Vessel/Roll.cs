@@ -23,6 +23,7 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
     using Helpers;
     using Sections;
+    using KSP.Localization;
 
     #endregion
 
@@ -32,9 +33,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public Roll()
         {
-            this.Name = "Roll";
+            this.Name = Localizer.Format("#KE_Roll");//"Roll"
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Shows the current Roll angle.";
+            this.HelpString = Localizer.Format("#KE_Roll_desc");//"Shows the current Roll angle."
             this.IsDefault = false;
         }
 

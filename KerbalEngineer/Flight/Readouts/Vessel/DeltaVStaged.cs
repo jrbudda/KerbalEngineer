@@ -23,14 +23,15 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
     using KSP.UI.Screens;
     using Sections;
     using VesselSimulator;
+    using KSP.Localization;
 
     public class DeltaVStaged : ReadoutModule
     {
         public DeltaVStaged()
         {
-            Name = "DeltaV Staged";
+            Name = Localizer.Format("#KE_DeltaVStaged");//"DeltaV Staged"
             Category = ReadoutCategory.GetCategory("Vessel");
-            HelpString = "Shows the vessel's delta velocity for each stage.";
+            HelpString = Localizer.Format("#KE_DeltaVStaged_desc");//"Shows the vessel's delta velocity for each stage."
             IsDefault = true;
         }
 

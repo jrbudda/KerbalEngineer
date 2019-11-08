@@ -21,6 +21,7 @@
 
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
+using KSP.Localization;
 
 #endregion
 
@@ -32,9 +33,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public RCSIsp()
         {
-            this.Name = "RCS Isp";
+            this.Name = Localizer.Format("#KE_RCSIsp");//"RCS Isp"
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Shows the average specific impulse of the RCS System.";
+            this.HelpString = Localizer.Format("#KE_RCSIsp_desc");//"Shows the average specific impulse of the RCS System."
             this.IsDefault = false;
         }
 

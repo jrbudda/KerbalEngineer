@@ -23,6 +23,8 @@ using KerbalEngineer.Flight.Readouts.Rendezvous;
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Surface {
@@ -30,9 +32,9 @@ namespace KerbalEngineer.Flight.Readouts.Surface {
         #region Constructors
 
         public TargetLatitude() {
-            Name = "Target Latitude";
+            Name = Localizer.Format("#KE_TargetLatitude");//"Target Latitude"
             Category = ReadoutCategory.GetCategory("Rendezvous");
-            HelpString = "Shows the target vessel's latitude position around the celestial body. Latitude is the angle from the equator to poles.";
+            HelpString = Localizer.Format("#KE_TargetLatitude_desc");//"Shows the target vessel's latitude position around the celestial body. Latitude is the angle from the equator to poles."
             IsDefault = false;
         }
 

@@ -23,6 +23,7 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
     using Helpers;
     using Sections;
+    using KSP.Localization;
 
     #endregion
 
@@ -32,9 +33,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public Pitch()
         {
-            this.Name = "Pitch";
+            this.Name = Localizer.Format("#KE_Pitch");//"Pitch"
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Shows the current Pitch angle.";
+            this.HelpString = Localizer.Format("#KE_Pitch_desc");//"Shows the current Pitch angle."
             this.IsDefault = false;
         }
 

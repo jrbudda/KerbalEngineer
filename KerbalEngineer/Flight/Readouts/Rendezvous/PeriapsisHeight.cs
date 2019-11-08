@@ -22,6 +22,8 @@
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Rendezvous
@@ -32,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous
 
         public PeriapsisHeight()
         {
-            this.Name = "Periapsis Height";
+            this.Name = Localizer.Format("#KE_PeriapsisHeight");//"Periapsis Height"
             this.Category = ReadoutCategory.GetCategory("Rendezvous");
-            this.HelpString = "Shows the targets's periapsis height relative to sea level. (Periapsis is the lowest point of an orbit.)";
+            this.HelpString = Localizer.Format("#KE_PeriapsisHeight_Rendezdesc");//"Shows the targets's periapsis height relative to sea level. (Periapsis is the lowest point of an orbit.)"
             this.IsDefault = true;
         }
 

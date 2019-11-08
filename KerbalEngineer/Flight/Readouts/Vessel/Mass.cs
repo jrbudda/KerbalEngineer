@@ -21,6 +21,7 @@
 
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
+using KSP.Localization;
 
 #endregion
 
@@ -32,9 +33,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public Mass()
         {
-            this.Name = "Mass";
+            this.Name = Localizer.Format("#KE_Mass");//"Mass"
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Displays the total Mass of the Vessel.";
+            this.HelpString = Localizer.Format("#KE_Mass_desc");//"Displays the total Mass of the Vessel."
             this.IsDefault = true;
         }
 

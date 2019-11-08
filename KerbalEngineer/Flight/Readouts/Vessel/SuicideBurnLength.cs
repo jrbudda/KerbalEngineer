@@ -24,6 +24,7 @@ using System;
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
+using KSP.Localization;
 
 #endregion
 
@@ -35,9 +36,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public SuicideBurnLength()
         {
-            this.Name = "Suicide Burn Length";
+            this.Name = Localizer.Format("#KE_SuicideBurnLength");//"Suicide Burn Length"
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Shows the duration of the suicide burn.";
+            this.HelpString = Localizer.Format("#KE_SuicideBurnLength_desc");//"Shows the duration of the suicide burn."
             this.IsDefault = false;
         }
 

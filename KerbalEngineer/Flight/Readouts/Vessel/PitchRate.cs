@@ -23,6 +23,7 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
     using Helpers;
     using Sections;
+    using KSP.Localization;
 
     #endregion
 
@@ -32,9 +33,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public PitchRate()
         {
-            this.Name = "Pitch Rate";
+            this.Name = Localizer.Format("#KE_PitchRate");//"Pitch Rate"
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Shows the current Pitch speed.";
+            this.HelpString = Localizer.Format("#KE_PitchRate_desc");//"Shows the current Pitch speed."
             this.IsDefault = false;
         }
 

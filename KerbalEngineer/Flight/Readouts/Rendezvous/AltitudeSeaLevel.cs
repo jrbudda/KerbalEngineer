@@ -22,6 +22,8 @@
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Rendezvous
@@ -32,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous
 
         public AltitudeSeaLevel()
         {
-            this.Name = "Altitude (Sea Level)";
+            this.Name = Localizer.Format("#KE_AltitudeSeaLevel");//"Altitude (Sea Level)"
             this.Category = ReadoutCategory.GetCategory("Rendezvous");
-            this.HelpString = "Shows the target's altitude above sea level.";
+            this.HelpString = Localizer.Format("#KE_AltitudeSeaLevel_desc");//"Shows the target's altitude above sea level."
             this.IsDefault = true;
         }
 

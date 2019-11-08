@@ -23,6 +23,7 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
     using Helpers;
     using Sections;
+    using KSP.Localization;
 
     #endregion
 
@@ -32,9 +33,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public RollRate()
         {
-            this.Name = "Roll Rate";
+            this.Name = Localizer.Format("#KE_RollRate");//"Roll Rate"
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Shows the current Roll speed.";
+            this.HelpString = Localizer.Format("#KE_RollRate_desc");//"Shows the current Roll speed."
             this.IsDefault = false;
         }
 

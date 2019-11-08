@@ -21,6 +21,7 @@
 
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
+using KSP.Localization;
 
 #endregion
 
@@ -32,9 +33,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public ThrustTorque()
         {
-            this.Name = "Thrust torque";
+            this.Name = Localizer.Format("#KE_ThrustTorque");//"Thrust torque"
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Thrust torque due to vessel asymmetries and gimballing";
+            this.HelpString = Localizer.Format("#KE_ThrustTorque_desc");//"Thrust torque due to vessel asymmetries and gimballing"
             this.IsDefault = true;
         }
 

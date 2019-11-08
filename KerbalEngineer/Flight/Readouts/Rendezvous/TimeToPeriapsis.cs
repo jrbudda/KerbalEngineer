@@ -22,6 +22,8 @@
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Rendezvous
@@ -32,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous
 
         public TimeToPeriapsis()
         {
-            this.Name = "Time to Periapsis";
+            this.Name = Localizer.Format("#KE_TimeToPeriapsis");//"Time to Periapsis"
             this.Category = ReadoutCategory.GetCategory("Rendezvous");
-            this.HelpString = "Shows the time until the target reaches periapsis, the lowest point of the orbit.";
+            this.HelpString = Localizer.Format("#KE_TimeToPeriapsis_Rendezdesc");//"Shows the time until the target reaches periapsis, the lowest point of the orbit."
             this.IsDefault = false;
         }
 

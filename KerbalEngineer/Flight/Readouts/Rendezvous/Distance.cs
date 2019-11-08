@@ -22,6 +22,8 @@
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Rendezvous
@@ -32,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous
 
         public Distance()
         {
-            this.Name = "Distance";
+            this.Name = Localizer.Format("#KE_Distance");//"Distance"
             this.Category = ReadoutCategory.GetCategory("Rendezvous");
-            this.HelpString = "Current distance between the vessel and the target object.";
+            this.HelpString = Localizer.Format("#KE_Distance_desc");//"Current distance between the vessel and the target object."
             this.IsDefault = true;
         }
 

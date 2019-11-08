@@ -22,6 +22,8 @@
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Rendezvous
@@ -32,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous
 
         public PhaseAngle()
         {
-            this.Name = "Phase Angle";
+            this.Name = Localizer.Format("#KE_PhaseAngle");//"Phase Angle"
             this.Category = ReadoutCategory.GetCategory("Rendezvous");
-            this.HelpString = "Angular distance of the vessel relative to the target object.";
+            this.HelpString = Localizer.Format("#KE_PhaseAngle_desc");//"Angular distance of the vessel relative to the target object."
             this.IsDefault = true;
         }
 

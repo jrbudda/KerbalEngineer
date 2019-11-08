@@ -23,6 +23,7 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
     using Helpers;
     using Sections;
+    using KSP.Localization;
 
     #endregion
 
@@ -32,9 +33,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public PartCount()
         {
-            this.Name = "Part Count";
+            this.Name = Localizer.Format("#KE_PartCount");//"Part Count"
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Shows the total number of Parts the current and next stage.";
+            this.HelpString = Localizer.Format("#KE_PartCount_desc");//"Shows the total number of Parts the current and next stage."
             this.IsDefault = true;
         }
 

@@ -22,6 +22,8 @@
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 
+using KSP.Localization;
+
 #endregion
 
 namespace KerbalEngineer.Flight.Readouts.Rendezvous
@@ -32,9 +34,9 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous
 
         public RelativeInclination()
         {
-            this.Name = "Relative Inclination";
+            this.Name = Localizer.Format("#KE_RelativeInclination");//"Relative Inclination"
             this.Category = ReadoutCategory.GetCategory("Rendezvous");
-            this.HelpString = "Shows the relative inclination between your vessel and the target object.";
+            this.HelpString = Localizer.Format("#KE_RelativeInclination_desc");//"Shows the relative inclination between your vessel and the target object."
             this.IsDefault = true;
         }
 

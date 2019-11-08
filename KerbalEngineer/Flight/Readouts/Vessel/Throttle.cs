@@ -21,6 +21,7 @@
 
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
+using KSP.Localization;
 
 #endregion
 
@@ -32,9 +33,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public Throttle()
         {
-            this.Name = "Throttle";
+            this.Name = Localizer.Format("#KE_Throttle");//"Throttle"
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Shows the current requested throttle %. ";
+            this.HelpString = Localizer.Format("#KE_Throttle_desc");//"Shows the current requested throttle %. "
             this.IsDefault = false;
         }
 

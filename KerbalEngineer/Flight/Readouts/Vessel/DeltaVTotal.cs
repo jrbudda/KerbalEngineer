@@ -21,6 +21,7 @@
 
 using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Helpers;
+using KSP.Localization;
 
 #endregion
 
@@ -32,9 +33,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public DeltaVTotal()
         {
-            this.Name = "DeltaV Total";
+            this.Name = Localizer.Format("#KE_DeltaVTotal");//"DeltaV Total"
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Shows the vessel's total delta velocity.";
+            this.HelpString = Localizer.Format("#KE_DeltaVTotal_desc");//"Shows the vessel's total delta velocity."
             this.IsDefault = true;
         }
 
