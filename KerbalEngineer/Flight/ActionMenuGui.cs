@@ -199,7 +199,7 @@ namespace KerbalEngineer.Flight {
             try {
                 GUILayout.BeginHorizontal();
 
-                if (GUILayout.Button(Localizer.Format(""), this.buttonStyle)) {//"NEW CUSTOM SECTION"
+                if (GUILayout.Button(Localizer.Format("#KE_NewButton"), this.buttonStyle)) {//"NEW CUSTOM SECTION"
                     SectionLibrary.CustomSections.Add(new SectionModule {
                         Name = "Custom " + (SectionLibrary.CustomSections.Count + 1),
                         Abbreviation = "CUST " + (SectionLibrary.CustomSections.Count + 1),
