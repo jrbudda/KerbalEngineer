@@ -27,6 +27,7 @@ using KerbalEngineer.Flight.Readouts;
 using KerbalEngineer.UIControls;
 
 using UnityEngine;
+using KSP.Localization;
 
 #endregion
 
@@ -131,7 +132,7 @@ namespace KerbalEngineer.TrackingStation {
         ///     Called to draw the editor when the UI is enabled.
         /// </summary>
         private void OnGUI() {
-            this.position = GUILayout.Window(this.GetInstanceID(), this.position, this.Window, "EDIT SECTION - " + this.ParentSection.Name.ToUpper(), this.windowStyle).ClampToScreen();
+            this.position = GUILayout.Window(this.GetInstanceID(), this.position, this.Window, Localizer.Format("#KE_SECTIONEDIT_title", this.ParentSection.Name.ToUpper()), this.windowStyle).ClampToScreen();//"EDIT SECTION - " + 
             this.ParentSection.EditorPositionX = this.position.x;
             this.ParentSection.EditorPositionY = this.position.y;
         }
@@ -144,14 +145,14 @@ namespace KerbalEngineer.TrackingStation {
             this.scrollPositionAvailable = GUILayout.BeginScrollView(this.scrollPositionAvailable, false, true, GUILayout.Height(200.0f));
             GUI.skin = null;
 
-            GUILayout.Label("AVAILABLE", this.panelTitleStyle);
+            GUILayout.Label(Localizer.Format("#KE_ReadoutsAvailable"), this.panelTitleStyle);//"AVAILABLE"
 
             foreach (var readout in ReadoutLibrary.GetCategory(ReadoutCategory.Selected)) {
                 if (!this.ParentSection.ReadoutModules.Contains(readout) || readout.Cloneable) {
                     GUILayout.BeginHorizontal(GUILayout.Height(30.0f));
                     GUILayout.Label(readout.Name, this.readoutNameStyle);
                     readout.ShowHelp = GUILayout.Toggle(readout.ShowHelp, "?", this.readoutButtonStyle, GUILayout.Width(30.0f));
-                    if (GUILayout.Button("INSTALL", this.readoutButtonStyle, GUILayout.Width(75.0f))) {
+                    if (GUILayout.Button(Localizer.Format("#KE_ReadoutsINSTALL"), this.readoutButtonStyle, GUILayout.Width(75.0f))) {//"INSTALL"
                         this.ParentSection.ReadoutModules.Add(readout);
                     }
                     GUILayout.EndHorizontal();
@@ -187,7 +188,7 @@ namespace KerbalEngineer.TrackingStation {
         ///     Draws the readoutCategories selection list.
         /// </summary>
         private void DrawCategorySelector() {
-            this.categoryList.enabled = GUILayout.Toggle(this.categoryList.enabled, "▼ SELECTED CATEGORY: " + ReadoutCategory.Selected.ToString().ToUpper() + " ▼", this.categoryTitleButtonStyle);
+            this.categoryList.enabled = GUILayout.Toggle(this.categoryList.enabled, Localizer.Format("#KE_CategorySelector", ReadoutCategory.Selected.ToString().ToUpper()), this.categoryTitleButtonStyle);//"▼ SELECTED CATEGORY: " +  + " ▼"
             if (Event.current.type == EventType.Repaint) {
                 this.categoryList.SetPosition(GUILayoutUtility.GetLastRect().Translate(this.position), GUILayoutUtility.GetLastRect());
             }
@@ -234,7 +235,7 @@ namespace KerbalEngineer.TrackingStation {
             this.scrollPositionInstalled = GUILayout.BeginScrollView(this.scrollPositionInstalled, false, true);
             GUI.skin = null;
 
-            GUILayout.Label("INSTALLED", this.panelTitleStyle);
+            GUILayout.Label(Localizer.Format("#KE_ReadoutsINSTALLED"), this.panelTitleStyle);//"INSTALLED"
             var removeReadout = false;
             var removeReadoutIndex = 0;
 
@@ -278,7 +279,7 @@ namespace KerbalEngineer.TrackingStation {
                 GUI.color = temp;
 
                 readout.ShowHelp = GUILayout.Toggle(readout.ShowHelp, "?", this.readoutButtonStyle, GUILayout.Width(30.0f));
-                if (GUILayout.Button("REMOVE", this.readoutButtonStyle, GUILayout.Width(75.0f))) {
+                if (GUILayout.Button(Localizer.Format("#KE_ReadoutsREMOVE"), this.readoutButtonStyle, GUILayout.Width(75.0f))) {//"REMOVE"
                     removeReadout = true;
                     removeReadoutIndex = i;
                 }
@@ -309,7 +310,7 @@ namespace KerbalEngineer.TrackingStation {
         }
 
         private void DrawPresetSaveButton() {
-            if (!GUILayout.Button("<b>SAVE PRESET</b>", this.categoryButtonStyle)) {
+            if (!GUILayout.Button(Localizer.Format("#KE_PresetSaveButton"), this.categoryButtonStyle)) {//"<b>SAVE PRESET</b>"
                 return;
             }
 
@@ -465,7 +466,7 @@ namespace KerbalEngineer.TrackingStation {
             }
 
             GUILayout.BeginVertical(this.helpBoxStyle);
-            GUILayout.Label(!String.IsNullOrEmpty(readout.HelpString) ? readout.HelpString : "Sorry, no help information has been provided for this readout module.", this.helpTextStyle);
+            GUILayout.Label(!String.IsNullOrEmpty(readout.HelpString) ? readout.HelpString : Localizer.Format("#KE_noHelpMessage"), this.helpTextStyle);//"Sorry, no help information has been provided for this readout module."
             GUILayout.EndVertical();
         }
 
@@ -483,7 +484,7 @@ namespace KerbalEngineer.TrackingStation {
                 GUILayout.Space(5.0f);
                 this.DrawInstalledReadouts();
 
-                if (GUILayout.Button("CLOSE EDITOR", this.categoryTitleButtonStyle)) {
+                if (GUILayout.Button(Localizer.Format("#KE_CloseEditorButton"), this.categoryTitleButtonStyle)) {//"CLOSE EDITOR"
                     this.ParentSection.IsEditorVisible = false;
                 }
 
