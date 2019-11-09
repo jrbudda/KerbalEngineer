@@ -27,6 +27,7 @@ namespace KerbalEngineer.VesselSimulator
     using System.Reflection;
     using System.Threading;
     using UnityEngine;
+    using KSP.Localization;
 
     #endregion
 
@@ -217,29 +218,29 @@ namespace KerbalEngineer.VesselSimulator
             switch (vesselType)
             {
                 case VesselType.Debris:
-                    return "Debris";
+                    return Localizer.Format("#KE_Debris");//"Debris"
                 case VesselType.SpaceObject:
-                    return "SpaceObject";
+                    return Localizer.Format("#KE_SpaceObject");//"SpaceObject"
                 case VesselType.Unknown:
-                    return "Unknown";
+                    return Localizer.Format("#KE_Unknown");//"Unknown"
                 case VesselType.Probe:
-                    return "Probe";
+                    return Localizer.Format("#KE_Probe");//"Probe"
                 case VesselType.Rover:
-                    return "Rover";
+                    return Localizer.Format("#KE_Rover");//"Rover"
                 case VesselType.Lander:
-                    return "Lander";
+                    return Localizer.Format("#KE_Lander");//"Lander"
                 case VesselType.Ship:
-                    return "Ship";
+                    return Localizer.Format("#KE_Ship");//"Ship"
                 case VesselType.Station:
-                    return "Station";
+                    return Localizer.Format("#KE_Station");//"Station"
                 case VesselType.Base:
-                    return "Base";
+                    return Localizer.Format("#KE_Base");//"Base"
                 case VesselType.EVA:
-                    return "EVA";
+                    return Localizer.Format("#KE_EVA");//"EVA"
                 case VesselType.Flag:
-                    return "Flag";
+                    return Localizer.Format("#KE_Flag");//"Flag"
             }
-            return "Undefined";
+            return Localizer.Format("#KE_Undefined");//"Undefined"
         }
 
         public static void RequestSimulation()
