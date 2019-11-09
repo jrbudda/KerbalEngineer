@@ -9,6 +9,7 @@
     using UnityEngine;
     using UnityEngine.Events;
     using UnityEngine.UI;
+    using KSP.Localization;
 
     public class SettingsWindow : MonoBehaviour
     {
@@ -26,7 +27,7 @@
         {
             if (m_Window == null)
             {
-                m_Window = StyleManager.CreateWindow("SETTINGS", 600.0f);
+                m_Window = StyleManager.CreateWindow(Localizer.Format("#KE_SETTINGS"), 600.0f);//"SETTINGS"
 
                 AddKeyBindingsButton();
                 AddFlightActivationModes();
@@ -41,9 +42,9 @@
             if (m_Window != null)
             {
                 Setting buildOverlay = StyleManager.CreateSetting("Build Engineer Overlay", m_Window);
-                Toggle buildOverlayVisible = AddToggle(buildOverlay, "VISIBLE", 100.0f, value => BuildOverlay.Visible = value);
-                Toggle buildOverlayNamesOnly = AddToggle(buildOverlay, "NAMES ONLY", 100.0f, value => BuildOverlayPartInfo.NamesOnly = value);
-                Toggle buildOverlayClickToOpen = AddToggle(buildOverlay, "CLICK TO OPEN", 100.0f, value => BuildOverlayPartInfo.ClickToOpen = value);
+                Toggle buildOverlayVisible = AddToggle(buildOverlay, Localizer.Format("#KE_VISIBLE"), 100.0f, value => BuildOverlay.Visible = value);//"VISIBLE"
+                Toggle buildOverlayNamesOnly = AddToggle(buildOverlay, Localizer.Format("#KE_NAMESONLY"), 100.0f, value => BuildOverlayPartInfo.NamesOnly = value);//"NAMES ONLY"
+                Toggle buildOverlayClickToOpen = AddToggle(buildOverlay, Localizer.Format("#KE_CLICKTOOPEN"), 100.0f, value => BuildOverlayPartInfo.ClickToOpen = value);//"CLICK TO OPEN"
                 AddUpdateHandler(buildOverlay, () =>
                 {
                     buildOverlayVisible.isOn = BuildOverlay.Visible;
@@ -70,8 +71,8 @@
             if (m_Window != null)
             {
                 Setting flightActivationMode = StyleManager.CreateSetting("Flight Engineer Activation Mode", m_Window);
-                Toggle flightActivationModeCareer = AddToggle(flightActivationMode, "CAREER", 100.0f, value => FlightEngineerCore.IsCareerMode = value);
-                Toggle flightActivationModePartless = AddToggle(flightActivationMode, "PARTLESS", 100.0f, value => FlightEngineerCore.IsCareerMode = !value);
+                Toggle flightActivationModeCareer = AddToggle(flightActivationMode, Localizer.Format("#KE_MODECAREER"), 100.0f, value => FlightEngineerCore.IsCareerMode = value);//"CAREER"
+                Toggle flightActivationModePartless = AddToggle(flightActivationMode, Localizer.Format("#KE_MODEPARTLESS"), 100.0f, value => FlightEngineerCore.IsCareerMode = !value);//"PARTLESS"
                 AddUpdateHandler(flightActivationMode, () =>
                 {
                     flightActivationModeCareer.isOn = FlightEngineerCore.IsCareerMode;
