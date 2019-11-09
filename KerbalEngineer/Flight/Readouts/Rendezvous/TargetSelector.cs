@@ -96,7 +96,7 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous {
         ///     Draws the back to types button.
         /// </summary>
         private void DrawBackToTypes() {
-            if (GUILayout.Button("Go Back to Type Selection", this.ButtonStyle, GUILayout.Width(this.ContentWidth))) {
+            if (GUILayout.Button(Localizer.Format("#KE_BacktoTypebutton"), this.ButtonStyle, GUILayout.Width(this.ContentWidth))) {//"Go Back to Type Selection"
                 this.typeIsBody = false;
                 this.vesselType = VesselType.Unknown;
                 this.ResizeRequested = true;
@@ -155,7 +155,7 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous {
         /// </summary>
         private void DrawSearch() {
             GUILayout.BeginHorizontal();
-            GUILayout.Label("SEARCH:", this.FlexiLabelStyle, GUILayout.Width(60.0f * GuiDisplaySize.Offset));
+            GUILayout.Label(Localizer.Format("#KE_SEARCH"), this.FlexiLabelStyle, GUILayout.Width(60.0f * GuiDisplaySize.Offset));//"SEARCH:"
 
             this.searchText = GUILayout.TextField(this.searchText, this.TextFieldStyle);
 
@@ -187,12 +187,12 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous {
             if (target != null) {
 
                 if (HighLogic.LoadedSceneIsFlight) {
-                    if (GUILayout.Button("Go Back to Target Selection", this.ButtonStyle, GUILayout.Width(this.ContentWidth))) {
+                    if (GUILayout.Button(Localizer.Format("#KE_BacktoTypebutton"), this.ButtonStyle, GUILayout.Width(this.ContentWidth))) {//"Go Back to Target Selection"
                         FlightGlobals.fetch.SetVesselTarget(null);
                     }
                 } else {
                     if (RendezvousProcessor.TrackingStationSource != target)
-                        if (GUILayout.Button("Use " + RendezvousProcessor.nameForTargetable(target) + " As Reference", this.ButtonStyle, GUILayout.Width(this.ContentWidth))) {
+                        if (GUILayout.Button(Localizer.Format("#KE_Target", RendezvousProcessor.nameForTargetable(target)), this.ButtonStyle, GUILayout.Width(this.ContentWidth))) {//"Use " +  + " As Reference"
                             RendezvousProcessor.TrackingStationSource = target;
                         }
                 }
@@ -202,8 +202,8 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous {
 
                     if (act == null) return; //wat
 
-                    if (!(target is CelestialBody) && GUILayout.Button("Switch to Target", this.ButtonStyle, GUILayout.Width(this.ContentWidth))) {
-                        FlightEngineerCore.SwitchToVessel(target.GetVessel(), act);
+                    if (!(target is CelestialBody) && GUILayout.Button(Localizer.Format("#KE_SwitchtoTarget"), this.ButtonStyle, GUILayout.Width(this.ContentWidth))) {
+                        FlightEngineerCore.SwitchToVessel(target.GetVessel(), act);//"Switch to Target"
                     }
 
                     bool focusable = (target is CelestialBody || target is global::Vessel);
@@ -218,7 +218,7 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous {
 
                         bool shouldFocus = targMo != null && (targMo != PlanetariumCamera.fetch.target || !MapView.MapIsEnabled);
 
-                        if (shouldFocus && GUILayout.Button("Focus Target", this.ButtonStyle, GUILayout.Width(this.ContentWidth))) {
+                        if (shouldFocus && GUILayout.Button(Localizer.Format("#KE_FocusTarget"), this.ButtonStyle, GUILayout.Width(this.ContentWidth))) {//"Focus Target"
                             wasMapview = MapView.MapIsEnabled;
                             MapView.EnterMapView();
                             PlanetariumCamera.fetch.SetTarget(targMo);
@@ -227,12 +227,12 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous {
 
                     bool switchBack = PlanetariumCamera.fetch.target != act.mapObject;
 
-                    if (switchBack && MapView.MapIsEnabled && GUILayout.Button("Focus Vessel", this.ButtonStyle, GUILayout.Width(this.ContentWidth))) {
+                    if (switchBack && MapView.MapIsEnabled && GUILayout.Button(Localizer.Format("#KE_FocusVessel"), this.ButtonStyle, GUILayout.Width(this.ContentWidth))) {//"Focus Vessel"
                         PlanetariumCamera.fetch.SetTarget(act.mapObject);
                         if (!wasMapview) MapView.ExitMapView();
                     }
 
-                    if (FlightCamera.fetch.mode != FlightCamera.Modes.LOCKED && !MapView.MapIsEnabled && GUILayout.Button("Look at Target", this.ButtonStyle, GUILayout.Width(this.ContentWidth))) {
+                    if (FlightCamera.fetch.mode != FlightCamera.Modes.LOCKED && !MapView.MapIsEnabled && GUILayout.Button(Localizer.Format("#KE_LookatTarget"), this.ButtonStyle, GUILayout.Width(this.ContentWidth))) {//"Look at Target"
                         var pcam = PlanetariumCamera.fetch;
                         var fcam = FlightCamera.fetch;
 
@@ -264,22 +264,22 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous {
 
                 GUILayout.Space(3f);
 
-                this.DrawLine("Selected Target", RendezvousProcessor.nameForTargetable(target), section.IsHud);
+                this.DrawLine(Localizer.Format("#KE_SelectedTarget"), RendezvousProcessor.nameForTargetable(target), section.IsHud);//"Selected Target"
 
                 try {
 
                     if (RendezvousProcessor.sourceDisplay != null) {
                         if (RendezvousProcessor.landedSamePlanet || RendezvousProcessor.overrideANDN)
-                            this.DrawLine("Ref Orbit", "Landed on " + RendezvousProcessor.activeVessel.GetOrbit().referenceBody.GetName(), section.IsHud);
+                            this.DrawLine(Localizer.Format("#KE_RefOrbit"), Localizer.Format("#KE_Landedon", RendezvousProcessor.activeVessel.GetOrbit().referenceBody.GetName()), section.IsHud);//"Ref Orbit""Landed on <<1>>"
                         else
-                            this.DrawLine("Ref Orbit", RendezvousProcessor.sourceDisplay, section.IsHud);
+                            this.DrawLine(Localizer.Format("#KE_RefOrbit"), RendezvousProcessor.sourceDisplay, section.IsHud);//"Ref Orbit"
                     }
 
                     if (RendezvousProcessor.targetDisplay != null) {
                         if (RendezvousProcessor.landedSamePlanet || RendezvousProcessor.overrideANDNRev)
-                            this.DrawLine("Target Orbit", "Landed on " + target.GetOrbit().referenceBody.GetName(), section.IsHud);
+                            this.DrawLine(Localizer.Format("#KE_TargetOrbit"), Localizer.Format("#KE_Landedon", target.GetOrbit().referenceBody.GetName()), section.IsHud);//"Target Orbit""Landed on " 
                         else
-                            this.DrawLine("Target Orbit", RendezvousProcessor.targetDisplay, section.IsHud);
+                            this.DrawLine(Localizer.Format("#KE_TargetOrbit"), RendezvousProcessor.targetDisplay, section.IsHud);//"Target Orbit"
                     }
 
                 } catch (System.Exception) {
@@ -297,23 +297,23 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous {
 
             if (this.searchQuery.Length == 0) {
                 if (this.typeIsBody) {
-                    GUILayout.Label("Local Bodies", this.FlexiLabelStyle, GUILayout.Width(this.ContentWidth));
+                    GUILayout.Label(Localizer.Format("#KE_LocalBodies"), this.FlexiLabelStyle, GUILayout.Width(this.ContentWidth));//"Local Bodies"
                     count += this.DrawMoons();
-                    GUILayout.Label("Remote Bodies", this.FlexiLabelStyle, GUILayout.Width(this.ContentWidth));
+                    GUILayout.Label(Localizer.Format("#KE_RemoteBodies"), this.FlexiLabelStyle, GUILayout.Width(this.ContentWidth));//"Remote Bodies"
                     count += this.DrawPlanets();
                 } else {
                     GUILayout.Label(this.vesselType.ToString(), this.FlexiLabelStyle, GUILayout.Width(this.ContentWidth));
                     count += this.DrawVessels();
                 }
             } else {
-                GUILayout.Label("Search Results", this.FlexiLabelStyle, GUILayout.Width(this.ContentWidth));
+                GUILayout.Label(Localizer.Format("#KE_SearchResults"), this.FlexiLabelStyle, GUILayout.Width(this.ContentWidth));//"Search Results"
                 count += this.DrawVessels();
                 count += this.DrawMoons();
                 count += this.DrawPlanets();
             }
 
             if (count == 0) {
-                this.DrawMessageLine("No targets found!");
+                this.DrawMessageLine(Localizer.Format("#KE_Notargets"));//"No targets found!"
             }
 
             if (count != this.targetCount) {
@@ -329,55 +329,55 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous {
             this.typeButtonWidth = Mathf.Round(this.ContentWidth * 0.5f);
 
             GUILayout.BeginHorizontal();
-            if (GUILayout.Button("Celestial Bodies", this.ButtonStyle, GUILayout.Width(this.typeButtonWidth))) {
+            if (GUILayout.Button(Localizer.Format("#KE_CelestialBodies"), this.ButtonStyle, GUILayout.Width(this.typeButtonWidth))) {//"Celestial Bodies"
                 this.SetTypeAsBody();
             }
-            if (GUILayout.Button("Debris", this.ButtonStyle, GUILayout.Width(this.typeButtonWidth))) {
+            if (GUILayout.Button(Localizer.Format("#KE_Debris"), this.ButtonStyle, GUILayout.Width(this.typeButtonWidth))) {//"Debris"
                 this.SetTypeAs(VesselType.Debris);
             }
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
-            if (GUILayout.Button("Probes", this.ButtonStyle, GUILayout.Width(this.typeButtonWidth))) {
+            if (GUILayout.Button(Localizer.Format("#KE_Probes"), this.ButtonStyle, GUILayout.Width(this.typeButtonWidth))) {//"Probes"
                 this.SetTypeAs(VesselType.Probe);
             }
-            if (GUILayout.Button("Relays", this.ButtonStyle, GUILayout.Width(this.typeButtonWidth))) {
+            if (GUILayout.Button(Localizer.Format("#KE_Relays"), this.ButtonStyle, GUILayout.Width(this.typeButtonWidth))) {//"Relays"
                 this.SetTypeAs(VesselType.Relay);
             }
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
-            if (GUILayout.Button("Rovers", this.ButtonStyle, GUILayout.Width(this.typeButtonWidth))) {
+            if (GUILayout.Button(Localizer.Format("#KE_Rovers"), this.ButtonStyle, GUILayout.Width(this.typeButtonWidth))) {//"Rovers"
                 this.SetTypeAs(VesselType.Rover);
             }
-            if (GUILayout.Button("Landers", this.ButtonStyle, GUILayout.Width(this.typeButtonWidth))) {
+            if (GUILayout.Button(Localizer.Format("#KE_Landers"), this.ButtonStyle, GUILayout.Width(this.typeButtonWidth))) {//"Landers"
                 this.SetTypeAs(VesselType.Lander);
             }
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
-            if (GUILayout.Button("Ships", this.ButtonStyle, GUILayout.Width(this.typeButtonWidth))) {
+            if (GUILayout.Button(Localizer.Format("#KE_Ships"), this.ButtonStyle, GUILayout.Width(this.typeButtonWidth))) {//"Ships"
                 this.SetTypeAs(VesselType.Ship);
             }
-            if (GUILayout.Button("Planes", this.ButtonStyle, GUILayout.Width(this.typeButtonWidth))) {
+            if (GUILayout.Button(Localizer.Format("#KE_Planes"), this.ButtonStyle, GUILayout.Width(this.typeButtonWidth))) {//"Planes"
                 this.SetTypeAs(VesselType.Plane);
             }
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
-            if (GUILayout.Button("Stations", this.ButtonStyle, GUILayout.Width(this.typeButtonWidth))) {
+            if (GUILayout.Button(Localizer.Format("#KE_Stations"), this.ButtonStyle, GUILayout.Width(this.typeButtonWidth))) {//"Stations"
                 this.SetTypeAs(VesselType.Station);
             }
-            if (GUILayout.Button("Bases", this.ButtonStyle, GUILayout.Width(this.typeButtonWidth))) {
+            if (GUILayout.Button(Localizer.Format("#KE_Bases"), this.ButtonStyle, GUILayout.Width(this.typeButtonWidth))) {//"Bases"
                 this.SetTypeAs(VesselType.Base);
             }
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
-            if (GUILayout.Button("EVAs", this.ButtonStyle, GUILayout.Width(this.typeButtonWidth))) {
+            if (GUILayout.Button(Localizer.Format("#KE_EVAs"), this.ButtonStyle, GUILayout.Width(this.typeButtonWidth))) {//"EVAs"
                 this.SetTypeAs(VesselType.EVA);
             }
-            if (GUILayout.Button("Flags", this.ButtonStyle, GUILayout.Width(this.typeButtonWidth))) {
+            if (GUILayout.Button(Localizer.Format("#KE_Flags"), this.ButtonStyle, GUILayout.Width(this.typeButtonWidth))) {//"Flags"
                 this.SetTypeAs(VesselType.Flag);
             }
             GUILayout.EndHorizontal();
