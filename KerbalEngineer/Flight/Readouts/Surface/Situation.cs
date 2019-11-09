@@ -48,27 +48,27 @@ namespace KerbalEngineer.Flight.Readouts.Surface
             switch (ScienceUtil.GetExperimentSituation(FlightGlobals.ActiveVessel))
             {
                 case ExperimentSituations.SrfLanded:
-                    this.DrawLine("Landed", section.IsHud);
+                    this.DrawLine(Localizer.Format("#KE_Landed"), section.IsHud);//"Landed"
                     break;
 
                 case ExperimentSituations.SrfSplashed:
-                    this.DrawLine("Splashed", section.IsHud);
+                    this.DrawLine(Localizer.Format("#KE_Splashed"), section.IsHud);//"Splashed"
                     break;
 
                 case ExperimentSituations.FlyingLow:
-                    this.DrawLine("Flying Low", section.IsHud);
+                    this.DrawLine(Localizer.Format("#KE_FlyingLow"), section.IsHud);//"Flying Low"
                     break;
 
                 case ExperimentSituations.FlyingHigh:
-                    this.DrawLine("Flying High", section.IsHud);
+                    this.DrawLine(Localizer.Format("#KE_FlyingHigh"), section.IsHud);//"Flying High"
                     break;
 
                 case ExperimentSituations.InSpaceLow:
-                    this.DrawLine("In Space Low", section.IsHud);
+                    this.DrawLine(Localizer.Format("#KE_SpaceLow"), section.IsHud);//"In Space Low"
                     break;
 
                 case ExperimentSituations.InSpaceHigh:
-                    this.DrawLine("In Space High", section.IsHud);
+                    this.DrawLine(Localizer.Format("#KE_SpaceHigh"), section.IsHud);//"In Space High"
                     break;
             }
         }
