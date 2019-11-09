@@ -35,6 +35,7 @@ namespace KerbalEngineer.TrackingStation {
     using Flight.Readouts;
     using Flight.Readouts.Rendezvous;
     using KeyBinding;
+    using KSP.Localization;
 
     /// <summary>
     ///     Graphical controller for displaying stacked sections.
@@ -217,7 +218,7 @@ namespace KerbalEngineer.TrackingStation {
         ///     Draws the control bar.
         /// </summary>
         private void DrawControlBar() {
-            GUILayout.Label("FLIGHT ENGINEER " + EngineerGlobals.ASSEMBLY_VERSION, this.titleStyle);
+            GUILayout.Label(Localizer.Format("#KE_VERSION_title", EngineerGlobals.ASSEMBLY_VERSION), this.titleStyle);//"FLIGHT ENGINEER " + 
         }
 
 
@@ -300,12 +301,12 @@ namespace KerbalEngineer.TrackingStation {
                     this.DrawControlBar();
                 }
 
-                SectionLibrary.TrackingStationSection.Name = "TRACKING";
+                SectionLibrary.TrackingStationSection.Name = Localizer.Format("#KE_TRACKING_title");//"TRACKING"
 
                 ITargetable src = Flight.Readouts.Rendezvous.RendezvousProcessor.TrackingStationSource;
 
                 if (src != null) {
-                    SectionLibrary.TrackingStationSection.Name = "TRACKING (REF: " + RendezvousProcessor.nameForTargetable(src) + ")";
+                    SectionLibrary.TrackingStationSection.Name = Localizer.Format("#KE_TRACKING_TR", RendezvousProcessor.nameForTargetable(src));//"TRACKING (REF: <<1>> )"
                 }
 
                 SectionLibrary.TrackingStationSection.Draw();
