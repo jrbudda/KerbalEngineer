@@ -130,6 +130,19 @@ namespace KerbalEngineer.VesselSimulator
             }
         }
 
+        public void AddMax(int type, double amount)
+        {
+            if (this.resources.ContainsKey(type))
+            {
+                this.resources[type] = Math.Max(this.resources[type], amount);
+            }
+            else
+            {
+                this.resources.Add(type, amount);
+                this.types.Add(type);
+            }
+        }
+
         public void Reset()
         {
             this.resources.Clear();

@@ -931,6 +931,7 @@ namespace KerbalEngineer.VesselSimulator {
             // Reset the resource drains of all draining parts
             foreach (PartSim partSim in drainingParts) {
                 partSim.resourceDrains.Reset();
+                partSim.residuals.Reset();
             }
 
             // Empty the draining parts set
