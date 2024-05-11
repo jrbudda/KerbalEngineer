@@ -166,7 +166,7 @@ namespace KerbalEngineer.VesselSimulator {
             for (int i = 0; i < propellants.Count; ++i) {
                 Propellant propellant = propellants[i];
 
-                if (propellant.ignoreForIsp || propellant.name == "ElectricCharge" || propellant.name == "IntakeAir") {
+                if (propellant.ignoreForIsp || propellant.name == "ElectricCharge" || propellant.name == "IntakeAir" || || DeltaVGlobals.PropellantsToIgnore.Contains(propellant.name)) {
                     continue;
                 }
 
