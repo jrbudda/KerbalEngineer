@@ -65,7 +65,7 @@ namespace KerbalEngineer.Flight.Readouts {
         ///     Gets the width of the content. (Sum of NameStyle + ValueStyle widths.)
         /// </summary>
         public float ContentWidth {
-            get { return 230.0f * GuiDisplaySize.Offset; }
+            get { return OOPSux.DEFAULT_SECTION_WIDTH * GuiDisplaySize.Offset; }
         }
 
         /// <summary>
@@ -174,9 +174,8 @@ namespace KerbalEngineer.Flight.Readouts {
 
         #region Methods: protected
 
-        protected void DrawLine(string value, bool compact) {
-            GUILayout.BeginHorizontal(GUILayout.Width(this.ContentWidth));
-
+        protected void DrawLine(string value, float width, bool compact) {
+            GUILayout.BeginHorizontal(GUILayout.Width(width * GuiDisplaySize.Offset));
             if (!compact) {
                 GUILayout.Label(this.Name, NameStyle);
                 GUILayout.FlexibleSpace();
@@ -191,8 +190,8 @@ namespace KerbalEngineer.Flight.Readouts {
             this.lineCountEnd++;
         }
 
-        protected void DrawLine(string name, string value, bool compact = false) {
-            GUILayout.BeginHorizontal(GUILayout.Width(this.ContentWidth));
+        protected void DrawLine(string name, string value, float width, bool compact = false) {
+            GUILayout.BeginHorizontal(GUILayout.Width(width * GuiDisplaySize.Offset));
             if (!compact) {
                 GUILayout.Label(name, NameStyle);
                 GUILayout.FlexibleSpace();
@@ -206,8 +205,8 @@ namespace KerbalEngineer.Flight.Readouts {
             this.lineCountEnd++;
         }
 
-        protected void DrawLine(Action drawAction, bool showName = true, bool compact = false) {
-            GUILayout.BeginHorizontal(GUILayout.Width(this.ContentWidth));
+        protected void DrawLine(Action drawAction, float width, bool showName = true, bool compact = false) {
+            GUILayout.BeginHorizontal(GUILayout.Width(width * GuiDisplaySize.Offset));
             if (showName) {
                 if (!compact) {
                     GUILayout.Label(this.Name, NameStyle);
@@ -221,8 +220,8 @@ namespace KerbalEngineer.Flight.Readouts {
             this.lineCountEnd++;
         }
 
-        protected void DrawMessageLine(string value, bool compact = false) {
-            GUILayout.BeginHorizontal(GUILayout.Width(this.ContentWidth));
+        protected void DrawMessageLine(string value, float width, bool compact = false) {
+            GUILayout.BeginHorizontal(GUILayout.Width(width * GuiDisplaySize.Offset));
             if (!compact) {
                 GUILayout.Label(value, MessageStyle);
             } else {

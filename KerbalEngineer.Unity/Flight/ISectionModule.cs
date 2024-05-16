@@ -18,6 +18,10 @@
 
 namespace KerbalEngineer.Unity.Flight
 {
+    public struct OOPSux {
+        public const float DEFAULT_SECTION_WIDTH = 230.0f;
+    }
+
     public interface ISectionModule
     {
         bool IsDeleted { get; }
@@ -27,6 +31,8 @@ namespace KerbalEngineer.Unity.Flight
         bool IsVisible { get; set; }
 
         bool IsHud { get; set; }
+
+        float Width { get; set; }
 
         string Name { get; }
     }

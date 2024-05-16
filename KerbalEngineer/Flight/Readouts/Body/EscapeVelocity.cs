@@ -42,7 +42,7 @@ namespace KerbalEngineer.Flight.Readouts.Body {
 
         public override void Draw(Unity.Flight.ISectionModule section) {
             var ev = Math.Sqrt(2 * FlightGlobals.currentMainBody.gravParameter / FlightGlobals.currentMainBody.Radius);
-            this.DrawLine(Helpers.Units.ToSpeed(ev), section.IsHud);
+            this.DrawLine(Helpers.Units.ToSpeed(ev), section.Width, section.IsHud);
         }
 
         #endregion

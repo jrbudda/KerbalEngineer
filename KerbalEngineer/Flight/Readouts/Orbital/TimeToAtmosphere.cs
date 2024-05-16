@@ -91,7 +91,7 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
             }
 
             //log.Flush();
-            this.DrawLine(str, section.IsHud);
+            this.DrawLine(str, section.Width, section.IsHud);
         }
 
         #endregion

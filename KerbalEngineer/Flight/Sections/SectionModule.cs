@@ -170,6 +170,11 @@ namespace KerbalEngineer.Flight.Sections {
         public int LineCount { get; set; }
 
         /// <summary>
+        ///     Gets and sets the width of the section. (Only used with serialisation.)
+        /// </summary>
+        public float Width { get; set; } = OOPSux.DEFAULT_SECTION_WIDTH;
+
+        /// <summary>
         ///     Gets and sets the name of the section.
         /// </summary>
         public string Name { get; set; }

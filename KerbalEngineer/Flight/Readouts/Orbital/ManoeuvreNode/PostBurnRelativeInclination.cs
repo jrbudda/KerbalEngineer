@@ -46,9 +46,9 @@ namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode {
                 return;
             }
             if (FlightGlobals.ActiveVessel.targetObject == null || FlightGlobals.ActiveVessel.targetObject.GetOrbit() == null)
-                this.DrawLine("N/A", section.IsHud);
+                this.DrawLine("N/A", section.Width, section.IsHud);
             else
-                this.DrawLine(ManoeuvreProcessor.PostBurnRelativeInclination.ToAngle(), section.IsHud);
+                this.DrawLine(ManoeuvreProcessor.PostBurnRelativeInclination.ToAngle(), section.Width, section.IsHud);
         }
 
         public override void Reset() {

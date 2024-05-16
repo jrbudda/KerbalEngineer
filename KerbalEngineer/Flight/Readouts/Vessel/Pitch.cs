@@ -44,7 +44,7 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public override void Draw(Unity.Flight.ISectionModule section)
         {
-            this.DrawLine(Units.ToAngle(AttitudeProcessor.Pitch), section.IsHud);
+            this.DrawLine(Units.ToAngle(AttitudeProcessor.Pitch), section.Width, section.IsHud);
         }
 
         public override void Reset()

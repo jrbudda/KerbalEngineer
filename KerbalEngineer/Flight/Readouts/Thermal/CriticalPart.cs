@@ -35,7 +35,7 @@ namespace KerbalEngineer.Flight.Readouts.Thermal
         {
             if (ThermalProcessor.ShowDetails)
             {
-                DrawLine(ThermalProcessor.CriticalPartName, section.IsHud);
+                DrawLine(ThermalProcessor.CriticalPartName, section.Width, section.IsHud);
             }
         }
 

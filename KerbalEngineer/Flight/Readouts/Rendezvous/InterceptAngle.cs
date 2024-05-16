@@ -47,7 +47,7 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous
         {
             if (RendezvousProcessor.ShowDetails)
             {
-                this.DrawLine(RendezvousProcessor.InterceptAngle.ToAngle(), section.IsHud);
+                this.DrawLine(RendezvousProcessor.InterceptAngle.ToAngle(), section.Width, section.IsHud);
             }
         }
 

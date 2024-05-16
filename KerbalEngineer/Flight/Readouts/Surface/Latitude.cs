@@ -44,7 +44,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
 
         public override void Draw(Unity.Flight.ISectionModule section)
         {
-            this.DrawLine(Units.ToAngleDMS(FlightGlobals.ship_latitude) + (FlightGlobals.ship_latitude < 0 ? " S" : " N"), section.IsHud);
+            this.DrawLine(Units.ToAngleDMS(FlightGlobals.ship_latitude) + (FlightGlobals.ship_latitude < 0 ? " S" : " N"), section.Width, section.IsHud);
         }
 
         #endregion

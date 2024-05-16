@@ -48,7 +48,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface {
                         GUILayout.Width(this.ContentWidth / 4), GUILayout.Height(s.fixedHeight))) {
                         show = !show;
                     }
-                },true, section.IsHud);
+                }, section.Width, true, section.IsHud);
             }
         }
 

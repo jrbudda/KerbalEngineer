@@ -22,6 +22,7 @@
 using KerbalEngineer.Flight.Sections;
 
 using UnityEngine;
+using static System.Collections.Specialized.BitVector32;
 
 #endregion
 
@@ -262,22 +263,22 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous {
 
                 GUILayout.Space(3f);
 
-                this.DrawLine("Selected Target", RendezvousProcessor.nameForTargetable(target), section.IsHud);
+                this.DrawLine("Selected Target", RendezvousProcessor.nameForTargetable(target), section.Width, section.IsHud);
 
                 try {
 
                     if (RendezvousProcessor.sourceDisplay != null) {
                         if (RendezvousProcessor.landedSamePlanet || RendezvousProcessor.overrideANDN)
-                            this.DrawLine("Ref Orbit", "Landed on " + RendezvousProcessor.activeVessel.GetOrbit().referenceBody.GetDisplayName().LocalizeRemoveGender(), section.IsHud);
+                            this.DrawLine("Ref Orbit", "Landed on " + RendezvousProcessor.activeVessel.GetOrbit().referenceBody.GetDisplayName().LocalizeRemoveGender(), section.Width, section.IsHud);
                         else
-                            this.DrawLine("Ref Orbit", RendezvousProcessor.sourceDisplay, section.IsHud);
+                            this.DrawLine("Ref Orbit", RendezvousProcessor.sourceDisplay, section.Width, section.IsHud);
                     }
 
                     if (RendezvousProcessor.targetDisplay != null) {
                         if (RendezvousProcessor.landedSamePlanet || RendezvousProcessor.overrideANDNRev)
-                            this.DrawLine("Target Orbit", "Landed on " + target.GetOrbit().referenceBody.GetDisplayName().LocalizeRemoveGender(), section.IsHud);
+                            this.DrawLine("Target Orbit", "Landed on " + target.GetOrbit().referenceBody.GetDisplayName().LocalizeRemoveGender(), section.Width, section.IsHud);
                         else
-                            this.DrawLine("Target Orbit", RendezvousProcessor.targetDisplay, section.IsHud);
+                            this.DrawLine("Target Orbit", RendezvousProcessor.targetDisplay, section.Width, section.IsHud);
                     }
 
                 } catch (System.Exception) {
@@ -311,7 +312,7 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous {
             }
 
             if (count == 0) {
-                this.DrawMessageLine("No targets found!");
+                this.DrawMessageLine("No targets found!", Unity.Flight.OOPSux.DEFAULT_SECTION_WIDTH);
             }
 
             if (count != this.targetCount) {

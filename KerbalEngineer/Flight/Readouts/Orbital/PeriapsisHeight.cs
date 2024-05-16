@@ -44,7 +44,7 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
 
         public override void Draw(Unity.Flight.ISectionModule section)
         {
-            this.DrawLine(FlightGlobals.ship_orbit.PeA.ToDistance(), section.IsHud);
+            this.DrawLine(FlightGlobals.ship_orbit.PeA.ToDistance(), section.Width, section.IsHud);
         }
 
         #endregion

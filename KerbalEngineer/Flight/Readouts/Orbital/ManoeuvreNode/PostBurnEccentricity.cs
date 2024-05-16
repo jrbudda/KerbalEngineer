@@ -51,7 +51,7 @@ namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
                 return;
             }
 
-            this.DrawLine(ManoeuvreProcessor.PostBurnEcc.ToString("F5"), section.IsHud);
+            this.DrawLine(ManoeuvreProcessor.PostBurnEcc.ToString("F5"), section.Width, section.IsHud);
         }
 
         public override void Reset()

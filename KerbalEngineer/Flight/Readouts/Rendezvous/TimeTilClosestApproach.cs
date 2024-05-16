@@ -47,9 +47,9 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous
             if (RendezvousProcessor.ShowDetails)
             {
                 if (double.IsNaN(RendezvousProcessor.TimeTilEncounter))
-                    this.DrawLine("N/A", section.IsHud);
+                    this.DrawLine("N/A", section.Width, section.IsHud);
                 else
-                    this.DrawLine(TimeFormatter.ConvertToString(RendezvousProcessor.TimeTilEncounter), section.IsHud);
+                    this.DrawLine(TimeFormatter.ConvertToString(RendezvousProcessor.TimeTilEncounter), section.Width, section.IsHud);
             }
         }
 

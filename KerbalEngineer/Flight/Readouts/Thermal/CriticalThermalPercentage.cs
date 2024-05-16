@@ -36,7 +36,7 @@ namespace KerbalEngineer.Flight.Readouts.Thermal
         {
             if (ThermalProcessor.ShowDetails)
             {
-                DrawLine(ThermalProcessor.CriticalTemperaturePercentage.ToPercent(), section.IsHud);
+                DrawLine(ThermalProcessor.CriticalTemperaturePercentage.ToPercent(), section.Width, section.IsHud);
             }
         }
 

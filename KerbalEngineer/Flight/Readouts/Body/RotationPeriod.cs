@@ -40,7 +40,7 @@ namespace KerbalEngineer.Flight.Readouts.Body {
         #region Methods: public
 
         public override void Draw(Unity.Flight.ISectionModule section) {
-            this.DrawLine(Helpers.Units.ToTime(FlightGlobals.ActiveVessel.mainBody.rotationPeriod), section.IsHud);
+            this.DrawLine(Helpers.Units.ToTime(FlightGlobals.ActiveVessel.mainBody.rotationPeriod), section.Width, section.IsHud);
         }
 
         #endregion

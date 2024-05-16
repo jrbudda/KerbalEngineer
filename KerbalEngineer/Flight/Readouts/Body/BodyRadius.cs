@@ -41,9 +41,9 @@ namespace KerbalEngineer.Flight.Readouts.Body {
 
         public override void Draw(Unity.Flight.ISectionModule section) {
             if (FlightGlobals.ActiveVessel.mainBody == null)
-                DrawLine("N/A", section.IsHud);
+                DrawLine("N/A", section.Width, section.IsHud);
             else
-                this.DrawLine(Helpers.Units.ToDistance(FlightGlobals.ActiveVessel.mainBody.Radius), section.IsHud);
+                this.DrawLine(Helpers.Units.ToDistance(FlightGlobals.ActiveVessel.mainBody.Radius), section.Width, section.IsHud);
         }
 
         #endregion

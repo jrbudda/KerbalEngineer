@@ -51,7 +51,7 @@ namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
                 return;
             }
 
-            this.DrawLine("Node DeltaV (Prograde)", ManoeuvreProcessor.ProgradeDeltaV.ToSpeed(), section.IsHud);
+            this.DrawLine("Node DeltaV (Prograde)", ManoeuvreProcessor.ProgradeDeltaV.ToSpeed(), section.Width, section.IsHud);
         }
 
         public override void Reset()

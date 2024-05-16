@@ -43,7 +43,7 @@ namespace KerbalEngineer.Flight.Readouts.Body {
         public override void Draw(Unity.Flight.ISectionModule section) {
             var T = FlightGlobals.currentMainBody.rotationPeriod;
             var geo = System.Math.Pow(T * T * FlightGlobals.currentMainBody.gravParameter / (4 * Math.PI * Math.PI), 1.0 / 3.0);
-            this.DrawLine((geo - FlightGlobals.currentMainBody.Radius).ToDistance(), section.IsHud);
+            this.DrawLine((geo - FlightGlobals.currentMainBody.Radius).ToDistance(), section.Width, section.IsHud);
         }
 
         #endregion

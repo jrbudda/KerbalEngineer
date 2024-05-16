@@ -26,9 +26,9 @@ namespace KerbalEngineer.Flight.Readouts.Body {
 
         public override void Draw(Unity.Flight.ISectionModule section) {
             if (FlightGlobals.ActiveVessel.mainBody == null)
-                DrawLine("N/A", section.IsHud);
+                DrawLine("N/A", section.Width, section.IsHud);
             else
-                DrawLine(FlightGlobals.ActiveVessel.mainBody.bodyDisplayName.LocalizeRemoveGender(), section.IsHud);
+                DrawLine(FlightGlobals.ActiveVessel.mainBody.bodyDisplayName.LocalizeRemoveGender(), section.Width, section.IsHud);
         }
     }
 }

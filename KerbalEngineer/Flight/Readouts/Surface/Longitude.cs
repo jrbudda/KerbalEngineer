@@ -35,7 +35,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
         public override void Draw(Unity.Flight.ISectionModule section)
         {
             double angle = AngleHelper.Clamp180(FlightGlobals.ship_longitude);
-            DrawLine(Units.ToAngleDMS(angle) + (angle < 0.0 ? " W" : " E"), section.IsHud);
+            DrawLine(Units.ToAngleDMS(angle) + (angle < 0.0 ? " W" : " E"), section.Width, section.IsHud);
         }
     }
 }

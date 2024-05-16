@@ -64,7 +64,7 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
                 this.actual = (SimulationProcessor.LastStage.actualThrust / (SimulationProcessor.LastStage.totalMass * this.gravity)).ToString("F2");
                 this.total = (SimulationProcessor.LastStage.thrust / (SimulationProcessor.LastStage.totalMass * this.gravity)).ToString("F2");
             }
-            this.DrawLine("TWR", this.actual + " / " + this.total, section.IsHud);
+            this.DrawLine("TWR", this.actual + " / " + this.total, section.Width, section.IsHud);
         }
 
         public override void Reset()

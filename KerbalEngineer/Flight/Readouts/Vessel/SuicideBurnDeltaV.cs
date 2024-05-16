@@ -50,7 +50,7 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
                 return;
             }
 
-            this.DrawLine(Surface.ImpactProcessor.SuicideDeltaV.ToString("N1") + "m/s", section.IsHud);
+            this.DrawLine(Surface.ImpactProcessor.SuicideDeltaV.ToString("N1") + "m/s", section.Width, section.IsHud);
         }
 
         public override void Reset()

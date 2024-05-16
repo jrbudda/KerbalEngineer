@@ -46,7 +46,7 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous
         {
             if (RendezvousProcessor.ShowDetails)
             {
-                this.DrawLine(RendezvousProcessor.ApoapsisHeight.ToDistance(), section.IsHud);
+                this.DrawLine(RendezvousProcessor.ApoapsisHeight.ToDistance(), section.Width, section.IsHud);
             }
         }
 

@@ -46,7 +46,7 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
         {
             if (SimulationProcessor.ShowDetails)
             {
-                this.DrawLine(Units.ToForce(SimulationProcessor.LastStage.RCSThrust), section.IsHud);
+                this.DrawLine(Units.ToForce(SimulationProcessor.LastStage.RCSThrust), section.Width, section.IsHud);
             }
         }
 

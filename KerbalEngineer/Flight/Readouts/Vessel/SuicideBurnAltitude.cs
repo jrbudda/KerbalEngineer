@@ -51,7 +51,7 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
                 return;
             }
 
-            this.DrawLine(Surface.ImpactProcessor.SuicideAltitude.ToDistance(), section.IsHud);
+            this.DrawLine(Surface.ImpactProcessor.SuicideAltitude.ToDistance(), section.Width, section.IsHud);
         }
 
         public override void Reset()

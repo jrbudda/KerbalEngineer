@@ -61,7 +61,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface {
                     GUILayout.Width(ButtonStyle.fixedHeight))) {
                     this.maxGeeForce = 0.0;
                 }
-            }, true, section.IsHud);
+            }, section.Width, true, section.IsHud);
 
         }
 

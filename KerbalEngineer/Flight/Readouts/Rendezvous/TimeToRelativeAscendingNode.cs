@@ -50,11 +50,11 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous
                 {
                     double time = RendezvousProcessor.TimeToPlane[0];
 
-                    this.DrawLine("(L) " + TimeFormatter.ConvertToString(time), section.IsHud);
+                    this.DrawLine("(L) " + TimeFormatter.ConvertToString(time), section.Width, section.IsHud);
                 }
                 else
                 {
-                    this.DrawLine(TimeFormatter.ConvertToString(RendezvousProcessor.TimeToAscendingNode), section.IsHud);
+                    this.DrawLine(TimeFormatter.ConvertToString(RendezvousProcessor.TimeToAscendingNode), section.Width, section.IsHud);
                 }
             }
         }
