@@ -36,7 +36,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
         {
             if (AtmosphericProcessor.ShowDetails)
             {
-                DrawLine(AtmosphericProcessor.Efficiency.ToPercent(), section);
+                DrawLine(AtmosphericProcessor.Efficiency.ToPercent(section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
             }
         }
 

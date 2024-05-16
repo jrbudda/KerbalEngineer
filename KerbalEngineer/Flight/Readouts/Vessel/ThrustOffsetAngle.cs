@@ -46,7 +46,8 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
         {
             if (SimulationProcessor.ShowDetails)
             {
-                this.DrawLine(Units.ToAngle(SimulationProcessor.LastStage.thrustOffsetAngle, 1), section);
+                int dec = section.IsHud ? HudDecimalPlaces : DecimalPlaces;
+                this.DrawLine(Units.ToAngle(SimulationProcessor.LastStage.thrustOffsetAngle, dec < 0 ? 1 : dec), section);
             }
         }
 

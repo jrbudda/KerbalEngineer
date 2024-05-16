@@ -42,9 +42,9 @@ namespace KerbalEngineer.Flight.Readouts.Body {
         public override void Draw(Unity.Flight.ISectionModule section) {
 
             if (FlightGlobals.ActiveVessel.mainBody.atmosphere) {
-                this.DrawLine(FlightGlobals.ActiveVessel.mainBody.atmosphereDepth.ToDistance(), section);
+                this.DrawLine(FlightGlobals.ActiveVessel.mainBody.atmosphereDepth.ToDistance(section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
             } else
-                this.DrawLine(0.0.ToDistance(), section);
+                this.DrawLine(0.0.ToDistance(section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
 
         }
 

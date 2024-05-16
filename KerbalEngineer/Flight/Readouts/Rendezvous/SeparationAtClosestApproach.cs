@@ -44,7 +44,7 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous {
                 if (double.IsNaN(RendezvousProcessor.SeparationAtEncounter))
                     this.DrawLine("N/A", section);
                 else
-                    this.DrawLine(Units.ToDistance(RendezvousProcessor.SeparationAtEncounter), section);
+                    this.DrawLine(Units.ToDistance(RendezvousProcessor.SeparationAtEncounter, section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
             }
         }
 

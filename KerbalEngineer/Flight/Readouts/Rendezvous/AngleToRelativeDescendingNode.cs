@@ -50,11 +50,11 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous
                 {
                     double angle = RendezvousProcessor.AngleToPlane[1];
 
-                    this.DrawLine("(L) " + angle.ToAngle(), section);
+                    this.DrawLine("(L) " + angle.ToAngle(section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
                 }
                 else
                 {
-                    this.DrawLine(RendezvousProcessor.AngleToDescendingNode.ToAngle(), section);
+                    this.DrawLine(RendezvousProcessor.AngleToDescendingNode.ToAngle(section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
                 }
             }
         }

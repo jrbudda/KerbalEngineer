@@ -43,7 +43,7 @@ namespace KerbalEngineer.Flight.Readouts.Body {
             if (FlightGlobals.ActiveVessel.mainBody == null)
                 DrawLine("N/A", section);
             else
-                this.DrawLine(Helpers.Units.ToDistance(FlightGlobals.ActiveVessel.mainBody.Radius), section);
+                this.DrawLine(Helpers.Units.ToDistance(FlightGlobals.ActiveVessel.mainBody.Radius, section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
         }
 
         #endregion

@@ -36,7 +36,7 @@ namespace KerbalEngineer.Flight.Readouts.Thermal
         {
             if (ThermalProcessor.ShowDetails)
             {
-                DrawLine(ThermalProcessor.InternalFlux.ToFlux(), section);
+                DrawLine(ThermalProcessor.InternalFlux.ToFlux(section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
             }
         }
 

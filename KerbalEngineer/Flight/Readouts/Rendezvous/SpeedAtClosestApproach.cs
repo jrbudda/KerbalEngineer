@@ -49,7 +49,7 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous
                 if (double.IsNaN(RendezvousProcessor.SpeedAtEncounter))
                     this.DrawLine("N/A", section);
                 else
-                    this.DrawLine(RendezvousProcessor.SpeedAtEncounter.ToSpeed(), section);
+                    this.DrawLine(RendezvousProcessor.SpeedAtEncounter.ToSpeed(section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
             }
         }
 

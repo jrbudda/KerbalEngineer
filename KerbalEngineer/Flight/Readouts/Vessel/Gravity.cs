@@ -47,7 +47,7 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
         {
             if (SimulationProcessor.ShowDetails)
             {
-                this.DrawLine(Units.ToAcceleration(SimManager.Gravity), section);
+                this.DrawLine(Units.ToAcceleration(SimManager.Gravity, section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
             }
         }
 

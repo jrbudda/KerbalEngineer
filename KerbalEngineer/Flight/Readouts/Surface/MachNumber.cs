@@ -36,7 +36,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
         {
             if (FlightGlobals.ActiveVessel.atmDensity > 0.0)
             {
-                DrawLine(FlightGlobals.ActiveVessel.mach.ToMach(), section);
+                DrawLine(FlightGlobals.ActiveVessel.mach.ToMach(section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
             }
         }
     }

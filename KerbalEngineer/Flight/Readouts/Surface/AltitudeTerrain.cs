@@ -38,11 +38,11 @@ namespace KerbalEngineer.Flight.Readouts.Surface
             || FlightGlobals.ActiveVessel.situation == Vessel.Situations.SPLASHED
             || FlightGlobals.ActiveVessel.situation == Vessel.Situations.LANDED)
             {
-                DrawLine((FlightGlobals.ship_altitude - FlightGlobals.ActiveVessel.terrainAltitude).ToDistance(), section);
+                DrawLine((FlightGlobals.ship_altitude - FlightGlobals.ActiveVessel.terrainAltitude).ToDistance(section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
             }
             else
             {
-                DrawLine((FlightGlobals.ship_altitude).ToDistance(), section);
+                DrawLine((FlightGlobals.ship_altitude).ToDistance(section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
             }
         }
     }

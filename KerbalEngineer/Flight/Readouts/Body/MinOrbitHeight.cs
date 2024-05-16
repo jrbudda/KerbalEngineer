@@ -42,7 +42,7 @@ namespace KerbalEngineer.Flight.Readouts.Body {
         public override void Draw(Unity.Flight.ISectionModule section) {
                 CelestialBody b = FlightGlobals.ActiveVessel.mainBody;
                 double h = b.minOrbitalDistance - FlightGlobals.ActiveVessel.mainBody.Radius;
-                this.DrawLine(h.ToDistance(), section);
+                this.DrawLine(h.ToDistance(section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
         }
 
         #endregion

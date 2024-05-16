@@ -46,7 +46,7 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous
         {
             if (RendezvousProcessor.ShowDetails)
             {
-                this.DrawLine(RendezvousProcessor.PhaseAngle.ToAngle(), section);
+                this.DrawLine(RendezvousProcessor.PhaseAngle.ToAngle(section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
             }
         }
 
