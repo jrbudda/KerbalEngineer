@@ -45,7 +45,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
         {
             var biome = ScienceUtil.GetExperimentBiome(FlightGlobals.ActiveVessel.mainBody, FlightGlobals.ActiveVessel.latitude, FlightGlobals.ActiveVessel.longitude);
             biome = ScienceUtil.GetBiomedisplayName(FlightGlobals.ActiveVessel.mainBody, biome);
-            this.DrawLine(biome, section.Width, section.IsHud);
+            this.DrawLine(biome, section);
         }
 
         #endregion

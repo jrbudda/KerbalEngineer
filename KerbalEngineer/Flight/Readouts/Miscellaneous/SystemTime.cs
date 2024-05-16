@@ -50,7 +50,7 @@ namespace KerbalEngineer.Flight.Readouts.Miscellaneous
 
         public override void Draw(Unity.Flight.ISectionModule section)
         {
-            this.DrawLine(DateTime.Now.ToString("h:mm:ss tt"), section.Width, section.IsHud);
+            this.DrawLine(DateTime.Now.ToString("h:mm:ss tt"), section);
         } 
 
         #endregion

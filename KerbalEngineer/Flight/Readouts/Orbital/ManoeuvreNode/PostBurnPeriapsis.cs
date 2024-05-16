@@ -51,7 +51,7 @@ namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
                 return;
             }
 
-            this.DrawLine("Post-burn Periapsis", ManoeuvreProcessor.PostBurnPe.ToDistance(), section.Width, section.IsHud);
+            this.DrawLine("Post-burn Periapsis", ManoeuvreProcessor.PostBurnPe.ToDistance(), section);
         }
 
         public override void Reset()

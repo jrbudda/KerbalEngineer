@@ -44,7 +44,7 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
 
         public override void Draw(Unity.Flight.ISectionModule section)
         {
-            this.DrawLine((FlightGlobals.ship_orbit.LAN + FlightGlobals.ship_orbit.argumentOfPeriapsis).ToAngle(), section.Width, section.IsHud);
+            this.DrawLine((FlightGlobals.ship_orbit.LAN + FlightGlobals.ship_orbit.argumentOfPeriapsis).ToAngle(), section);
         }
 
         #endregion

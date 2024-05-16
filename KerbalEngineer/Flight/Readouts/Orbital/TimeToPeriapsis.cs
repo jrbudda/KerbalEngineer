@@ -44,7 +44,7 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
 
         public override void Draw(Unity.Flight.ISectionModule section)
         {
-            this.DrawLine(TimeFormatter.ConvertToString(FlightGlobals.ship_orbit.timeToPe), section.Width, section.IsHud);
+            this.DrawLine(TimeFormatter.ConvertToString(FlightGlobals.ship_orbit.timeToPe), section);
         }
 
         #endregion

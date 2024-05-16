@@ -45,7 +45,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
         {
             if (ImpactProcessor.ShowDetails)
             {
-                this.DrawLine(ImpactProcessor.Biome, section.Width, section.IsHud);
+                this.DrawLine(ImpactProcessor.Biome, section);
             }
         }
 

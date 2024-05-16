@@ -46,7 +46,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
         {
             if (AtmosphericProcessor.ShowDetails)
             {
-                this.DrawLine(AtmosphericProcessor.TerminalVelocity.ToSpeed(), section.Width, section.IsHud);
+                this.DrawLine(AtmosphericProcessor.TerminalVelocity.ToSpeed(), section);
             }
         }
 

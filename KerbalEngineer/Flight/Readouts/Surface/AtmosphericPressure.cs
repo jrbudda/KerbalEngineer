@@ -36,7 +36,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
         {
             if (AtmosphericProcessor.ShowDetails)
             {
-                DrawLine(AtmosphericProcessor.StaticPressure.ToPressure(), section.Width, section.IsHud);
+                DrawLine(AtmosphericProcessor.StaticPressure.ToPressure(), section);
             }
         }
 

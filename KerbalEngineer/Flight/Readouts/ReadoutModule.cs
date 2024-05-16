@@ -174,9 +174,9 @@ namespace KerbalEngineer.Flight.Readouts {
 
         #region Methods: protected
 
-        protected void DrawLine(string value, float width, bool compact) {
-            GUILayout.BeginHorizontal(GUILayout.Width(width * GuiDisplaySize.Offset));
-            if (!compact) {
+        protected void DrawLine(string value, Unity.Flight.ISectionModule section) {
+            GUILayout.BeginHorizontal(GUILayout.Width(section.Width * GuiDisplaySize.Offset));
+            if (!section.IsHud) {
                 GUILayout.Label(this.Name, NameStyle);
                 GUILayout.FlexibleSpace();
                 GUILayout.Label(value.ToLength(20), ValueStyle);
@@ -190,9 +190,9 @@ namespace KerbalEngineer.Flight.Readouts {
             this.lineCountEnd++;
         }
 
-        protected void DrawLine(string name, string value, float width, bool compact = false) {
-            GUILayout.BeginHorizontal(GUILayout.Width(width * GuiDisplaySize.Offset));
-            if (!compact) {
+        protected void DrawLine(string name, string value, Unity.Flight.ISectionModule section) {
+            GUILayout.BeginHorizontal(GUILayout.Width(section.Width * GuiDisplaySize.Offset));
+            if (!section.IsHud) {
                 GUILayout.Label(name, NameStyle);
                 GUILayout.FlexibleSpace();
                 GUILayout.Label(value.ToLength(20), ValueStyle);
@@ -205,10 +205,10 @@ namespace KerbalEngineer.Flight.Readouts {
             this.lineCountEnd++;
         }
 
-        protected void DrawLine(Action drawAction, float width, bool showName = true, bool compact = false) {
-            GUILayout.BeginHorizontal(GUILayout.Width(width * GuiDisplaySize.Offset));
+        protected void DrawLine(Action drawAction, Unity.Flight.ISectionModule section, bool showName = true) {
+            GUILayout.BeginHorizontal(GUILayout.Width(section.Width * GuiDisplaySize.Offset));
             if (showName) {
-                if (!compact) {
+                if (!section.IsHud) {
                     GUILayout.Label(this.Name, NameStyle);
                 } else {
                     GUILayout.Label(this.Name, NameStyle, GUILayout.Height(NameStyle.fontSize * 1.2f));

@@ -46,7 +46,7 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous
         {
             if (RendezvousProcessor.ShowDetails)
             {
-                this.DrawLine(TimeFormatter.ConvertToString(RendezvousProcessor.OrbitalPeriod, "F3"), section.Width, section.IsHud);
+                this.DrawLine(TimeFormatter.ConvertToString(RendezvousProcessor.OrbitalPeriod, "F3"), section);
             }
         }
 

@@ -46,7 +46,7 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
         {
             if (SimulationProcessor.ShowDetails)
             {
-                this.DrawLine(Units.ToTorque(SimulationProcessor.LastStage.maxThrustTorque), section.Width, section.IsHud);
+                this.DrawLine(Units.ToTorque(SimulationProcessor.LastStage.maxThrustTorque), section);
             }
         }
 

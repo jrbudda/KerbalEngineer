@@ -51,7 +51,7 @@ namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
                 return;
             }
 
-            this.DrawLine("Trip Total DeltaV ", ManoeuvreProcessor.TripDeltaV.ToSpeed(), section.Width, section.IsHud);
+            this.DrawLine("Trip Total DeltaV ", ManoeuvreProcessor.TripDeltaV.ToSpeed(), section);
         }
 
         public override void Reset()

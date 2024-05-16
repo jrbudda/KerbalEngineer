@@ -42,9 +42,9 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous {
         public override void Draw(Unity.Flight.ISectionModule section) {
             if (RendezvousProcessor.ShowDetails) {
                 if (double.IsNaN(RendezvousProcessor.SeparationAtEncounter))
-                    this.DrawLine("N/A", section.Width, section.IsHud);
+                    this.DrawLine("N/A", section);
                 else
-                    this.DrawLine(Units.ToDistance(RendezvousProcessor.SeparationAtEncounter), section.Width, section.IsHud);
+                    this.DrawLine(Units.ToDistance(RendezvousProcessor.SeparationAtEncounter), section);
             }
         }
 

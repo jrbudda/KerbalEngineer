@@ -35,7 +35,7 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
 
         public override void Draw(Unity.Flight.ISectionModule section)
         {
-            DrawLine((FlightGlobals.ship_orbit.meanAnomaly * Units.RAD_TO_DEG).ToAngle(), section.Width, section.IsHud);
+            DrawLine((FlightGlobals.ship_orbit.meanAnomaly * Units.RAD_TO_DEG).ToAngle(), section);
         }
     }
 }

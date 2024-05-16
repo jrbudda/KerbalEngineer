@@ -44,7 +44,7 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
 
         public override void Draw(Unity.Flight.ISectionModule section)
         {
-            this.DrawLine(OrbitExtensions.GetAngleToDescendingNode(FlightGlobals.ActiveVessel.orbit).ToAngle(), section.Width, section.IsHud);
+            this.DrawLine(OrbitExtensions.GetAngleToDescendingNode(FlightGlobals.ActiveVessel.orbit).ToAngle(), section);
         }
 
         #endregion

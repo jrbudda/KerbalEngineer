@@ -48,7 +48,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
 
         public override void Draw(Unity.Flight.ISectionModule section)
         {
-            this.DrawLine(this.GetSlopeAngleAndHeading(), section.Width, section.IsHud);
+            this.DrawLine(this.GetSlopeAngleAndHeading(), section);
         }
 
         #endregion

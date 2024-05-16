@@ -40,7 +40,7 @@ namespace KerbalEngineer.Flight.Readouts.Body {
         #region Methods: public
 
         public override void Draw(Unity.Flight.ISectionModule section) {
-            this.DrawLine(Helpers.Units.ToMass(FlightGlobals.ActiveVessel.mainBody.Mass), section.Width, section.IsHud);
+            this.DrawLine(Helpers.Units.ToMass(FlightGlobals.ActiveVessel.mainBody.Mass), section);
         }
 
         #endregion

@@ -43,11 +43,11 @@ namespace KerbalEngineer.Flight.Readouts.Surface
                 var vessel = target.GetVessel();
                 if(vessel == null)
                 {
-                    DrawLine("N/A", section.Width, section.IsHud);
+                    DrawLine("N/A", section);
                 } else
                 {
                     double longitude = AngleHelper.Clamp180(vessel.longitude);
-                    DrawLine(Units.ToAngleDMS(longitude) + (longitude < 0.0 ? " W" : " E"), section.Width, section.IsHud);
+                    DrawLine(Units.ToAngleDMS(longitude) + (longitude < 0.0 ? " W" : " E"), section);
                 }
             }
         }

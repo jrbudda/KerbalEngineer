@@ -36,7 +36,7 @@ namespace KerbalEngineer.Flight.Readouts.Thermal
         {
             if (ThermalProcessor.ShowDetails)
             {
-                DrawLine(Units.ToTemperature(ThermalProcessor.CriticalTemperature, ThermalProcessor.CriticalTemperatureMax), section.Width, section.IsHud);
+                DrawLine(Units.ToTemperature(ThermalProcessor.CriticalTemperature, ThermalProcessor.CriticalTemperatureMax), section);
             }
         }
 

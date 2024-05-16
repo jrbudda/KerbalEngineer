@@ -46,7 +46,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
         {
             if (ImpactProcessor.ShowDetails)
             {
-                this.DrawLine(TimeFormatter.ConvertToString(ImpactProcessor.Time), section.Width, section.IsHud);
+                this.DrawLine(TimeFormatter.ConvertToString(ImpactProcessor.Time), section);
             }
         }
 

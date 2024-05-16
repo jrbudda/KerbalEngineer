@@ -48,7 +48,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface {
                         GUILayout.Width(this.ContentWidth / 4), GUILayout.Height(s.fixedHeight))) {
                         show = !show;
                     }
-                }, section.Width, true, section.IsHud);
+                }, section, true);
             }
         }
 
@@ -59,7 +59,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface {
         }
 
         public override void Update() {
-           if(show)
+            if (show)
                 FlightEngineerCore.markerDeadman = 2;
             ImpactProcessor.RequestUpdate();
         }

@@ -51,7 +51,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
 
         public override void Draw(Unity.Flight.ISectionModule section)
         {
-            this.DrawLine(this.acceleration.ToAcceleration(), section.Width, section.IsHud);
+            this.DrawLine(this.acceleration.ToAcceleration(), section);
         }
 
         public override void FixedUpdate()

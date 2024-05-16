@@ -263,22 +263,22 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous {
 
                 GUILayout.Space(3f);
 
-                this.DrawLine("Selected Target", RendezvousProcessor.nameForTargetable(target), section.Width, section.IsHud);
+                this.DrawLine("Selected Target", RendezvousProcessor.nameForTargetable(target), section);
 
                 try {
 
                     if (RendezvousProcessor.sourceDisplay != null) {
                         if (RendezvousProcessor.landedSamePlanet || RendezvousProcessor.overrideANDN)
-                            this.DrawLine("Ref Orbit", "Landed on " + RendezvousProcessor.activeVessel.GetOrbit().referenceBody.GetDisplayName().LocalizeRemoveGender(), section.Width, section.IsHud);
+                            this.DrawLine("Ref Orbit", "Landed on " + RendezvousProcessor.activeVessel.GetOrbit().referenceBody.GetDisplayName().LocalizeRemoveGender(), section);
                         else
-                            this.DrawLine("Ref Orbit", RendezvousProcessor.sourceDisplay, section.Width, section.IsHud);
+                            this.DrawLine("Ref Orbit", RendezvousProcessor.sourceDisplay, section);
                     }
 
                     if (RendezvousProcessor.targetDisplay != null) {
                         if (RendezvousProcessor.landedSamePlanet || RendezvousProcessor.overrideANDNRev)
-                            this.DrawLine("Target Orbit", "Landed on " + target.GetOrbit().referenceBody.GetDisplayName().LocalizeRemoveGender(), section.Width, section.IsHud);
+                            this.DrawLine("Target Orbit", "Landed on " + target.GetOrbit().referenceBody.GetDisplayName().LocalizeRemoveGender(), section);
                         else
-                            this.DrawLine("Target Orbit", RendezvousProcessor.targetDisplay, section.Width, section.IsHud);
+                            this.DrawLine("Target Orbit", RendezvousProcessor.targetDisplay, section);
                     }
 
                 } catch (System.Exception) {

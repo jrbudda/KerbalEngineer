@@ -51,7 +51,7 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
                 return;
             }
 
-            this.DrawLine(TimeFormatter.ConvertToString(Surface.ImpactProcessor.SuicideCountdown), section.Width, section.IsHud);
+            this.DrawLine(TimeFormatter.ConvertToString(Surface.ImpactProcessor.SuicideCountdown), section);
         }
 
         public override void Reset()
