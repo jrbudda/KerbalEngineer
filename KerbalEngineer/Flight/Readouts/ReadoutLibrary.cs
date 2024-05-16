@@ -294,7 +294,9 @@ namespace KerbalEngineer.Flight.Readouts {
                 foreach (ReadoutModule readout in readouts) {
                     ReadoutModuleConfigNode r = handler.Get<ReadoutModuleConfigNode>(readout.Name, null);
                     if (r != null) {
-                        readout.ValueStyle.normal.textColor = r.Color;
+                        readout.ValueStyle.normal.textColor = r.TextColor;
+                        readout.DecimalPlaces = r.DecimalPlaces;
+                        readout.HudDecimalPlaces = r.HudDecimalPlaces;
                     }
                 }
                 handler.Save("ReadoutsConfig.xml");
@@ -331,7 +333,9 @@ namespace KerbalEngineer.Flight.Readouts {
                 }
 
                 r.Name = readout.Name;
-                r.Color = readout.ValueStyle.normal.textColor;
+                r.TextColor = readout.ValueStyle.normal.textColor;
+                r.DecimalPlaces = readout.DecimalPlaces;
+                r.HudDecimalPlaces = readout.HudDecimalPlaces;
 
                 handler.Set(r.Name, r);
                 handler.Save("ReadoutsConfig.xml");

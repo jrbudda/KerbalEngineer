@@ -30,45 +30,56 @@ namespace KerbalEngineer.Helpers {
             return value1 + " / " + value2;
         }
 
-        public static string ConcatF(double value1, double value2, int decimals = 1) {
+        public static string ConcatF(double value1, double value2, int decimals = -9000) {
+            if (decimals < 0) decimals = 1;
             return value1.ToString("F" + decimals) + " / " + value2.ToString("F" + decimals);
         }
 
-        public static string ConcatF(double value1, double value2, double value3, int decimals = 1) {
+        public static string ConcatF(double value1, double value2, double value3, int decimals = -9000) {
+            if (decimals < 0) decimals = 1;
             return value1.ToString("F" + decimals) + " / " + value2.ToString("F" + decimals) + " / " + value3.ToString("F" + decimals);
         }
 
-        public static string ConcatN(double value1, double value2, int decimals = 1) {
+        public static string ConcatN(double value1, double value2, int decimals = -9000) {
+            if (decimals < 0) decimals = 1;
             return value1.ToString("N" + decimals) + " / " + value2.ToString("N" + decimals);
         }
 
-        public static string ConcatN(double value1, double value2, double value3, int decimals = 1) {
+        public static string ConcatN(double value1, double value2, double value3, int decimals = -9000) {
+            if (decimals < 0) decimals = 1;
             return value1.ToString("N" + decimals) + " / " + value2.ToString("N" + decimals) + " / " + value3.ToString("N" + decimals);
         }
 
-        public static string Cost(double value, int decimals = 1) {
+        public static string Cost(double value, int decimals = -9000) {
+            if (decimals < 0) decimals = 1;
+
             if (value >= 1000000.0) {
                 return (value / 1000.0).ToString("N" + decimals) + "K";
             }
             return value.ToString("N" + decimals);
         }
 
-        public static string Cost(double value1, double value2, int decimals = 1) {
+        public static string Cost(double value1, double value2, int decimals = -9000) {
+            if (decimals < 0) decimals = 1;
+
             if (value1 >= 1000000.0 || value2 >= 1000000.0) {
                 return (value1 / 1000.0).ToString("N" + decimals) + " / " + (value2 / 1000.0).ToString("N" + decimals) + "K";
             }
             return value1.ToString("N" + decimals) + " / " + value2.ToString("N" + decimals);
         }
 
-        public static string ToAcceleration(double value, int decimals = 2) {
+        public static string ToAcceleration(double value, int decimals = -9000) {
+            if (decimals < 0) decimals = 2;
             return value.ToString("N" + decimals) + "m/s²";
         }
 
-        public static string ToAcceleration(double value1, double value2, int decimals = 2) {
+        public static string ToAcceleration(double value1, double value2, int decimals = -9000) {
+            if (decimals < 0) decimals = 2;
             return value1.ToString("N" + decimals) + " / " + value2.ToString("N" + decimals) + "m/s²";
         }
 
-        public static string ToAngle(double value, int decimals = 5) {
+        public static string ToAngle(double value, int decimals = -9000) {
+            if (decimals < 0) decimals = 3;
             return value.ToString("F" + decimals) + "°";
         }
 
@@ -82,7 +93,9 @@ namespace KerbalEngineer.Helpers {
             return string.Format("{0:0}° {1:00}' {2:00}\"", deg, min, sec);
         }
 
-        public static string ToDistance(double value, int decimals = 1) {
+        public static string ToDistance(double value, int decimals = -9000) {
+            if (decimals < 0) decimals = 1;
+
             if (Math.Abs(value) < 1000000.0) {
                 if (Math.Abs(value) >= 10.0) {
                     return value.ToString("N" + decimals) + "m";
@@ -124,7 +137,8 @@ namespace KerbalEngineer.Helpers {
             return value.ToString("0.00") + "Ma";
         }
 
-        public static string ToMass(double value, int decimals = 0) {
+        public static string ToMass(double value, int decimals = -9000) {
+            if (decimals < 0) decimals = 0;
 
             if (value > 1 * 10e12) {
                 return value.ToString("e" + decimals + 8) + "t";
@@ -138,7 +152,9 @@ namespace KerbalEngineer.Helpers {
             return value.ToString("N" + decimals) + "kg";
         }
 
-        public static string ToMass(double value1, double value2, int decimals = 0) {
+        public static string ToMass(double value1, double value2, int decimals = -9000) {
+            if (decimals < 0) decimals = 0;
+
             if (value1 >= 1000.0f || value2 >= 1000.0f) {
                 return value1.ToString("N" + decimals + 2) + " / " + value2.ToString("N" + decimals + 2) + "t";
             }
@@ -148,7 +164,9 @@ namespace KerbalEngineer.Helpers {
             return value1.ToString("N" + decimals) + " / " + value2.ToString("N" + decimals) + "kg";
         }
 
-        public static string ToPercent(double value, int decimals = 2) {
+        public static string ToPercent(double value, int decimals = -9000) {
+            if (decimals < 0) decimals = 2;
+
             value *= 100.0;
             return value.ToString("F" + decimals) + "%";
         }
@@ -157,11 +175,14 @@ namespace KerbalEngineer.Helpers {
             return value.ToString((value < 100000.0) ? (value < 10000.0) ? (value < 100.0) ? (Math.Abs(value) < double.Epsilon) ? "N0" : "N3" : "N2" : "N1" : "N0") + "kN/m²";
         }
 
-        public static string ToRate(double value, int decimals = 1) {
+        public static string ToRate(double value, int decimals = -9000) {
+            if (decimals < 0) decimals = 1;
             return value < 1.0 ? (value * 60.0).ToString("F" + decimals) + "/min" : value.ToString("F" + decimals) + "/sec";
         }
 
-        public static string ToSpeed(double value, int decimals = 2) {
+        public static string ToSpeed(double value, int decimals = -9000) {
+            if (decimals < 0) decimals = 2;
+
             if (Math.Abs(value) < 1.0) {
                 return (value * 1000.0).ToString("N" + decimals) + "mm/s";
             }

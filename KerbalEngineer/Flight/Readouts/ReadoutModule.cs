@@ -89,6 +89,16 @@ namespace KerbalEngineer.Flight.Readouts {
         public int LineCount { get; private set; }
 
         /// <summary>
+        ///     Gets and sets the readout decimal-place override for floating-point value readouts displayed in the main window. Negative values will use the default number of decimal places for that type of unit.
+        /// </summary>
+        public int DecimalPlaces { get; set; } = -9000;
+
+        /// <summary>
+        ///     Gets and sets the readout decimal-place override for floating-point value readouts displayed in the HUD. Negative values will use the default number of decimal places for that type of unit.
+        /// </summary>
+        public int HudDecimalPlaces { get; set; } = -9000;
+
+        /// <summary>
         ///     Gets and sets the readout name.
         /// </summary>
         public string Name { get; set; }

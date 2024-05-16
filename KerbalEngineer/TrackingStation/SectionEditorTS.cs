@@ -87,7 +87,7 @@ namespace KerbalEngineer.TrackingStation {
                 this.presetList.DrawCallback = this.DrawPresets;
                 this.colorPicker = this.gameObject.AddComponent<PopOutColorPicker>();
                 this.colorPicker.DrawCallback = this.DrawColorPicker;
-                this.colorPicker.ClosedCallback = this.saveColor;
+                this.colorPicker.ClosedCallback = this.SaveColor;
             } catch (Exception ex) {
                 MyLogger.Exception(ex);
             }
@@ -119,11 +119,13 @@ namespace KerbalEngineer.TrackingStation {
 
         #region Methods: private
 
-        private void saveColor() {
+        private void SaveColor() {
             if (editingReadout == null) return;
+            /* //We save more than just the text color in ReadoutsConfig now
             if (editingReadout.ValueStyle.normal.textColor == HighLogic.Skin.label.normal.textColor)
                 ReadoutLibrary.RemoveReadoutConfig(editingReadout);
             else
+            */
                 ReadoutLibrary.SaveReadoutConfig(editingReadout);
         }
 
