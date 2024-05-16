@@ -297,6 +297,7 @@ namespace KerbalEngineer.Flight.Readouts {
                         readout.ValueStyle.normal.textColor = r.TextColor;
                         readout.DecimalPlaces = r.DecimalPlaces;
                         readout.HudDecimalPlaces = r.HudDecimalPlaces;
+                        readout.CharacterLimit = r.CharacterLimit;
                     }
                 }
                 handler.Save("ReadoutsConfig.xml");
@@ -336,6 +337,7 @@ namespace KerbalEngineer.Flight.Readouts {
                 r.TextColor = readout.ValueStyle.normal.textColor;
                 r.DecimalPlaces = readout.DecimalPlaces;
                 r.HudDecimalPlaces = readout.HudDecimalPlaces;
+                r.CharacterLimit = readout.CharacterLimit;
 
                 handler.Set(r.Name, r);
                 handler.Save("ReadoutsConfig.xml");

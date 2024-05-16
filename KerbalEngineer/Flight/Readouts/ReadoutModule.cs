@@ -87,6 +87,11 @@ namespace KerbalEngineer.Flight.Readouts {
         ///     Gets the number of drawn lines.
         /// </summary>
         public int LineCount { get; private set; }
+        
+        /// <summary>
+        ///     Gets and sets the readout character limit. Displayed value strings will be truncated if they're longer than this.
+        /// </summary>
+        public int CharacterLimit { get; set; } = ReadoutModuleConfigNode.DEFAULT_CHARACTER_LIMIT;
 
         /// <summary>
         ///     Gets and sets the readout decimal-place override for floating-point value readouts displayed in the main window. Negative values will use the default number of decimal places for that type of unit.
@@ -189,11 +194,11 @@ namespace KerbalEngineer.Flight.Readouts {
             if (!section.IsHud) {
                 GUILayout.Label(this.Name, NameStyle);
                 GUILayout.FlexibleSpace();
-                GUILayout.Label(value.ToLength(20), ValueStyle);
+                GUILayout.Label(value.ToLength(CharacterLimit), ValueStyle);
             } else {
                 GUILayout.Label(this.Name, NameStyle, GUILayout.Height(NameStyle.fontSize * 1.2f));
                 GUILayout.FlexibleSpace();
-                GUILayout.Label(value.ToLength(20), ValueStyle, GUILayout.Height(ValueStyle.fontSize * 1.2f));
+                GUILayout.Label(value.ToLength(CharacterLimit), ValueStyle, GUILayout.Height(ValueStyle.fontSize * 1.2f));
             }
             GUILayout.EndHorizontal();
 
@@ -205,11 +210,11 @@ namespace KerbalEngineer.Flight.Readouts {
             if (!section.IsHud) {
                 GUILayout.Label(name, NameStyle);
                 GUILayout.FlexibleSpace();
-                GUILayout.Label(value.ToLength(20), ValueStyle);
+                GUILayout.Label(value.ToLength(CharacterLimit), ValueStyle);
             } else {
                 GUILayout.Label(name, NameStyle, GUILayout.Height(NameStyle.fontSize * 1.2f));
                 GUILayout.FlexibleSpace();
-                GUILayout.Label(value.ToLength(20), ValueStyle, GUILayout.Height(ValueStyle.fontSize * 1.2f));
+                GUILayout.Label(value.ToLength(CharacterLimit), ValueStyle, GUILayout.Height(ValueStyle.fontSize * 1.2f));
             }
             GUILayout.EndHorizontal();
             this.lineCountEnd++;
