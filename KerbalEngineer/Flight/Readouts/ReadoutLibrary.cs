@@ -298,6 +298,7 @@ namespace KerbalEngineer.Flight.Readouts {
                         readout.DecimalPlaces = r.DecimalPlaces;
                         readout.HudDecimalPlaces = r.HudDecimalPlaces;
                         readout.CharacterLimit = r.CharacterLimit;
+                        readout.HudCharacterLimit = r.HudCharacterLimit;
                     }
                 }
                 handler.Save("ReadoutsConfig.xml");
@@ -338,6 +339,7 @@ namespace KerbalEngineer.Flight.Readouts {
                 r.DecimalPlaces = readout.DecimalPlaces;
                 r.HudDecimalPlaces = readout.HudDecimalPlaces;
                 r.CharacterLimit = readout.CharacterLimit;
+                r.HudCharacterLimit = readout.HudCharacterLimit;
 
                 handler.Set(r.Name, r);
                 handler.Save("ReadoutsConfig.xml");

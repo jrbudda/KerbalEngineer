@@ -31,8 +31,9 @@ namespace KerbalEngineer.Unity.Flight
         bool IsVisible { get; set; }
 
         bool IsHud { get; set; }
-
+        
         float Width { get; set; }
+        float HudWidth { get; set; }
 
         string Name { get; }
     }

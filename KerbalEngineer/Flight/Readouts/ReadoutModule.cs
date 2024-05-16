@@ -92,6 +92,7 @@ namespace KerbalEngineer.Flight.Readouts {
         ///     Gets and sets the readout character limit. Displayed value strings will be truncated if they're longer than this.
         /// </summary>
         public int CharacterLimit { get; set; } = ReadoutModuleConfigNode.DEFAULT_CHARACTER_LIMIT;
+        public int HudCharacterLimit { get; set; } = ReadoutModuleConfigNode.DEFAULT_CHARACTER_LIMIT;
 
         /// <summary>
         ///     Gets and sets the readout decimal-place override for floating-point value readouts displayed in the main window. Negative values will use the default number of decimal places for that type of unit.
@@ -190,12 +191,13 @@ namespace KerbalEngineer.Flight.Readouts {
         #region Methods: protected
 
         protected void DrawLine(string value, Unity.Flight.ISectionModule section) {
-            GUILayout.BeginHorizontal(GUILayout.Width(section.Width * GuiDisplaySize.Offset));
             if (!section.IsHud) {
+                GUILayout.BeginHorizontal(GUILayout.Width(section.Width * GuiDisplaySize.Offset));
                 GUILayout.Label(this.Name, NameStyle);
                 GUILayout.FlexibleSpace();
-                GUILayout.Label(value.ToLength(CharacterLimit), ValueStyle);
+                GUILayout.Label(value.ToLength(HudCharacterLimit), ValueStyle);
             } else {
+                GUILayout.BeginHorizontal(GUILayout.Width(section.HudWidth * GuiDisplaySize.Offset));
                 GUILayout.Label(this.Name, NameStyle, GUILayout.Height(NameStyle.fontSize * 1.2f));
                 GUILayout.FlexibleSpace();
                 GUILayout.Label(value.ToLength(CharacterLimit), ValueStyle, GUILayout.Height(ValueStyle.fontSize * 1.2f));
@@ -206,12 +208,13 @@ namespace KerbalEngineer.Flight.Readouts {
         }
 
         protected void DrawLine(string name, string value, Unity.Flight.ISectionModule section) {
-            GUILayout.BeginHorizontal(GUILayout.Width(section.Width * GuiDisplaySize.Offset));
             if (!section.IsHud) {
+                GUILayout.BeginHorizontal(GUILayout.Width(section.Width * GuiDisplaySize.Offset));
                 GUILayout.Label(name, NameStyle);
                 GUILayout.FlexibleSpace();
-                GUILayout.Label(value.ToLength(CharacterLimit), ValueStyle);
+                GUILayout.Label(value.ToLength(HudCharacterLimit), ValueStyle);
             } else {
+                GUILayout.BeginHorizontal(GUILayout.Width(section.HudWidth * GuiDisplaySize.Offset));
                 GUILayout.Label(name, NameStyle, GUILayout.Height(NameStyle.fontSize * 1.2f));
                 GUILayout.FlexibleSpace();
                 GUILayout.Label(value.ToLength(CharacterLimit), ValueStyle, GUILayout.Height(ValueStyle.fontSize * 1.2f));
@@ -221,7 +224,7 @@ namespace KerbalEngineer.Flight.Readouts {
         }
 
         protected void DrawLine(Action drawAction, Unity.Flight.ISectionModule section, bool showName = true) {
-            GUILayout.BeginHorizontal(GUILayout.Width(section.Width * GuiDisplaySize.Offset));
+            GUILayout.BeginHorizontal(GUILayout.Width((section.IsHud ? section.HudWidth : section.Width) * GuiDisplaySize.Offset));
             if (showName) {
                 if (!section.IsHud) {
                     GUILayout.Label(this.Name, NameStyle);

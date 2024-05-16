@@ -179,6 +179,7 @@ namespace KerbalEngineer.TrackingStation {
         ///     Gets and sets the width of the section. (Only used with serialisation.)
         /// </summary>
         public float Width { get; set; } = OOPSux.DEFAULT_SECTION_WIDTH;
+        public float HudWidth { get; set; } = OOPSux.DEFAULT_SECTION_WIDTH;
 
         /// <summary>
         ///     Gets and sets the name of the section.
