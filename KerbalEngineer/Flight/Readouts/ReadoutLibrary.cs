@@ -119,6 +119,8 @@ namespace KerbalEngineer.Flight.Readouts {
                 readouts.Add(new ImpactMarker());
                 readouts.Add(new ImpactAltitude());
                 readouts.Add(new ImpactBiome());
+                readouts.Add(new SurfaceDistanceToWaypoint());
+                readouts.Add(new BearingToWaypoint());
 
                 // Vessel
                 readouts.Add(new Name());
@@ -183,6 +185,8 @@ namespace KerbalEngineer.Flight.Readouts {
                 readouts.Add(new Rendezvous.SpeedAtClosestApproach());
                 readouts.Add(new TargetLatitude());
                 readouts.Add(new TargetLongitude());
+                readouts.Add(new SurfaceDistanceToTarget());
+                readouts.Add(new BearingToTarget());
 
                 // Thermal
                 readouts.Add(new InternalFlux());

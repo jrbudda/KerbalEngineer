@@ -195,12 +195,12 @@ namespace KerbalEngineer.Flight.Readouts {
                 GUILayout.BeginHorizontal(GUILayout.Width(section.Width * GuiDisplaySize.Offset));
                 GUILayout.Label(this.Name, NameStyle);
                 GUILayout.FlexibleSpace();
-                GUILayout.Label(value.ToLength(HudCharacterLimit), ValueStyle);
+                GUILayout.Label(value.ToLength(CharacterLimit), ValueStyle);
             } else {
                 GUILayout.BeginHorizontal(GUILayout.Width(section.HudWidth * GuiDisplaySize.Offset));
                 GUILayout.Label(this.Name, NameStyle, GUILayout.Height(NameStyle.fontSize * 1.2f));
                 GUILayout.FlexibleSpace();
-                GUILayout.Label(value.ToLength(CharacterLimit), ValueStyle, GUILayout.Height(ValueStyle.fontSize * 1.2f));
+                GUILayout.Label(value.ToLength(HudCharacterLimit), ValueStyle, GUILayout.Height(ValueStyle.fontSize * 1.2f));
             }
             GUILayout.EndHorizontal();
 
@@ -212,12 +212,12 @@ namespace KerbalEngineer.Flight.Readouts {
                 GUILayout.BeginHorizontal(GUILayout.Width(section.Width * GuiDisplaySize.Offset));
                 GUILayout.Label(name, NameStyle);
                 GUILayout.FlexibleSpace();
-                GUILayout.Label(value.ToLength(HudCharacterLimit), ValueStyle);
+                GUILayout.Label(value.ToLength(CharacterLimit), ValueStyle);
             } else {
                 GUILayout.BeginHorizontal(GUILayout.Width(section.HudWidth * GuiDisplaySize.Offset));
                 GUILayout.Label(name, NameStyle, GUILayout.Height(NameStyle.fontSize * 1.2f));
                 GUILayout.FlexibleSpace();
-                GUILayout.Label(value.ToLength(CharacterLimit), ValueStyle, GUILayout.Height(ValueStyle.fontSize * 1.2f));
+                GUILayout.Label(value.ToLength(HudCharacterLimit), ValueStyle, GUILayout.Height(ValueStyle.fontSize * 1.2f));
             }
             GUILayout.EndHorizontal();
             this.lineCountEnd++;
