@@ -40,6 +40,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
         public VerticalAcceleration()
         {
             this.Name = "Vertical Acceleration";
+            this.ShortName = "VAccel";
             this.Category = ReadoutCategory.GetCategory("Surface");
             this.HelpString = "Shows the vessel's vertical acceleration up and down.";
             this.IsDefault = false;

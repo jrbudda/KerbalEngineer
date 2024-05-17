@@ -30,9 +30,10 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
         #region Constructors
 
         public AngleOfDisplacement() {
-            this.Name = "AoD";
+            this.Name = "Angle-of-Displacement";
+            this.ShortName = "AoD";
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Angle-of-displacement: the angle between velocity and the vessel's fuselage.";
+            this.HelpString = "The angle between velocity and the vessel's fuselage.";
             this.IsDefault = false;
         }
 

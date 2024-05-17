@@ -27,6 +27,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
         public MachNumber()
         {
             Name = "Mach Number";
+            ShortName = "Mach";
             Category = ReadoutCategory.GetCategory("Surface");
             HelpString = "Shows the vessel's mach number.";
             IsDefault = true;

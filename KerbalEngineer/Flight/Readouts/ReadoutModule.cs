@@ -105,9 +105,16 @@ namespace KerbalEngineer.Flight.Readouts {
         public int HudDecimalPlaces { get; set; } = -9000;
 
         /// <summary>
+        ///     Gets and sets whether to display the short name in readouts rather than the full one.
+        /// </summary>
+        public bool UseShortName { get; set; } = false;
+        public bool HudUseShortName { get; set; } = false;
+
+        /// <summary>
         ///     Gets and sets the readout name.
         /// </summary>
         public string Name { get; set; }
+        public string ShortName { get; set; }
 
         /// <summary>
         ///     Gets and sets whether the readout has requested a section resize.
@@ -193,12 +200,12 @@ namespace KerbalEngineer.Flight.Readouts {
         protected void DrawLine(string value, Unity.Flight.ISectionModule section) {
             if (!section.IsHud) {
                 GUILayout.BeginHorizontal(GUILayout.Width(section.Width * GuiDisplaySize.Offset));
-                GUILayout.Label(this.Name, NameStyle);
+                GUILayout.Label((this.UseShortName && !string.IsNullOrEmpty(this.ShortName)) ? this.ShortName : this.Name, NameStyle);
                 GUILayout.FlexibleSpace();
                 GUILayout.Label(value.ToLength(CharacterLimit), ValueStyle);
             } else {
                 GUILayout.BeginHorizontal(GUILayout.Width(section.HudWidth * GuiDisplaySize.Offset));
-                GUILayout.Label(this.Name, NameStyle, GUILayout.Height(NameStyle.fontSize * 1.2f));
+                GUILayout.Label((this.HudUseShortName && !string.IsNullOrEmpty(this.ShortName)) ? this.ShortName : this.Name, NameStyle, GUILayout.Height(NameStyle.fontSize * 1.2f));
                 GUILayout.FlexibleSpace();
                 GUILayout.Label(value.ToLength(HudCharacterLimit), ValueStyle, GUILayout.Height(ValueStyle.fontSize * 1.2f));
             }
@@ -227,9 +234,9 @@ namespace KerbalEngineer.Flight.Readouts {
             GUILayout.BeginHorizontal(GUILayout.Width((section.IsHud ? section.HudWidth : section.Width) * GuiDisplaySize.Offset));
             if (showName) {
                 if (!section.IsHud) {
-                    GUILayout.Label(this.Name, NameStyle);
+                    GUILayout.Label((this.UseShortName && !string.IsNullOrEmpty(this.ShortName)) ? this.ShortName : this.Name, NameStyle);
                 } else {
-                    GUILayout.Label(this.Name, NameStyle, GUILayout.Height(NameStyle.fontSize * 1.2f));
+                    GUILayout.Label((this.HudUseShortName && !string.IsNullOrEmpty(this.ShortName)) ? this.ShortName : this.Name, NameStyle, GUILayout.Height(NameStyle.fontSize * 1.2f));
                 }
                 GUILayout.FlexibleSpace();
             }

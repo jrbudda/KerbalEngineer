@@ -30,9 +30,10 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
         #region Constructors
 
         public AngleOfSideslip() {
-            this.Name = "AoS";
+            this.Name = "Angle-of-Sideslip";
+            this.ShortName = "AoS";
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Angle-of-sideslip: the angle between velocity and the vessel's fuselage, along the vessel's horizontal axis. Aircraft should keep this at 0, rolling to turn instead.";
+            this.HelpString = "The angle between velocity and the vessel's fuselage, along the vessel's horizontal axis. Aircraft should keep this at 0, rolling to turn instead.";
             this.IsDefault = false;
         }
 

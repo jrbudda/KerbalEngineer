@@ -30,9 +30,10 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
         #region Constructors
 
         public AngleOfAttack() {
-            this.Name = "AoA";
+            this.Name = "Angle-of-Attack";
+            this.ShortName = "AoA";
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Angle-of-attack: the angle between velocity and the vessel's fuselage, along the vessel's vertical axis. Lift begins to decrease at 30 degrees, but you should generally keep it below 10, and below 5 in most situations.";
+            this.HelpString = "The angle between velocity and the vessel's fuselage, along the vessel's vertical axis. Lift begins to decrease at 30 degrees, but you should generally keep it below 10, and below 5 in most situations.";
             this.IsDefault = false;
         }
 

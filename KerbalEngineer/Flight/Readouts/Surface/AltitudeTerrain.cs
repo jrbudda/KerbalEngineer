@@ -27,6 +27,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
         public AltitudeTerrain()
         {
             Name = "Altitude (Terrain)";
+            ShortName = "Alt (T)";
             Category = ReadoutCategory.GetCategory("Surface");
             HelpString = "Shows the vessel's altitude above the terrain and water's surface, or altitude above underwater terrain whilst splashed down.";
             IsDefault = true;

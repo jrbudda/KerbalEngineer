@@ -40,6 +40,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
         public HorizontalAcceleration()
         {
             this.Name = "Horizontal Acceleration";
+            this.ShortName = "HAccel";
             this.Category = ReadoutCategory.GetCategory("Surface");
             this.HelpString = "Shows the vessel's horizontal acceleration across a celestial body's surface.";
             this.IsDefault = false;

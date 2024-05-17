@@ -27,6 +27,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
         public AtmosphericEfficiency()
         {
             Name = "Atmos. Efficiency";
+            ShortName = "Atmo Eff";
             Category = ReadoutCategory.GetCategory("Surface");
             HelpString = "Shows you vessel's efficiency as a ratio of the current velocity and terminal velocity.  Less than 100% means that you are losing efficiency due to gravity and greater than 100% is due to drag.";
             IsDefault = false;

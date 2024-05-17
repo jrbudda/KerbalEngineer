@@ -9,5 +9,7 @@ namespace KerbalEngineer.Flight.Readouts {
         public int HudCharacterLimit { get; set; } = DEFAULT_CHARACTER_LIMIT;
         public int DecimalPlaces { get; set; } = -9000;
         public int HudDecimalPlaces { get; set; } = -9000;
+        public bool UseShortName { get; set; } = false;
+        public bool HudUseShortName { get; set; } = false;
     }
 }

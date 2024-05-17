@@ -33,6 +33,7 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public ElectricCharge() {
             this.Name = "Electric Charge";
+            this.ShortName = "Elec";//"EC";
             this.Category = ReadoutCategory.GetCategory("Vessel");
             this.HelpString = "Current and maximum electric charge in the vessel.";
             this.IsDefault = false;
