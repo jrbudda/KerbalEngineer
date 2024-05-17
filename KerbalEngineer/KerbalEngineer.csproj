@@ -162,6 +162,7 @@
     <Compile Include="Flight\Readouts\Vessel\AngleOfAttack.cs" />
     <Compile Include="Flight\Readouts\Vessel\AngleOfDisplacement.cs" />
     <Compile Include="Flight\Readouts\Vessel\AngleOfSideslip.cs" />
+    <Compile Include="Flight\Readouts\Vessel\ElectricCharge.cs" />
     <Compile Include="Flight\Readouts\Vessel\Gravity.cs" />
     <Compile Include="Flight\Readouts\Vessel\Name.cs" />
     <Compile Include="Flight\Readouts\Vessel\AttitudeProcessor.cs" />

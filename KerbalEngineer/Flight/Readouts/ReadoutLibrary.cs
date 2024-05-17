@@ -142,6 +142,7 @@ namespace KerbalEngineer.Flight.Readouts {
                 readouts.Add(new SuicideBurnDeltaV());
                 readouts.Add(new SuicideBurnCountdown());
                 readouts.Add(new SuicideBurnLength());
+                readouts.Add(new ElectricCharge());
                 readouts.Add(new IntakeAirUsage());
                 readouts.Add(new IntakeAirDemand());
                 readouts.Add(new IntakeAirSupply());

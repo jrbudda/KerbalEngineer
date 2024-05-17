@@ -132,7 +132,7 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
             var surfaceVelocity = vessel.obt_velocity - vessel.mainBody.getRFrmVel(vessel.CoMD);
             var surfaceSpeed = surfaceVelocity.magnitude;
             
-            if (surfaceSpeed < 0.01) DisplacementAngle = AttackAngle = SideslipAngle = INVALID_ANGLE;
+            if (surfaceSpeed < 0.05) DisplacementAngle = AttackAngle = SideslipAngle = INVALID_ANGLE;
             else {
                 // Displacement Angle, angle between surface velocity and the ship-nose vector (KSP "up" vector) -- ignores roll of the craft (0 to 180 degrees)
                 double tempAoD = UtilMath.Rad2Deg *
