@@ -187,6 +187,8 @@ namespace KerbalEngineer.TrackingStation {
         ///     Called to draw the display stack when the UI is enabled.
         /// </summary>
         private void OnGUI() {
+            if (HighLogic.LoadedScene != GameScenes.TRACKSTATION) return;
+
             try {
                 //if (!FlightEngineerCore.IsDisplayable)
                 //{

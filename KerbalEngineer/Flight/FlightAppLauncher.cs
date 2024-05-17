@@ -36,12 +36,8 @@ namespace KerbalEngineer.Flight
         /// <summary>
         ///     Gets the current instance of the FlightAppLauncher object.
         /// </summary>
-        public static FlightAppLauncher Instance
-        {
-            get
-            {
-                return instance;
-            }
+        public static FlightAppLauncher Instance {
+            get { return instance; }
         }
 
         /// <summary>
@@ -214,19 +210,18 @@ namespace KerbalEngineer.Flight
             }
         }
 
+        protected override void OnDestroy() {
+            base.OnDestroy();
+            Close();
+        }
+
         /// <summary>
         ///     Closes the menu.
         /// </summary>
         private void Close()
         {
-            if (flightMenu != null)
-            {
-                flightMenu.Close();
-            }
-            else if (menuObject != null)
-            {
-                Destroy(menuObject);
-            }
+            if (flightMenu != null) flightMenu.Close();
+            else if (menuObject != null) Destroy(menuObject);
         }
 
         /// <summary>
@@ -241,17 +236,11 @@ namespace KerbalEngineer.Flight
                 return;
             }
 
-            if (menuPrefab == null || menuObject != null)
-            {
-                return;
-            }
+            if (menuPrefab == null || menuObject != null) return;
 
             // create object
             menuObject = Instantiate(menuPrefab, GetAnchor(), Quaternion.identity) as GameObject;
-            if (menuObject == null)
-            {
-                return;
-            }
+            if (menuObject == null) return;
 
             StyleManager.Process(menuObject);
 
@@ -260,10 +249,7 @@ namespace KerbalEngineer.Flight
 
             // set menu's reference to this object for cross-communication
             flightMenu = menuObject.GetComponent<FlightMenu>();
-            if (flightMenu != null)
-            {
-                flightMenu.SetFlightAppLauncher(this);
-            }
+            if (flightMenu != null) flightMenu.SetFlightAppLauncher(this);
         }
     }
 }

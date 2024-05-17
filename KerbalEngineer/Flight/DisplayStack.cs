@@ -183,6 +183,8 @@ namespace KerbalEngineer.Flight
         /// </summary>
         private void OnGUI()
         {
+            if (!HighLogic.LoadedSceneIsFlight) return;
+
             try
             {
                 if (!FlightEngineerCore.IsDisplayable)
