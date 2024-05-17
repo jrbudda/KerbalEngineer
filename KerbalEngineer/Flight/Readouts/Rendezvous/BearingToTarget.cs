@@ -1,14 +1,4 @@
-﻿
-/*using KerbalEngineer.Flight.Sections;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-*/
-
-
-﻿//
+﻿﻿//
 //     Kerbal Engineer Redux
 //
 //     Copyright (C) 2017 fat-lobyte

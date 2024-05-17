@@ -159,6 +159,9 @@
     <Compile Include="Flight\Readouts\Thermal\HottestTemperature.cs" />
     <Compile Include="Flight\Readouts\Thermal\HottestPart.cs" />
     <Compile Include="Flight\Readouts\Thermal\ThermalProcessor.cs" />
+    <Compile Include="Flight\Readouts\Vessel\AngleOfAttack.cs" />
+    <Compile Include="Flight\Readouts\Vessel\AngleOfDisplacement.cs" />
+    <Compile Include="Flight\Readouts\Vessel\AngleOfSideslip.cs" />
     <Compile Include="Flight\Readouts\Vessel\Gravity.cs" />
     <Compile Include="Flight\Readouts\Vessel\Name.cs" />
     <Compile Include="Flight\Readouts\Vessel\AttitudeProcessor.cs" />

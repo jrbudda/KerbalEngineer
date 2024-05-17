@@ -148,6 +148,9 @@ namespace KerbalEngineer.Flight.Readouts {
                 readouts.Add(new IntakeAirDemandSupply());
                 readouts.Add(new PartCount());
                 readouts.Add(new Throttle());
+                readouts.Add(new AngleOfAttack());
+                readouts.Add(new AngleOfSideslip());
+                readouts.Add(new AngleOfDisplacement());
                 readouts.Add(new Heading());
                 readouts.Add(new Pitch());
                 readouts.Add(new Roll());
