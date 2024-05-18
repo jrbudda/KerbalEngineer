@@ -36,7 +36,11 @@ namespace KerbalEngineer.TrackingStation {
         ///     Called to draw the editor when the UI is enabled.
         /// </summary>
         protected override void OnGUI() {
-            this.position = GUILayout.Window(this.GetInstanceID(), this.position, this.Window, "EDIT SECTION - " + this.ParentSection.Name.ToUpper(), this.windowStyle).ClampToScreen();
+            if (HighLogic.LoadedScene != GameScenes.TRACKSTATION) {
+                return;
+            }
+
+            this.position = GUILayout.Window(this.GetInstanceID(), this.position, this.Window, "EDIT SECTION – " + this.ParentSection.Name.ToUpper(), this.windowStyle).ClampToScreen();
             this.ParentSection.EditorPositionX = this.position.x;
             this.ParentSection.EditorPositionY = this.position.y;
         }

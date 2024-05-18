@@ -119,11 +119,11 @@ namespace KerbalEngineer.Flight.Sections {
         ///     Called to draw the editor when the UI is enabled.
         /// </summary>
         protected virtual void OnGUI() {
-            if (FlightEngineerCore.IsDisplayable == false) {
+            if (!HighLogic.LoadedSceneIsFlight || FlightEngineerCore.IsDisplayable == false) {
                 return;
             }
 
-            this.position = GUILayout.Window(this.GetInstanceID(), this.position, this.Window, "EDIT SECTION - " + this.ParentSection.Name.ToUpper(), this.windowStyle).ClampToScreen();
+            this.position = GUILayout.Window(this.GetInstanceID(), this.position, this.Window, "EDIT SECTION – " + this.ParentSection.Name.ToUpper(), this.windowStyle).ClampToScreen();
             this.ParentSection.EditorPositionX = this.position.x;
             this.ParentSection.EditorPositionY = this.position.y;
         }
