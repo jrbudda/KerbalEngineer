@@ -317,25 +317,7 @@ namespace KerbalEngineer.Flight.Readouts {
                 MyLogger.Exception(ex);
             }
         }
-
-        public static void RemoveReadoutConfig(ReadoutModule readout) {
-            try {
-                SettingHandler handler = SettingHandler.Load("ReadoutsConfig.xml", new Type[] { typeof(ReadoutModuleConfigNode)});
-                var r = handler.Get<ReadoutModuleConfigNode>(readout.Name, null);
-
-                if (r == null) {
-                    return;
-                }
-
-                handler.Items.Remove(handler.Items.Find(i => i.Name == readout.Name));
-
-                handler.Save("ReadoutsConfig.xml");
-            } catch (Exception ex) {
-                MyLogger.Exception(ex);
-            }
-        }
-
-
+        
         public static void SaveReadoutConfig(ReadoutModule readout) {
             try {
                 SettingHandler handler = SettingHandler.Load("ReadoutsConfig.xml", new Type[] { typeof(ReadoutModuleConfigNode)});
@@ -361,5 +343,21 @@ namespace KerbalEngineer.Flight.Readouts {
             }
         }
 
+        public static void RemoveReadoutConfig(ReadoutModule readout) {
+            try {
+                SettingHandler handler = SettingHandler.Load("ReadoutsConfig.xml", new Type[] { typeof(ReadoutModuleConfigNode)});
+                var r = handler.Get<ReadoutModuleConfigNode>(readout.Name, null);
+
+                if (r == null) {
+                    return;
+                }
+
+                handler.Items.Remove(handler.Items.Find(i => i.Name == readout.Name));
+
+                handler.Save("ReadoutsConfig.xml");
+            } catch (Exception ex) {
+                MyLogger.Exception(ex);
+            }
+        }
     }
 }

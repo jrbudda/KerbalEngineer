@@ -44,14 +44,14 @@ namespace KerbalEngineer.Flight
     {
         #region Fields
 
-        private GUIStyle buttonStyle;
-        private int numberOfStackSections;
-        private bool resizeRequested;
-        private bool showControlBar = true;
-        private GUIStyle titleStyle;
-        private int windowId;
-        private Rect windowPosition;
-        private GUIStyle windowStyle;
+        protected GUIStyle buttonStyle;
+        protected int numberOfStackSections;
+        protected bool resizeRequested;
+        protected bool showControlBar = true;
+        protected GUIStyle titleStyle;
+        protected int windowId;
+        protected Rect windowPosition;
+        protected GUIStyle windowStyle;
 
         #endregion
 
@@ -99,7 +99,7 @@ namespace KerbalEngineer.Flight
         /// <summary>
         ///     Sets the instance to this object.
         /// </summary>
-        protected void Awake()
+        protected virtual void Awake()
         {
             try
             {
@@ -107,7 +107,7 @@ namespace KerbalEngineer.Flight
                 {
                     Instance = this;
                     GuiDisplaySize.OnSizeChanged += this.OnSizeChanged;
-                    MyLogger.Log("ActionMenu->Awake");
+                    //MyLogger.Log("[KerbalEngineer]: DisplayStack->Awake");
                 }
                 else
                 {
@@ -133,20 +133,20 @@ namespace KerbalEngineer.Flight
             {
                 MyLogger.Exception(ex);
             }
-            MyLogger.Log("ActionMenu->OnDestroy");
+            //MyLogger.Log("[KerbalEngineer]: DisplayStack->OnDestroy");
         }
 
         /// <summary>
         ///     Initialises the object's state on creation.
         /// </summary>
-        protected void Start()
+        protected virtual void Start()
         {
             try
             {
                 this.windowId = this.GetHashCode();
                 this.InitialiseStyles();
                 this.Load();
-                MyLogger.Log("ActionMenu->Start");
+                //MyLogger.Log("[KerbalEngineer]: DisplayStack->Start");
             }
             catch (Exception ex)
             {
@@ -154,7 +154,7 @@ namespace KerbalEngineer.Flight
             }
         }
 
-        protected void Update()
+        protected virtual void Update()
         {
             try
             {
@@ -173,6 +173,126 @@ namespace KerbalEngineer.Flight
                 MyLogger.Exception(ex);
             }
         }
+        
+        /// <summary>
+        ///     Load the stack's state.
+        /// </summary>
+        protected virtual void Load()
+        {
+            try
+            {
+                var handler = SettingHandler.Load("DisplayStack.xml");
+                this.Hidden = handler.Get("hidden", this.Hidden);
+                this.ShowControlBar = handler.Get("showControlBar", this.ShowControlBar);
+                this.windowPosition.x = handler.Get("windowPositionX", this.windowPosition.x);
+                this.windowPosition.y = handler.Get("windowPositionY", this.windowPosition.y);
+            }
+            catch (Exception ex)
+            {
+                MyLogger.Exception(ex, "DisplayStack->Load");
+            }
+        }
+
+        /// <summary>
+        ///     Saves the stack's state.
+        /// </summary>
+        protected virtual void Save()
+        {
+            try
+            {
+                var handler = new SettingHandler();
+                handler.Set("hidden", this.Hidden);
+                handler.Set("showControlBar", this.ShowControlBar);
+                handler.Set("windowPositionX", this.windowPosition.x);
+                handler.Set("windowPositionY", this.windowPosition.y);
+                handler.Save("DisplayStack.xml");
+            }
+            catch (Exception ex)
+            {
+                MyLogger.Exception(ex, "DisplayStack->Save");
+            }
+        }
+
+        /// <summary>
+        ///     Draws the display stack window.
+        /// </summary>
+        protected virtual void Window(int windowId)
+        {
+            try
+            {
+                if (this.ShowControlBar)
+                {
+                    this.DrawControlBar();
+                }
+
+                if (SectionLibrary.NumberOfStackSections > 0)
+                {
+                    this.DrawSections(SectionLibrary.StockSections);
+                    this.DrawSections(SectionLibrary.CustomSections);
+                }
+
+                GUI.DragWindow();
+            }
+            catch (Exception ex)
+            {
+                MyLogger.Exception(ex, "DisplayStack->Window");
+            }
+        }
+        
+        /// <summary>
+        ///     Draws the control bar.
+        /// </summary>
+        protected virtual void DrawControlBar()
+        {
+            GUILayout.Label("FLIGHT ENGINEER " + EngineerGlobals.ASSEMBLY_VERSION, this.titleStyle);
+            var list = new List<SectionModule>();
+            list.AddRange(SectionLibrary.StockSections);
+            list.AddRange(SectionLibrary.CustomSections);
+            this.DrawControlBarButtons(list);
+        }
+        
+        /// <summary>
+        ///     Initialises all the styles required for this object.
+        /// </summary>
+        protected void InitialiseStyles()
+        {
+            this.windowStyle = new GUIStyle(HighLogic.Skin.window)
+            {
+                margin = new RectOffset(),
+                padding = new RectOffset(5, 5, 0, 5)
+            };
+
+            this.titleStyle = new GUIStyle(HighLogic.Skin.label)
+            {
+                margin = new RectOffset(0, 0, 5, 3),
+                padding = new RectOffset(),
+                alignment = TextAnchor.MiddleCenter,
+                fontSize = (int)(13 * GuiDisplaySize.Offset),
+                fontStyle = FontStyle.Bold,
+                stretchWidth = true
+            };
+
+            this.buttonStyle = new GUIStyle(HighLogic.Skin.button)
+            {
+                normal =
+                {
+                    textColor = Color.white
+                },
+                margin = new RectOffset(),
+                padding = new RectOffset(),
+                alignment = TextAnchor.MiddleCenter,
+                fontSize = (int)(11 * GuiDisplaySize.Offset),
+                fontStyle = FontStyle.Bold,
+                fixedWidth = 60.0f * GuiDisplaySize.Offset,
+                fixedHeight = 25.0f * GuiDisplaySize.Offset,
+            };
+        }
+        
+        protected void OnSizeChanged()
+        {
+            this.InitialiseStyles();
+            this.RequestResize();
+        }
 
         #endregion
 
@@ -181,7 +301,7 @@ namespace KerbalEngineer.Flight
         /// <summary>
         ///     Called to draw the display stack when the UI is enabled.
         /// </summary>
-        private void OnGUI()
+        protected virtual void OnGUI()
         {
             if (!HighLogic.LoadedSceneIsFlight) return;
 
@@ -215,18 +335,6 @@ namespace KerbalEngineer.Flight
             {
                 MyLogger.Exception(ex);
             }
-        }
-
-        /// <summary>
-        ///     Draws the control bar.
-        /// </summary>
-        private void DrawControlBar()
-        {
-            GUILayout.Label("FLIGHT ENGINEER " + EngineerGlobals.ASSEMBLY_VERSION, this.titleStyle);
-            var list = new List<SectionModule>();
-            list.AddRange(SectionLibrary.StockSections);
-            list.AddRange(SectionLibrary.CustomSections);
-            this.DrawControlBarButtons(list);
         }
 
         /// <summary>
@@ -265,114 +373,6 @@ namespace KerbalEngineer.Flight
                 {
                     section.Draw();
                 }
-            }
-        }
-
-        /// <summary>
-        ///     Initialises all the styles required for this object.
-        /// </summary>
-        private void InitialiseStyles()
-        {
-            this.windowStyle = new GUIStyle(HighLogic.Skin.window)
-            {
-                margin = new RectOffset(),
-                padding = new RectOffset(5, 5, 0, 5)
-            };
-
-            this.titleStyle = new GUIStyle(HighLogic.Skin.label)
-            {
-                margin = new RectOffset(0, 0, 5, 3),
-                padding = new RectOffset(),
-                alignment = TextAnchor.MiddleCenter,
-                fontSize = (int)(13 * GuiDisplaySize.Offset),
-                fontStyle = FontStyle.Bold,
-                stretchWidth = true
-            };
-
-            this.buttonStyle = new GUIStyle(HighLogic.Skin.button)
-            {
-                normal =
-                {
-                    textColor = Color.white
-                },
-                margin = new RectOffset(),
-                padding = new RectOffset(),
-                alignment = TextAnchor.MiddleCenter,
-                fontSize = (int)(11 * GuiDisplaySize.Offset),
-                fontStyle = FontStyle.Bold,
-                fixedWidth = 60.0f * GuiDisplaySize.Offset,
-                fixedHeight = 25.0f * GuiDisplaySize.Offset,
-            };
-        }
-
-        /// <summary>
-        ///     Load the stack's state.
-        /// </summary>
-        private void Load()
-        {
-            try
-            {
-                var handler = SettingHandler.Load("DisplayStack.xml");
-                this.Hidden = handler.Get("hidden", this.Hidden);
-                this.ShowControlBar = handler.Get("showControlBar", this.ShowControlBar);
-                this.windowPosition.x = handler.Get("windowPositionX", this.windowPosition.x);
-                this.windowPosition.y = handler.Get("windowPositionY", this.windowPosition.y);
-            }
-            catch (Exception ex)
-            {
-                MyLogger.Exception(ex, "DisplayStack->Load");
-            }
-        }
-
-        private void OnSizeChanged()
-        {
-            this.InitialiseStyles();
-            this.RequestResize();
-        }
-
-        /// <summary>
-        ///     Saves the stack's state.
-        /// </summary>
-        private void Save()
-        {
-            try
-            {
-                var handler = new SettingHandler();
-                handler.Set("hidden", this.Hidden);
-                handler.Set("showControlBar", this.ShowControlBar);
-                handler.Set("windowPositionX", this.windowPosition.x);
-                handler.Set("windowPositionY", this.windowPosition.y);
-                handler.Save("DisplayStack.xml");
-            }
-            catch (Exception ex)
-            {
-                MyLogger.Exception(ex, "DisplayStack->Save");
-            }
-        }
-
-        /// <summary>
-        ///     Draws the display stack window.
-        /// </summary>
-        private void Window(int windowId)
-        {
-            try
-            {
-                if (this.ShowControlBar)
-                {
-                    this.DrawControlBar();
-                }
-
-                if (SectionLibrary.NumberOfStackSections > 0)
-                {
-                    this.DrawSections(SectionLibrary.StockSections);
-                    this.DrawSections(SectionLibrary.CustomSections);
-                }
-
-                GUI.DragWindow();
-            }
-            catch (Exception ex)
-            {
-                MyLogger.Exception(ex, "DisplayStack->Window");
             }
         }
 

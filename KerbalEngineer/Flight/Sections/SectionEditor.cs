@@ -41,22 +41,22 @@ namespace KerbalEngineer.Flight.Sections {
 
         #region Fields
 
-        private GUIStyle categoryButtonActiveStyle;
-        private GUIStyle categoryButtonStyle;
-        private PopOutElement categoryList;
-        private PopOutColorPicker colorPicker;
-        private GUIStyle categoryTitleButtonStyle;
-        private GUIStyle helpBoxStyle;
-        private GUIStyle helpTextStyle;
-        private GUIStyle panelTitleStyle;
-        private Rect position;
-        private PopOutElement presetList;
-        private GUIStyle readoutButtonStyle;
-        private GUIStyle readoutNameStyle;
-        private Vector2 scrollPositionAvailable;
-        private Vector2 scrollPositionInstalled;
-        private GUIStyle textStyle;
-        private GUIStyle windowStyle;
+        protected GUIStyle categoryButtonActiveStyle;
+        protected GUIStyle categoryButtonStyle;
+        protected PopOutElement categoryList;
+        protected PopOutColorPicker colorPicker;
+        protected GUIStyle categoryTitleButtonStyle;
+        protected GUIStyle helpBoxStyle;
+        protected GUIStyle helpTextStyle;
+        protected GUIStyle panelTitleStyle;
+        protected Rect position;
+        protected PopOutElement presetList;
+        protected GUIStyle readoutButtonStyle;
+        protected GUIStyle readoutNameStyle;
+        protected Vector2 scrollPositionAvailable;
+        protected Vector2 scrollPositionInstalled;
+        protected GUIStyle textStyle;
+        protected GUIStyle windowStyle;
 
         #endregion
 
@@ -93,8 +93,6 @@ namespace KerbalEngineer.Flight.Sections {
             }
         }
 
-
-
         /// <summary>
         ///     Runs when the object is destroyed.
         /// </summary>
@@ -116,6 +114,104 @@ namespace KerbalEngineer.Flight.Sections {
                 MyLogger.Exception(ex);
             }
         }
+        
+        /// <summary>
+        ///     Called to draw the editor when the UI is enabled.
+        /// </summary>
+        protected virtual void OnGUI() {
+            if (FlightEngineerCore.IsDisplayable == false) {
+                return;
+            }
+
+            this.position = GUILayout.Window(this.GetInstanceID(), this.position, this.Window, "EDIT SECTION - " + this.ParentSection.Name.ToUpper(), this.windowStyle).ClampToScreen();
+            this.ParentSection.EditorPositionX = this.position.x;
+            this.ParentSection.EditorPositionY = this.position.y;
+        }
+        
+        /// <summary>
+        ///     Draws the categories list drop down UI.
+        /// </summary>
+        protected virtual void DrawCategories() {
+            foreach (var category in ReadoutCategory.Categories) {
+                var description = category.Description;
+                if (description.Length > 50) {
+                    description = description.Substring(0, 50 - 1) + "...";
+                }
+
+                if (GUILayout.Button("<b>" + category.Name.ToUpper() + "</b>" + (string.IsNullOrEmpty(category.Description) ? string.Empty : "\n<i>" + description + "</i>"), category == ReadoutCategory.Selected ? this.categoryButtonActiveStyle : this.categoryButtonStyle)) {
+                    ReadoutCategory.Selected = category;
+                    this.categoryList.enabled = false;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///     Draws the options for editing custom sections.
+        /// </summary>
+        protected virtual void DrawCustomOptions() {
+            GUILayout.BeginHorizontal(GUILayout.Height(25.0f));
+            this.ParentSection.Name = GUILayout.TextField(this.ParentSection.Name, this.textStyle);
+            var isShowingInControlBar = !string.IsNullOrEmpty(this.ParentSection.Abbreviation);
+            this.ParentSection.Abbreviation = GUILayout.TextField(this.ParentSection.Abbreviation, this.textStyle, GUILayout.Width(75.0f));
+
+            ParentSection.IsHud = GUILayout.Toggle(this.ParentSection.IsHud, "HUD", this.readoutButtonStyle, GUILayout.Width(50.0f));
+            if (ParentSection.IsHud) {
+                this.ParentSection.IsHudBackground = GUILayout.Toggle(this.ParentSection.IsHudBackground, "BG", this.readoutButtonStyle, GUILayout.Width(50.0f));
+            }
+
+            if (isShowingInControlBar && string.IsNullOrEmpty(this.ParentSection.Abbreviation)) {
+                DisplayStack.Instance.RequestResize();
+            }
+
+            if (GUILayout.Button("DELETE SECTION", this.readoutButtonStyle, GUILayout.Width(150.0f))) {
+                this.ParentSection.IsFloating = false;
+                this.ParentSection.IsEditorVisible = false;
+                this.ParentSection.IsDeleted = true;
+
+                if (SectionLibrary.StockSections.Contains(this.ParentSection))
+                    SectionLibrary.StockSections.Remove(this.ParentSection);
+                if (SectionLibrary.CustomSections.Contains(this.ParentSection))
+                    SectionLibrary.CustomSections.Remove(this.ParentSection);
+
+                DisplayStack.Instance.RequestResize();
+            }
+
+            GUILayout.EndHorizontal();
+        }
+        
+        /// <summary>
+        ///     Draws the presetsList selection list.
+        /// </summary>
+        protected virtual void DrawPresetSelector() {
+            this.presetList.enabled = GUILayout.Toggle(this.presetList.enabled, "▼ PRESETS ▼", this.categoryTitleButtonStyle, GUILayout.Width(150.0f));
+            if (Event.current.type == EventType.Repaint) {
+                this.presetList.SetPosition(GUILayoutUtility.GetLastRect().Translate(this.position), GUILayoutUtility.GetLastRect());
+            }
+        }
+        
+        /// <summary>
+        ///     Draws the editor window.
+        /// </summary>
+        protected void Window(int windowId) {
+            try {
+                this.DrawCustomOptions();
+                GUILayout.BeginHorizontal();
+                this.DrawCategorySelector();
+                this.DrawPresetSelector();
+                GUILayout.EndHorizontal();
+                this.DrawAvailableReadouts();
+                GUILayout.Space(5.0f);
+                this.DrawInstalledReadouts();
+
+                if (GUILayout.Button("CLOSE EDITOR", this.categoryTitleButtonStyle)) {
+                    this.ParentSection.IsEditorVisible = false;
+                }
+
+                GUI.DragWindow();
+            } catch (Exception ex) {
+                MyLogger.Exception(ex);
+            }
+        }
 
         #endregion
 
@@ -129,19 +225,6 @@ namespace KerbalEngineer.Flight.Sections {
             else
             */
                 ReadoutLibrary.SaveReadoutConfig(editingReadout);
-        }
-
-        /// <summary>
-        ///     Called to draw the editor when the UI is enabled.
-        /// </summary>
-        private void OnGUI() {
-            if (FlightEngineerCore.IsDisplayable == false) {
-                return;
-            }
-
-            this.position = GUILayout.Window(this.GetInstanceID(), this.position, this.Window, "EDIT SECTION - " + this.ParentSection.Name.ToUpper(), this.windowStyle).ClampToScreen();
-            this.ParentSection.EditorPositionX = this.position.x;
-            this.ParentSection.EditorPositionY = this.position.y;
         }
 
         /// <summary>
@@ -172,23 +255,6 @@ namespace KerbalEngineer.Flight.Sections {
         }
 
         /// <summary>
-        ///     Draws the categories list drop down UI.
-        /// </summary>
-        private void DrawCategories() {
-            foreach (var category in ReadoutCategory.Categories) {
-                var description = category.Description;
-                if (description.Length > 50) {
-                    description = description.Substring(0, 50 - 1) + "...";
-                }
-
-                if (GUILayout.Button("<b>" + category.Name.ToUpper() + "</b>" + (string.IsNullOrEmpty(category.Description) ? string.Empty : "\n<i>" + description + "</i>"), category == ReadoutCategory.Selected ? this.categoryButtonActiveStyle : this.categoryButtonStyle)) {
-                    ReadoutCategory.Selected = category;
-                    this.categoryList.enabled = false;
-                }
-            }
-        }
-
-        /// <summary>
         ///     Draws the readoutCategories selection list.
         /// </summary>
         private void DrawCategorySelector() {
@@ -196,40 +262,6 @@ namespace KerbalEngineer.Flight.Sections {
             if (Event.current.type == EventType.Repaint) {
                 this.categoryList.SetPosition(GUILayoutUtility.GetLastRect().Translate(this.position), GUILayoutUtility.GetLastRect());
             }
-        }
-
-        /// <summary>
-        ///     Draws the options for editing custom sections.
-        /// </summary>
-        private void DrawCustomOptions() {
-            GUILayout.BeginHorizontal(GUILayout.Height(25.0f));
-            this.ParentSection.Name = GUILayout.TextField(this.ParentSection.Name, this.textStyle);
-            var isShowingInControlBar = !string.IsNullOrEmpty(this.ParentSection.Abbreviation);
-            this.ParentSection.Abbreviation = GUILayout.TextField(this.ParentSection.Abbreviation, this.textStyle, GUILayout.Width(75.0f));
-
-            ParentSection.IsHud = GUILayout.Toggle(this.ParentSection.IsHud, "HUD", this.readoutButtonStyle, GUILayout.Width(50.0f));
-            if (ParentSection.IsHud) {
-                this.ParentSection.IsHudBackground = GUILayout.Toggle(this.ParentSection.IsHudBackground, "BG", this.readoutButtonStyle, GUILayout.Width(50.0f));
-            }
-
-            if (isShowingInControlBar && string.IsNullOrEmpty(this.ParentSection.Abbreviation)) {
-                DisplayStack.Instance.RequestResize();
-            }
-
-            if (GUILayout.Button("DELETE SECTION", this.readoutButtonStyle, GUILayout.Width(150.0f))) {
-                this.ParentSection.IsFloating = false;
-                this.ParentSection.IsEditorVisible = false;
-                this.ParentSection.IsDeleted = true;
-
-                if (SectionLibrary.StockSections.Contains(this.ParentSection))
-                    SectionLibrary.StockSections.Remove(this.ParentSection);
-                if (SectionLibrary.CustomSections.Contains(this.ParentSection))
-                    SectionLibrary.CustomSections.Remove(this.ParentSection);
-
-                DisplayStack.Instance.RequestResize();
-            }
-
-            GUILayout.EndHorizontal();
         }
 
         Texture2D swatch = new Texture2D(16, 20);
@@ -327,16 +359,6 @@ namespace KerbalEngineer.Flight.Sections {
             }
 
             this.SavePreset(PresetLibrary.Presets.Find(p => String.Equals(p.Name, this.ParentSection.Name, StringComparison.CurrentCultureIgnoreCase)));
-        }
-
-        /// <summary>
-        ///     Draws the presetsList selection list.
-        /// </summary>
-        private void DrawPresetSelector() {
-            this.presetList.enabled = GUILayout.Toggle(this.presetList.enabled, "▼ PRESETS ▼", this.categoryTitleButtonStyle, GUILayout.Width(150.0f));
-            if (Event.current.type == EventType.Repaint) {
-                this.presetList.SetPosition(GUILayoutUtility.GetLastRect().Translate(this.position), GUILayoutUtility.GetLastRect());
-            }
         }
 
         /// <summary>
@@ -485,38 +507,11 @@ namespace KerbalEngineer.Flight.Sections {
             GUILayout.EndVertical();
         }
 
-        /// <summary>
-        ///     Draws the editor window.
-        /// </summary>
-        private void Window(int windowId) {
-            try {
-                this.DrawCustomOptions();
-                GUILayout.BeginHorizontal();
-                this.DrawCategorySelector();
-                this.DrawPresetSelector();
-                GUILayout.EndHorizontal();
-                this.DrawAvailableReadouts();
-                GUILayout.Space(5.0f);
-                this.DrawInstalledReadouts();
-
-                if (GUILayout.Button("CLOSE EDITOR", this.categoryTitleButtonStyle)) {
-                    this.ParentSection.IsEditorVisible = false;
-                }
-
-                GUI.DragWindow();
-            } catch (Exception ex) {
-                MyLogger.Exception(ex);
-            }
-        }
-
         private void DrawColorPicker() {
             if (editingReadout == null) return;
             editingReadout.ValueStyle.normal.textColor = this.colorPicker.DrawColorPicker(editingReadout.ValueStyle.normal.textColor);
         }
+
         #endregion
-
     }
-
-
-
 }

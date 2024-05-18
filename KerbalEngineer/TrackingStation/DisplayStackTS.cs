@@ -34,92 +34,18 @@ using UnityEngine;
 namespace KerbalEngineer.TrackingStation {
     using Flight.Readouts;
     using Flight.Readouts.Rendezvous;
-    using KeyBinding;
 
     /// <summary>
     ///     Graphical controller for displaying stacked sections.
     /// </summary>
     [KSPAddon(KSPAddon.Startup.TrackingStation, false)]
-    public class DisplayStackTS : MonoBehaviour {
-        #region Fields
-
-        private GUIStyle buttonStyle;
-        private int numberOfStackSections;
-        private bool resizeRequested;
-        private bool showControlBar = true;
-        private GUIStyle titleStyle;
-        private int windowId;
-        private Rect windowPosition;
-        private GUIStyle windowStyle;
-
-        #endregion
-
-        #region Properties
+    public class DisplayStackTS : Flight.DisplayStack {
+        public static SectionEditorTS editor;
 
         /// <summary>
         ///     Gets the current instance of the DisplayStack.
         /// </summary>
-        public static DisplayStackTS Instance { get; private set; }
-
-        public bool Hidden { get; set; }
-
-        /// <summary>
-        ///     Gets and sets the visibility of the control bar.
-        /// </summary>
-        public bool ShowControlBar {
-            get { return this.showControlBar; }
-            set {
-                if (showControlBar != value) {
-                    this.showControlBar = value;
-                    RequestResize();
-                }
-            }
-        }
-
-        #endregion
-
-        #region Methods: public
-
-        /// <summary>
-        ///     Request that the display stack's size is reset in the next draw call.
-        /// </summary>
-        public void RequestResize() {
-            this.resizeRequested = true;
-        }
-
-        #endregion
-
-        #region Methods: protected
-
-        /// <summary>
-        ///     Sets the instance to this object.
-        /// </summary>
-        protected void Awake() {
-            try {
-                if (Instance == null) {
-                    Instance = this;
-                    GuiDisplaySize.OnSizeChanged += this.OnSizeChanged;
-                    Debug.Log("DisplayStackTS->Awake");
-                } else {
-                    Destroy(this);
-                }
-            } catch (Exception ex) {
-                MyLogger.Exception(ex);
-            }
-        }
-
-        /// <summary>
-        ///     Runs when the object is destroyed.
-        /// </summary>
-        protected void OnDestroy() {
-            try {
-                this.Save();
-                SectionLibrary.SaveTS();
-            } catch (Exception ex) {
-                MyLogger.Exception(ex);
-            }
-            MyLogger.Log("DisplayStackTS->OnDestroy");
-        }
+        public static new DisplayStackTS Instance { get; private set; }
 
         internal SectionEditorTS MakeEditor() {
             editor = this.gameObject.AddComponent<SectionEditorTS>();
@@ -128,31 +54,52 @@ namespace KerbalEngineer.TrackingStation {
             ReadoutCategory.Selected = ReadoutCategory.GetCategory("Rendezvous");
             return editor;
         }
+        
+        /// <summary>
+        ///     Sets the instance to this object.
+        /// </summary>
+        protected override void Awake()
+        {
+            try
+            {
+                if (Instance == null)
+                {
+                    Instance = this;
+                    GuiDisplaySize.OnSizeChanged += this.OnSizeChanged;
+                    //MyLogger.Log("[KerbalEngineer]: DisplayStack->Awake");
+                }
+                else
+                {
+                    Destroy(this);
+                }
+            }
+            catch (Exception ex)
+            {
+                MyLogger.Exception(ex);
+            }
+        }
 
         /// <summary>
         ///     Initialises the object's state on creation.
         /// </summary>
-        protected void Start() {
+        protected override void Start() {
             try {
                 SectionLibrary.LoadTS();
                 this.windowId = this.GetHashCode();
                 this.InitialiseStyles();
                 this.Load();
-                Debug.Log("DisplayStackTS->Start");
+                //Debug.Log("[KerbalEngineer]: DisplayStackTS->Start");
             } catch (Exception ex) {
                 Debug.Log(ex.ToString() + ex.InnerException == null ? "" : ex.InnerException.ToString());
             }
         }
 
-        public static SectionEditorTS editor;
-
 
         private ITargetable lastSource;
         private ITargetable lastTarget;
 
-        protected void Update() {
+        protected override void Update() {
             try {
-
                 SectionLibrary.TrackingStationSection.Update();
 
                 Flight.Readouts.Rendezvous.RendezvousProcessor.Instance.Update();
@@ -179,14 +126,10 @@ namespace KerbalEngineer.TrackingStation {
             }
         }
 
-        #endregion
-
-        #region Methods: private
-
         /// <summary>
         ///     Called to draw the display stack when the UI is enabled.
         /// </summary>
-        private void OnGUI() {
+        protected override void OnGUI() {
             if (HighLogic.LoadedScene != GameScenes.TRACKSTATION) return;
 
             try {
@@ -218,48 +161,14 @@ namespace KerbalEngineer.TrackingStation {
         /// <summary>
         ///     Draws the control bar.
         /// </summary>
-        private void DrawControlBar() {
+        protected override void DrawControlBar() {
             GUILayout.Label("FLIGHT ENGINEER " + EngineerGlobals.ASSEMBLY_VERSION, this.titleStyle);
-        }
-
-
-        /// <summary>
-        ///     Initialises all the styles required for this object.
-        /// </summary>
-        private void InitialiseStyles() {
-            this.windowStyle = new GUIStyle(HighLogic.Skin.window) {
-                margin = new RectOffset(),
-                padding = new RectOffset(5, 5, 0, 5)
-            };
-
-            this.titleStyle = new GUIStyle(HighLogic.Skin.label) {
-                margin = new RectOffset(0, 0, 5, 3),
-                padding = new RectOffset(),
-                alignment = TextAnchor.MiddleCenter,
-                fontSize = (int)(13 * GuiDisplaySize.Offset),
-                fontStyle = FontStyle.Bold,
-                stretchWidth = true
-            };
-
-            this.buttonStyle = new GUIStyle(HighLogic.Skin.button) {
-                normal =
-                {
-                    textColor = Color.white
-                },
-                margin = new RectOffset(),
-                padding = new RectOffset(),
-                alignment = TextAnchor.MiddleCenter,
-                fontSize = (int)(11 * GuiDisplaySize.Offset),
-                fontStyle = FontStyle.Bold,
-                fixedWidth = 60.0f * GuiDisplaySize.Offset,
-                fixedHeight = 25.0f * GuiDisplaySize.Offset,
-            };
         }
 
         /// <summary>
         ///     Load the stack's state.
         /// </summary>
-        private void Load() {
+        protected override void Load() {
             try {
                 var handler = SettingHandler.Load("DisplayStackTS.xml");
                 this.Hidden = handler.Get("hidden", this.Hidden);
@@ -271,15 +180,10 @@ namespace KerbalEngineer.TrackingStation {
             }
         }
 
-        private void OnSizeChanged() {
-            this.InitialiseStyles();
-            this.RequestResize();
-        }
-
         /// <summary>
         ///     Saves the stack's state.
         /// </summary>
-        private void Save() {
+        protected override void Save() {
             try {
                 var handler = new SettingHandler();
                 handler.Set("hidden", this.Hidden);
@@ -295,9 +199,8 @@ namespace KerbalEngineer.TrackingStation {
         /// <summary>
         ///     Draws the display stack window.
         /// </summary>
-        private void Window(int windowId) {
+        protected override void Window(int windowId) {
             try {
-
                 if (this.ShowControlBar) {
                     this.DrawControlBar();
                 }
@@ -317,7 +220,5 @@ namespace KerbalEngineer.TrackingStation {
                 MyLogger.Exception(ex, "DisplayStackTS->Window");
             }
         }
-
-        #endregion
     }
 }

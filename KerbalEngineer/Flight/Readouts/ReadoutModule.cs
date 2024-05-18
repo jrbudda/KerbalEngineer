@@ -31,7 +31,7 @@ namespace KerbalEngineer.Flight.Readouts {
     using Extensions;
     using Unity.Flight;
 
-    public abstract class ReadoutModule {
+    public abstract class ReadoutModule : ReadoutModuleConfigNode {
         #region Fields
 
         private int lineCountEnd;
@@ -77,6 +77,8 @@ namespace KerbalEngineer.Flight.Readouts {
         ///     Gets and sets the help string which is shown in the editor.
         /// </summary>
         public string HelpString { get; set; }
+        
+        public string ShortName { get; set; }
 
         /// <summary>
         ///     Gets and sets whether the readout should be shown on new installs.
@@ -88,34 +90,6 @@ namespace KerbalEngineer.Flight.Readouts {
         /// </summary>
         public int LineCount { get; private set; }
         
-        /// <summary>
-        ///     Gets and sets the readout character limit. Displayed value strings will be truncated if they're longer than this.
-        /// </summary>
-        public int CharacterLimit { get; set; } = ReadoutModuleConfigNode.DEFAULT_CHARACTER_LIMIT;
-        public int HudCharacterLimit { get; set; } = ReadoutModuleConfigNode.DEFAULT_CHARACTER_LIMIT;
-
-        /// <summary>
-        ///     Gets and sets the readout decimal-place override for floating-point value readouts displayed in the main window. Negative values will use the default number of decimal places for that type of unit.
-        /// </summary>
-        public int DecimalPlaces { get; set; } = -9000;
-
-        /// <summary>
-        ///     Gets and sets the readout decimal-place override for floating-point value readouts displayed in the HUD. Negative values will use the default number of decimal places for that type of unit.
-        /// </summary>
-        public int HudDecimalPlaces { get; set; } = -9000;
-
-        /// <summary>
-        ///     Gets and sets whether to display the short name in readouts rather than the full one.
-        /// </summary>
-        public bool UseShortName { get; set; } = false;
-        public bool HudUseShortName { get; set; } = false;
-
-        /// <summary>
-        ///     Gets and sets the readout name.
-        /// </summary>
-        public string Name { get; set; }
-        public string ShortName { get; set; }
-
         /// <summary>
         ///     Gets and sets whether the readout has requested a section resize.
         /// </summary>

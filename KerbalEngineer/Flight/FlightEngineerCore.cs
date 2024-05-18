@@ -19,14 +19,15 @@
 
 #region Using Directives
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 #endregion
 
 namespace KerbalEngineer.Flight {
     #region Using Directives
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using Extensions;
     using Readouts;
     using Sections;
@@ -277,16 +278,16 @@ namespace KerbalEngineer.Flight {
                 SectionLibrary.Save();
 
                 foreach (var window in this.SectionWindows) {
-                    print("[FlightEngineer]: Destroying Floating Window for " + window.ParentSection.Name);
+                    //print("[FlightEngineer]: Destroying Floating Window for " + window.ParentSection.Name);
                     Destroy(window);
                 }
 
                 foreach (var editor in this.SectionEditors) {
-                    print("[FlightEngineer]: Destroying Editor Window for " + editor.ParentSection.Name);
+                    //print("[FlightEngineer]: Destroying Editor Window for " + editor.ParentSection.Name);
                     Destroy(editor);
                 }
 
-                MyLogger.Log("FlightEngineerCore->OnDestroy");
+                //MyLogger.Log("FlightEngineerCore->OnDestroy");
             } catch (Exception ex) {
                 MyLogger.Exception(ex);
             }
@@ -295,15 +296,13 @@ namespace KerbalEngineer.Flight {
 
         public static int markerDeadman = 0;
 
-void OnRenderObject() {
-
-            if(Camera.current.name.Contains("00"))
+        void OnRenderObject() {
+            if (Camera.current.name.Contains("00"))
                 Readouts.Surface.ImpactProcessor.drawImpact(Color.red);
             if (Camera.current.name.Contains("01"))
                 Readouts.Surface.ImpactProcessor.drawImpact(Color.red);
             if (MapView.MapIsEnabled && Camera.current.name.Contains("UIVec"))
                 Readouts.Surface.ImpactProcessor.drawImpact(Color.red);
-
         }
 
 

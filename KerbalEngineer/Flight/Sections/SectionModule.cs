@@ -32,15 +32,16 @@ using UnityEngine;
 namespace KerbalEngineer.Flight.Sections {
     using Presets;
     using Unity.Flight;
+
     /// <summary>
     ///     Object for management and display of readout modules.
     /// </summary>
     public class SectionModule : ISectionModule {
         #region Fields
 
-        private SectionEditor editor;
-        private bool isHud;
-        private int numberOfReadouts;
+        protected SectionEditor editor;
+        protected bool isHud;
+        protected int numberOfReadouts;
 
         #endregion
 
@@ -104,7 +105,7 @@ namespace KerbalEngineer.Flight.Sections {
         /// <summary>
         ///     Gets and sets whether the section editor is visible.
         /// </summary>
-        public bool IsEditorVisible {
+        public virtual bool IsEditorVisible {
             get { return this.editor != null; }
             set {
                 if (value && this.editor == null) {
@@ -118,7 +119,7 @@ namespace KerbalEngineer.Flight.Sections {
         /// <summary>
         ///     Gets and sets whether the section is in a floating state.
         /// </summary>
-        public bool IsFloating {
+        public virtual bool IsFloating {
             get { return this.Window != null; }
             set {
                 if (value && this.Window == null) {

@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 
 namespace KerbalEngineer.UIControls {
-    class PopOutColorPicker : PopOutElement {
+    public class PopOutColorPicker : PopOutElement {
 
         float colorPickerSliderValueR = -1;
         string colorPickerStringValueR = "";
