@@ -70,30 +70,19 @@ namespace KerbalEngineer.Flight.Sections {
         private void InitialiseStyles() {
             this.windowStyle = new GUIStyle(HighLogic.Skin.window) {
                 margin = new RectOffset(),
-                padding = new RectOffset(5, 5, 0, 5),
+                padding = new RectOffset(3, 3, 0, 5),
             };
 
             this.hudWindowStyle = new GUIStyle(this.windowStyle) {
-                normal =
-                {
-                    background = null
-                },
-                onNormal =
-                {
-                    background = null
-                },
-                padding = new RectOffset(5, 5, 0, 8),
+                normal = { background = null },
+                onNormal = { background = null },
+                padding = new RectOffset(3, 3, 0, 10),
             };
 
+            var hudBackgroundColorTexture = TextureHelper.CreateTextureFromColour(this.ParentSection == null ? new Color(0.0f, 0.0f, 0.0f, 0.5f) : this.ParentSection.HudBackgroundColor);
             this.hudWindowBgStyle = new GUIStyle(this.hudWindowStyle) {
-                normal =
-                {
-                    background = TextureHelper.CreateTextureFromColour(new Color(0.0f, 0.0f, 0.0f, 0.5f))
-                },
-                onNormal =
-                {
-                    background = TextureHelper.CreateTextureFromColour(new Color(0.0f, 0.0f, 0.0f, 0.5f))
-                }
+                normal = { background = hudBackgroundColorTexture },
+                onNormal = { background = hudBackgroundColorTexture }
             };
         }
 
@@ -110,9 +99,9 @@ namespace KerbalEngineer.Flight.Sections {
         ///     Called to draw the floating section window when the UI is enabled.
         /// </summary>
         private void OnGUI() {
-            if (!HighLogic.LoadedSceneIsFlight || this.ParentSection == null || !this.ParentSection.IsVisible || DisplayStack.Instance == null || this.ParentSection == null || (DisplayStack.Instance.Hidden && !this.ParentSection.IsHud) || !FlightEngineerCore.IsDisplayable) {
-                return;
-            }
+            if (!HighLogic.LoadedSceneIsFlight || this.ParentSection == null || !this.ParentSection.IsVisible || DisplayStack.Instance == null ||
+                (DisplayStack.Instance.Hidden && !this.ParentSection.IsHud) || !FlightEngineerCore.IsDisplayable)
+            { return; }
 
             if (this.resizeRequested) {
                 this.windowPosition.width = 0;

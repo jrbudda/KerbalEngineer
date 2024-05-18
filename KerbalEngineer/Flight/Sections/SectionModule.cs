@@ -174,6 +174,8 @@ namespace KerbalEngineer.Flight.Sections {
         /// </summary>
         public float Width { get; set; } = OOPSux.DEFAULT_SECTION_WIDTH;
         public float HudWidth { get; set; } = OOPSux.DEFAULT_SECTION_WIDTH;
+        
+        public Color HudBackgroundColor { get; set; } = OOPSux.DEFAULT_HUD_BACKGROUND_COLOR;
 
         /// <summary>
         ///     Gets and sets the name of the section.

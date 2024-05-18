@@ -18,8 +18,11 @@
 
 namespace KerbalEngineer.Unity.Flight
 {
+    using UnityEngine;
+
     public struct OOPSux {
         public const float DEFAULT_SECTION_WIDTH = 230.0f;
+        public static Color DEFAULT_HUD_BACKGROUND_COLOR = new Color(0.0f, 0.0f, 0.0f, 0.5f);
     }
 
     public interface ISectionModule
@@ -34,6 +37,8 @@ namespace KerbalEngineer.Unity.Flight
         
         float Width { get; set; }
         float HudWidth { get; set; }
+        
+        Color HudBackgroundColor { get; set; }
 
         string Name { get; }
     }
