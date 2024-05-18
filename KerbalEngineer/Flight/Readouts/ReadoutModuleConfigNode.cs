@@ -3,7 +3,6 @@ namespace KerbalEngineer.Flight.Readouts {
     public class ReadoutModuleConfigNode {
         public const int DEFAULT_CHARACTER_LIMIT = 20;
 
-        public string Name { get; set; }
 
         public Color TextColor { get; set; } = HighLogic.Skin.label.normal.textColor;
 
@@ -18,5 +17,16 @@ namespace KerbalEngineer.Flight.Readouts {
         //Whether to display the short name in readouts rather than the full one.
         public bool UseShortName { get; set; } = false;
         public bool HudUseShortName { get; set; } = false;
+
+
+        public void CopyFrom(ReadoutModuleConfigNode source) {
+            TextColor = source.TextColor;
+            DecimalPlaces = source.DecimalPlaces;
+            HudDecimalPlaces = source.HudDecimalPlaces;
+            CharacterLimit = source.CharacterLimit;
+            HudCharacterLimit = source.HudCharacterLimit;
+            UseShortName = source.UseShortName;
+            HudUseShortName = source.HudUseShortName;
+        }
     }
 }

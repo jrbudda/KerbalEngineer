@@ -301,17 +301,13 @@ namespace KerbalEngineer.Flight.Readouts {
             try {
                 SettingHandler handler = SettingHandler.Load("ReadoutsConfig.xml", new Type[] { typeof(ReadoutModuleConfigNode)});
                 foreach (ReadoutModule readout in readouts) {
-                    ReadoutModuleConfigNode r = handler.Get<ReadoutModuleConfigNode>(readout.Name, null);
-                    if (r != null) {
-                        readout.ValueStyle.normal.textColor = r.TextColor;
-                        readout.DecimalPlaces = r.DecimalPlaces;
-                        readout.HudDecimalPlaces = r.HudDecimalPlaces;
-                        readout.CharacterLimit = r.CharacterLimit;
-                        readout.HudCharacterLimit = r.HudCharacterLimit;
-                        readout.UseShortName = r.UseShortName;
-                        readout.HudUseShortName = r.HudUseShortName;
+                    ReadoutModuleConfigNode readoutNode = handler.Get<ReadoutModuleConfigNode>(readout.Name, null);
+                    if (readoutNode != null) {
+                        readout.CopyFrom(readoutNode);
+                        readout.ValueStyle.normal.textColor = readoutNode.TextColor;
                     }
                 }
+
                 handler.Save("ReadoutsConfig.xml");
             } catch (Exception ex) {
                 MyLogger.Exception(ex);
@@ -321,22 +317,14 @@ namespace KerbalEngineer.Flight.Readouts {
         public static void SaveReadoutConfig(ReadoutModule readout) {
             try {
                 SettingHandler handler = SettingHandler.Load("ReadoutsConfig.xml", new Type[] { typeof(ReadoutModuleConfigNode)});
-                var r = handler.Get<ReadoutModuleConfigNode>(readout.Name, null);
+                var readoutNode = handler.Get<ReadoutModuleConfigNode>(readout.Name, null);
+                if (readoutNode == null) readoutNode = new ReadoutModuleConfigNode();
 
-                if (r == null) {
-                    r = new ReadoutModuleConfigNode();
-                }
+                readoutNode.CopyFrom(readout);
+                readoutNode.TextColor = readout.ValueStyle.normal.textColor;
 
-                r.Name = readout.Name;
-                r.TextColor = readout.ValueStyle.normal.textColor;
-                r.DecimalPlaces = readout.DecimalPlaces;
-                r.HudDecimalPlaces = readout.HudDecimalPlaces;
-                r.CharacterLimit = readout.CharacterLimit;
-                r.HudCharacterLimit = readout.HudCharacterLimit;
-                r.UseShortName = readout.UseShortName;
-                r.HudUseShortName = readout.HudUseShortName;
+                handler.Set(readout.Name, readoutNode);
 
-                handler.Set(r.Name, r);
                 handler.Save("ReadoutsConfig.xml");
             } catch (Exception ex) {
                 MyLogger.Exception(ex);

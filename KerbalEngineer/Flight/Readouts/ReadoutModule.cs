@@ -50,10 +50,9 @@ namespace KerbalEngineer.Flight.Readouts {
 
         #region Properties
 
+        public string Name { get; set; }
+        public string ShortName { get; set; }
 
-        /// <summary>
-        ///     Gets ans sets the readout category.
-        /// </summary>
         public ReadoutCategory Category { get; set; }
 
         /// <summary>
@@ -78,8 +77,6 @@ namespace KerbalEngineer.Flight.Readouts {
         /// </summary>
         public string HelpString { get; set; }
         
-        public string ShortName { get; set; }
-
         /// <summary>
         ///     Gets and sets whether the readout should be shown on new installs.
         /// </summary>
