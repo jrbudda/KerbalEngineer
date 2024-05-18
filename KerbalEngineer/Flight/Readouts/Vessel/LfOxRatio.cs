@@ -27,15 +27,15 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
     #endregion
 
-    public class ElectricCharge : ReadoutModule
+    public class LfOxRatio : ReadoutModule
     {
         #region Constructors
 
-        public ElectricCharge() {
-            this.Name = "Electric Charge";
-            this.ShortName = "Elec";//"EC";
+        public LfOxRatio() {
+            this.Name = "LF:Ox Ratio";
+            this.ShortName = "LF:Ox";
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Current and maximum electric charge in the vessel.";
+            this.HelpString = "Ratio of Liquid Fuel to Oxidizer in the vessel. More than 100% means you have more LF than oxidizer for standard rocket engines, so you have extra for LF-only engines.";
             this.IsDefault = false;
         }
 
@@ -44,22 +44,22 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
         #region Methods
 
         public override void Draw(Unity.Flight.ISectionModule section) {
-            //PartResourceDefinition definition = PartResourceLibrary.Instance.GetDefinition(PartResourceLibrary.ElectricityHashcode); //Seems unnecessary for electricity
+            PartResourceDefinition lfDefinition = PartResourceLibrary.Instance.GetDefinition("LiquidFuel"),
+                                   oxDefinition = PartResourceLibrary.Instance.GetDefinition("Oxidizer");
             List<Part> parts = FlightGlobals.ActiveVessel.parts;
 
-            double currentEC = 0, maxEC = 0;
+            double currentLF = 0, currentOx = 0;
             foreach (Part part in parts) {
                 foreach (PartResource resource in part.Resources) {
-                    if (resource.info.id == PartResourceLibrary.ElectricityHashcode) {
-                        currentEC += resource.amount;
-                        maxEC += resource.maxAmount;
-                    }
+                    if (resource.info.id == lfDefinition.id) currentLF += resource.amount;
+                    else if (resource.info.id == oxDefinition.id) currentOx += resource.amount;
                 }
             }
 
+            const double FUEL_MIX = 440.0 / 360.0;
             int decimals = section.IsHud ? HudDecimalPlaces : DecimalPlaces;
             if (decimals < 0) decimals = 1;
-            this.DrawLine(currentEC.ToString("F" + decimals) + " / " + maxEC.ToString("F" + decimals), section);
+            this.DrawLine(currentOx == 0 ? "No Oxidizer" : Units.ToPercent(currentLF * FUEL_MIX / currentOx, decimals), section);
         }
 
         #endregion

@@ -153,7 +153,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface {
 
             int side = 1;
 
-            double startangle = vessel.GetOrbit().trueAnomaly * 180 / Math.PI;
+            double startangle = vessel.GetOrbit().trueAnomaly * Units.RAD_TO_DEG;
             if (startangle > 0) startangle = -360 + startangle;
 
             double endangle = startangle + 360;

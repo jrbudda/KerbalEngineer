@@ -564,9 +564,9 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous {
 
             double inc = Math.Abs(Vector3d.Angle(SwappedOrbitNormal(target), launchBody.angularVelocity));
             Vector3d b = Vector3d.Exclude(launchBody.angularVelocity, SwappedOrbitNormal(target)).normalized; // I don't understand the sign here, but this seems to work
-            b *= launchBody.Radius * Math.Sin(Math.PI / 180 * launchLatitude) / Math.Tan(Math.PI / 180 * inc);
+            b *= launchBody.Radius * Math.Sin(Units.DEG_TO_RAD * launchLatitude) / Math.Tan(Units.DEG_TO_RAD * inc);
             Vector3d c = Vector3d.Cross(SwappedOrbitNormal(target), launchBody.angularVelocity).normalized;
-            double cMagnitudeSquared = Math.Pow(launchBody.Radius * Math.Cos(Math.PI / 180 * launchLatitude), 2) - b.sqrMagnitude;
+            double cMagnitudeSquared = Math.Pow(launchBody.Radius * Math.Cos(Units.DEG_TO_RAD * launchLatitude), 2) - b.sqrMagnitude;
             if (cMagnitudeSquared < 0) cMagnitudeSquared = 0;
             c *= Math.Sqrt(cMagnitudeSquared);
             Vector3d a1 = b + c;
