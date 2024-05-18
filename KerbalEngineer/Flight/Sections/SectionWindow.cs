@@ -33,6 +33,7 @@ namespace KerbalEngineer.Flight.Sections {
         private bool resizeRequested;
         private int windowId;
         private Rect windowPosition;
+        private bool dragStartedOnUs = false;
 
         #endregion
 
@@ -130,6 +131,27 @@ namespace KerbalEngineer.Flight.Sections {
 
             this.ParentSection.FloatingPositionX = this.windowPosition.x;
             this.ParentSection.FloatingPositionY = this.windowPosition.y;
+
+
+            switch (Event.current.type) {
+                case EventType.MouseDown:
+                    dragStartedOnUs = this.windowPosition.Contains(Event.current.mousePosition);
+                    break;
+
+                case EventType.MouseDrag:
+                    if ((!this.ParentSection.IsHud || this.ParentSection.IsEditorVisible) &&
+                        dragStartedOnUs && (Event.current.button == 1 /* RMB */ || Event.current.alt))
+                    {
+                        if (ParentSection.IsHud) ParentSection.HudWidth += Event.current.delta.x;
+                        else ParentSection.Width += Event.current.delta.x;
+                        this.resizeRequested = true;
+                    }
+                    break;
+
+                case EventType.MouseUp:
+                    dragStartedOnUs = false;
+                    break;
+            }
         }
 
         /// <summary>

@@ -256,6 +256,8 @@ namespace KerbalEngineer.Flight.Readouts {
             this.lineCountEnd++;
         }
 
+        public bool UsingShortName(Unity.Flight.ISectionModule section) { return  !string.IsNullOrEmpty(ShortName) && (section.IsHud ? HudUseShortName : UseShortName); }
+
         #endregion
 
         #region Methods: private

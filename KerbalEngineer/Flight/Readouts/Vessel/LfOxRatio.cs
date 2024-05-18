@@ -56,10 +56,27 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
                 }
             }
 
-            const double FUEL_MIX = 440.0 / 360.0;
-            int decimals = section.IsHud ? HudDecimalPlaces : DecimalPlaces;
-            if (decimals < 0) decimals = 1;
-            this.DrawLine(currentOx == 0 ? "No Oxidizer" : Units.ToPercent(currentLF * FUEL_MIX / currentOx, decimals), section);
+            bool usingShortName = UsingShortName(section);
+            if (currentOx <= double.Epsilon) this.DrawLine(usingShortName ? "No Ox" : "No Oxidizer", section);
+            else {
+                const double FUEL_MIX = 440.0 / 360.0;
+                double ratio = currentLF * FUEL_MIX / currentOx;
+                if (usingShortName) {
+                    if (ratio >= 10.0) {
+                        this.DrawLine("A Lot", section);
+                        return;
+                    }
+                } else {
+                    if (ratio > 90.0) {
+                        this.DrawLine("Over 9000%", section);
+                        return;
+                    }
+                }
+
+                int decimals = section.IsHud ? HudDecimalPlaces : DecimalPlaces;
+                if (decimals < 0) decimals = 1;
+                this.DrawLine(Units.ToPercent(ratio, decimals), section);
+            }
         }
 
         #endregion
