@@ -305,6 +305,7 @@ namespace KerbalEngineer.Flight.Readouts {
                     if (readoutNode != null) {
                         readout.CopyFrom(readoutNode);
                         readout.ValueStyle.normal.textColor = readoutNode.TextColor;
+                        readout.HudValueStyle.normal.textColor = readoutNode.HudTextColor;
                     }
                 }
 
@@ -322,6 +323,7 @@ namespace KerbalEngineer.Flight.Readouts {
 
                 readoutNode.CopyFrom(readout);
                 readoutNode.TextColor = readout.ValueStyle.normal.textColor;
+                readoutNode.HudTextColor = readout.HudValueStyle.normal.textColor;
 
                 handler.Set(readout.Name, readoutNode);
 

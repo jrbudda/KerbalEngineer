@@ -44,19 +44,20 @@ namespace KerbalEngineer.Flight.Sections {
         protected GUIStyle categoryButtonActiveStyle;
         protected GUIStyle categoryButtonStyle;
         protected PopOutElement categoryList;
-        protected PopOutColorPicker colorPicker;
+        protected PopOutReadoutSettings readoutSettings;
         protected GUIStyle categoryTitleButtonStyle;
         protected GUIStyle helpBoxStyle;
         protected GUIStyle helpTextStyle;
         protected GUIStyle panelTitleStyle;
         protected Rect position;
         protected PopOutElement presetList;
-        protected GUIStyle readoutButtonStyle;
+        protected GUIStyle readoutButtonStyle, readoutEditButtonStyle;
         protected GUIStyle readoutNameStyle;
         protected Vector2 scrollPositionAvailable;
         protected Vector2 scrollPositionInstalled;
         protected GUIStyle textStyle;
         protected GUIStyle windowStyle;
+        protected GUIStyle windowSubtitleStyle;
 
         #endregion
 
@@ -85,9 +86,9 @@ namespace KerbalEngineer.Flight.Sections {
                 this.categoryList.DrawCallback = this.DrawCategories;
                 this.presetList = this.gameObject.AddComponent<PopOutElement>();
                 this.presetList.DrawCallback = this.DrawPresets;
-                this.colorPicker = this.gameObject.AddComponent<PopOutColorPicker>();
-                this.colorPicker.DrawCallback = this.DrawColorPicker;
-                this.colorPicker.ClosedCallback = this.SaveColor;
+                this.readoutSettings = this.gameObject.AddComponent<PopOutReadoutSettings>();
+                this.readoutSettings.DrawCallback = () => { if (editingReadout != null) this.readoutSettings.Draw(editingReadout); };
+                this.readoutSettings.ClosedCallback = this.SaveReadoutSettings;
             } catch (Exception ex) {
                 MyLogger.Exception(ex);
             }
@@ -149,6 +150,7 @@ namespace KerbalEngineer.Flight.Sections {
         ///     Draws the options for editing custom sections.
         /// </summary>
         protected virtual void DrawCustomOptions() {
+            GUILayout.Label("Drag the section to reposition, right-click-drag to resize", this.windowSubtitleStyle);
             GUILayout.BeginHorizontal(GUILayout.Height(25.0f));
             this.ParentSection.Name = GUILayout.TextField(this.ParentSection.Name, this.textStyle);
             var isShowingInControlBar = !string.IsNullOrEmpty(this.ParentSection.Abbreviation);
@@ -216,15 +218,11 @@ namespace KerbalEngineer.Flight.Sections {
         #endregion
 
         #region Methods: private
+        
+        private ReadoutModule editingReadout = null;
 
-        private void SaveColor() {
-            if (editingReadout == null) return;
-            /* //We save more than just the text color in ReadoutsConfig now
-            if (editingReadout.ValueStyle.normal.textColor == HighLogic.Skin.label.normal.textColor)
-                ReadoutLibrary.RemoveReadoutConfig(editingReadout);
-            else
-            */
-                ReadoutLibrary.SaveReadoutConfig(editingReadout);
+        private void SaveReadoutSettings() {
+            if (editingReadout != null) ReadoutLibrary.SaveReadoutConfig(editingReadout);
         }
 
         /// <summary>
@@ -284,7 +282,9 @@ namespace KerbalEngineer.Flight.Sections {
                 var readout = this.ParentSection.ReadoutModules[i];
 
                 GUILayout.BeginHorizontal(GUILayout.Height(30.0f));
+                
                 GUILayout.Label(readout.Name, this.readoutNameStyle);
+
 
                 if (GUILayout.Button("▲", this.readoutButtonStyle, GUILayout.Width(30.0f))) {
                     if (i > 0) {
@@ -300,33 +300,30 @@ namespace KerbalEngineer.Flight.Sections {
                     }
                 }
 
-                Color temp = GUI.color;
-
-                GUI.color = readout.ValueStyle.normal.textColor;
 
                 if (readout.Cloneable == false) {
-                    if (GUILayout.Button(swatch, this.readoutButtonStyle, GUILayout.Width(30.0f))) {
+                    if (GUILayout.Button("✎", this.readoutEditButtonStyle, GUILayout.Width(30.0f))) { //No ⚙ symbol in the in-game font :(
                         editingReadout = readout;
-                        colorPicker.enabled = true;
+                        readoutSettings.Open();
+                        readoutSettings.ResizeCounter = 5; //The window is too tall when first layed out and it takes multiple frames for .Window to shrink it for some reason...
                     }
 
-                    if (Event.current.type == EventType.Repaint && editingReadout == readout) {
-                        colorPicker.SetPosition(GUILayoutUtility.GetLastRect().Translate(this.position).Translate(new Rect(8, scrollRectInstalled.y - scrollPositionInstalled.y, 8, 8)), new Rect(0, 0, 180, 20));
+                    if (editingReadout == readout && Event.current.type == EventType.Repaint && readoutSettings.enabled) {
+                        readoutSettings.SetPosition(GUILayoutUtility.GetLastRect().Translate(this.position).Translate(new Rect(8, scrollRectInstalled.y - scrollPositionInstalled.y, 8, 8)), new Rect(0, 0, 200, 0));
                     }
-
                 } else { //dont show for separators.
                     GUILayout.Label("", GUILayout.Width(26.0f));
                 }
 
 
-                GUI.color = temp;
-
                 readout.ShowHelp = GUILayout.Toggle(readout.ShowHelp, "?", this.readoutButtonStyle, GUILayout.Width(30.0f));
+
 
                 if (GUILayout.Button("REMOVE", this.readoutButtonStyle, GUILayout.Width(75.0f))) {
                     removeReadout = true;
                     removeReadoutIndex = i;
                 }
+
                 GUILayout.EndHorizontal();
 
                 this.ShowHelpMessage(readout);
@@ -375,15 +372,11 @@ namespace KerbalEngineer.Flight.Sections {
                 GUILayout.EndHorizontal();
             }
             if (removePreset != null && PresetLibrary.Remove(removePreset)) {
-                this.presetList.Resize = true;
+                this.presetList.ResizeCounter = 1;
             }
 
             this.DrawPresetSaveButton();
         }
-
-        private ReadoutModule editingReadout = null;
-
-
 
 
         /// <summary>
@@ -391,6 +384,20 @@ namespace KerbalEngineer.Flight.Sections {
         /// </summary>
         private void InitialiseStyles() {
             this.windowStyle = new GUIStyle(HighLogic.Skin.window);
+            
+            this.windowSubtitleStyle = new GUIStyle(HighLogic.Skin.label) {
+                normal =
+                {
+                    textColor = Color.white
+                },
+                margin = new RectOffset(0, 0, 0, 5),
+                padding = new RectOffset(0, 0, 0, 0),
+                alignment = TextAnchor.MiddleCenter,
+                fontSize = 12,
+                fontStyle = FontStyle.Normal,
+                stretchWidth = true,
+                stretchHeight = true
+            };
 
             this.categoryButtonStyle = new GUIStyle(HighLogic.Skin.button) {
                 normal =
@@ -423,7 +430,7 @@ namespace KerbalEngineer.Flight.Sections {
                 fixedHeight = 30.0f,
                 stretchWidth = true
             };
-
+            
             this.textStyle = new GUIStyle(HighLogic.Skin.textField) {
                 margin = new RectOffset(3, 3, 3, 3),
                 alignment = TextAnchor.MiddleLeft,
@@ -457,6 +464,8 @@ namespace KerbalEngineer.Flight.Sections {
                 fontStyle = FontStyle.Bold,
                 stretchHeight = true
             };
+            this.readoutEditButtonStyle = new GUIStyle(this.readoutButtonStyle);
+            this.readoutEditButtonStyle.fontStyle = FontStyle.Normal;
 
             this.helpBoxStyle = new GUIStyle(HighLogic.Skin.box) {
                 margin = new RectOffset(2, 2, 2, 10),
@@ -505,11 +514,6 @@ namespace KerbalEngineer.Flight.Sections {
             GUILayout.BeginVertical(this.helpBoxStyle);
             GUILayout.Label(!String.IsNullOrEmpty(readout.HelpString) ? readout.HelpString : "Sorry, no help information has been provided for this readout module.", this.helpTextStyle);
             GUILayout.EndVertical();
-        }
-
-        private void DrawColorPicker() {
-            if (editingReadout == null) return;
-            editingReadout.ValueStyle.normal.textColor = this.colorPicker.DrawColorPicker(editingReadout.ValueStyle.normal.textColor);
         }
 
         #endregion

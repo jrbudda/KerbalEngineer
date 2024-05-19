@@ -290,6 +290,8 @@
     <Compile Include="Settings\SettingItem.cs" />
     <Compile Include="TapeDriveAnimator.cs" />
     <Compile Include="KeyBinding\KeyBindPopup.cs" />
+    <Compile Include="UIControls\PopOutReadoutSettings.cs" />
+    <Compile Include="UIControls\UIElements.cs" />
     <Compile Include="VesselSimulator\AttachNodeSim.cs" />
     <Compile Include="VesselSimulator\EngineSim.cs" />
     <Compile Include="Helpers\Pool.cs" />

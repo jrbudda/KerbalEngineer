@@ -18,13 +18,12 @@ namespace KerbalEngineer.UIControls {
         ///     Draws the color picker
         /// </summary>
         public Color DrawColorPicker(Color initial) {
-
             Color color = initial;
 
             GUILayout.BeginHorizontal();
             GUILayout.BeginVertical("Box");
 
-            {//RED
+            { //RED
                 GUILayout.BeginHorizontal();
                 GUILayout.Label("R", GUILayout.Width(10));
                 float r = GUILayout.HorizontalSlider(color.r, 0f, 1f);

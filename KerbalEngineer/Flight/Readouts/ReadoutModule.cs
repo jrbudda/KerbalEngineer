@@ -102,11 +102,16 @@ namespace KerbalEngineer.Flight.Readouts {
         ///     Gets and sets the text field style.
         /// </summary>
         public GUIStyle TextFieldStyle { get; set; }
-
+        
         /// <summary>
         ///     Gets and sets the value style.
         /// </summary>
         public GUIStyle ValueStyle { get; set; }
+
+        /// <summary>
+        ///     Gets and sets the HUD value style.
+        /// </summary>
+        public GUIStyle HudValueStyle { get; set; }
 
         /// <summary>
         ///     Gets and sets the name style.
@@ -178,7 +183,7 @@ namespace KerbalEngineer.Flight.Readouts {
                 GUILayout.BeginHorizontal(GUILayout.Width(section.HudWidth * GuiDisplaySize.Offset));
                 GUILayout.Label((this.HudUseShortName && !string.IsNullOrEmpty(this.ShortName)) ? this.ShortName : this.Name, NameStyle, GUILayout.Height(NameStyle.fontSize * 1.2f));
                 GUILayout.FlexibleSpace();
-                GUILayout.Label(value.ToLength(HudCharacterLimit), ValueStyle, GUILayout.Height(ValueStyle.fontSize * 1.2f));
+                GUILayout.Label(value.ToLength(HudCharacterLimit), HudValueStyle, GUILayout.Height(HudValueStyle.fontSize * 1.2f));
             }
             GUILayout.EndHorizontal();
 
@@ -195,7 +200,7 @@ namespace KerbalEngineer.Flight.Readouts {
                 GUILayout.BeginHorizontal(GUILayout.Width(section.HudWidth * GuiDisplaySize.Offset));
                 GUILayout.Label(name, NameStyle, GUILayout.Height(NameStyle.fontSize * 1.2f));
                 GUILayout.FlexibleSpace();
-                GUILayout.Label(value.ToLength(HudCharacterLimit), ValueStyle, GUILayout.Height(ValueStyle.fontSize * 1.2f));
+                GUILayout.Label(value.ToLength(HudCharacterLimit), HudValueStyle, GUILayout.Height(HudValueStyle.fontSize * 1.2f));
             }
             GUILayout.EndHorizontal();
             this.lineCountEnd++;
@@ -237,13 +242,9 @@ namespace KerbalEngineer.Flight.Readouts {
         ///     Initialises all the styles required for this object.
         /// </summary>
         private void InitialiseStyles(bool force) {
-
             if (NameStyle != null && !force) return;
 
             ReadoutModule existing = ReadoutLibrary.GetReadout(this.Name);
-            Color c = HighLogic.Skin.label.normal.textColor;
-            if (existing != null)
-                c = existing.ValueStyle.normal.textColor;
 
             NameStyle = new GUIStyle(HighLogic.Skin.label) {
                 normal =
@@ -266,6 +267,10 @@ namespace KerbalEngineer.Flight.Readouts {
                 fontStyle = FontStyle.Normal,
                 fixedHeight = 20.0f * GuiDisplaySize.Offset,
             };
+            HudValueStyle = new GUIStyle(ValueStyle);
+            this.ValueStyle.normal.textColor = existing == null ? HighLogic.Skin.label.normal.textColor : existing.ValueStyle.normal.textColor;
+            this.HudValueStyle.normal.textColor = existing == null ? HighLogic.Skin.label.normal.textColor : existing.HudValueStyle.normal.textColor;
+            
 
             MessageStyle = new GUIStyle(HighLogic.Skin.label) {
                 normal =
@@ -311,11 +316,6 @@ namespace KerbalEngineer.Flight.Readouts {
                 fontSize = (int)(11 * GuiDisplaySize.Offset),
                 fixedHeight = 18.0f * GuiDisplaySize.Offset
             };
-
-
-           this.ValueStyle.normal.textColor = c;
-  
-
         }
 
         private void OnSizeChanged() {

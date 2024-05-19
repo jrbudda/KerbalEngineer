@@ -3,8 +3,9 @@ namespace KerbalEngineer.Flight.Readouts {
     public class ReadoutModuleConfigNode {
         public const int DEFAULT_CHARACTER_LIMIT = 20;
 
-
+        
         public Color TextColor { get; set; } = HighLogic.Skin.label.normal.textColor;
+        public Color HudTextColor { get; set; } = HighLogic.Skin.label.normal.textColor;
 
         //Displayed value strings will be truncated if they're longer than this.
         public int CharacterLimit { get; set; } = DEFAULT_CHARACTER_LIMIT;
@@ -21,6 +22,7 @@ namespace KerbalEngineer.Flight.Readouts {
 
         public void CopyFrom(ReadoutModuleConfigNode source) {
             TextColor = source.TextColor;
+            HudTextColor = source.HudTextColor;
             DecimalPlaces = source.DecimalPlaces;
             HudDecimalPlaces = source.HudDecimalPlaces;
             CharacterLimit = source.CharacterLimit;

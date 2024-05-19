@@ -387,7 +387,7 @@ namespace KerbalEngineer.Editor
             {
                 CelestialBodies.SetSelectedBody(bodyInfo.Name);
                 Altitude = 0.0f;
-                bodiesList.Resize = true;
+                bodiesList.ResizeCounter = 1;
             }
             GUILayout.EndHorizontal();
 
