@@ -62,6 +62,10 @@ namespace KerbalEngineer.Flight.Sections {
         private GUIStyle hudWindowStyle;
         private GUIStyle windowStyle;
 
+        private const int BORDER_WIDTH = 1, BORDER_TEXTURE_DIMENSIONS = BORDER_WIDTH * 2 + 1;
+        private static Texture2D borderTexture;
+        private static GUIStyle borderStyle;
+
         #endregion
 
         /// <summary>
@@ -84,6 +88,24 @@ namespace KerbalEngineer.Flight.Sections {
                 normal = { background = hudBackgroundColorTexture },
                 onNormal = { background = hudBackgroundColorTexture }
             };
+
+            //Hardest stroked DrawRect in the universe
+            if (borderTexture == null) {
+                borderTexture = new Texture2D(BORDER_TEXTURE_DIMENSIONS, BORDER_TEXTURE_DIMENSIONS);
+                Color[] textureArray = new Color[BORDER_TEXTURE_DIMENSIONS * BORDER_TEXTURE_DIMENSIONS];
+                for (int i = 0; i < textureArray.Length; i++) textureArray[i] = new Color(0.0f, 1.0f, 0.0f, 1.0f);
+                borderTexture.filterMode = FilterMode.Point;
+                //borderTexture.wrapMode = TextureWrapMode.Clamp;
+                borderTexture.SetPixels(textureArray);
+                borderTexture.SetPixel(BORDER_WIDTH, BORDER_WIDTH, new Color(0.0f, 0.0f, 0.0f, 0.0f));
+                borderTexture.Apply();
+            }
+            if (borderStyle == null) {
+                borderStyle = new GUIStyle() {
+                    normal = { background = borderTexture },
+                    border = new RectOffset(BORDER_WIDTH, BORDER_WIDTH, BORDER_WIDTH, BORDER_WIDTH)
+                };
+            }
         }
 
         private void OnSizeChanged() {
@@ -110,12 +132,17 @@ namespace KerbalEngineer.Flight.Sections {
             }
             GUI.skin = null;
             this.windowPosition = GUILayout.Window(this.windowId, this.windowPosition, this.Window, string.Empty,
-                                                   (!this.ParentSection.IsHud || this.ParentSection.IsEditorVisible) ? this.windowStyle
+                                                   !this.ParentSection.IsHud ? this.windowStyle
                                                        : this.ParentSection.IsHudBackground && this.ParentSection.LineCount > 0
                                                            ? this.hudWindowBgStyle
                                                            : this.hudWindowStyle);
 
             windowPosition = (ParentSection.IsHud) ? windowPosition.ClampInsideScreen() : windowPosition.ClampToScreen();
+            
+            if (this.ParentSection.IsHud && this.ParentSection.IsEditorVisible) {
+                GUI.depth = -1000;
+                GUI.Box(this.windowPosition, GUIContent.none, borderStyle);
+            }
 
 
             this.ParentSection.FloatingPositionX = this.windowPosition.x;
@@ -125,6 +152,10 @@ namespace KerbalEngineer.Flight.Sections {
             switch (Event.current.type) {
                 case EventType.MouseDown:
                     dragStartedOnUs = this.windowPosition.Contains(Event.current.mousePosition);
+
+                    if (Event.current.button == 2 /* MMB */ && this.ParentSection.IsHud && dragStartedOnUs) {
+                        this.ParentSection.IsEditorVisible = !this.ParentSection.IsEditorVisible;
+                    }
                     break;
 
                 case EventType.MouseDrag:

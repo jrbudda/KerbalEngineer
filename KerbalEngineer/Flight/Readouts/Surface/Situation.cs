@@ -32,6 +32,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
         public Situation()
         {
             this.Name = "Situation";
+            this.ShortName = "Sit";
             this.Category = ReadoutCategory.GetCategory("Surface");
             this.HelpString = "Shows the vessel's current scientific situation. (Landed, Splashed, Flying Low/High, In Space Low/High)";
             this.IsDefault = true;

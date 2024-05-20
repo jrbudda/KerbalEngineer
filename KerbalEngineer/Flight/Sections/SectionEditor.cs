@@ -84,8 +84,10 @@ namespace KerbalEngineer.Flight.Sections {
             try {
                 this.categoryList = this.gameObject.AddComponent<PopOutElement>();
                 this.categoryList.DrawCallback = this.DrawCategories;
+
                 this.presetList = this.gameObject.AddComponent<PopOutElement>();
                 this.presetList.DrawCallback = this.DrawPresets;
+
                 this.readoutSettings = this.gameObject.AddComponent<PopOutReadoutSettings>();
                 this.readoutSettings.DrawCallback = () => { if (editingReadout != null) this.readoutSettings.Draw(editingReadout); };
                 this.readoutSettings.ClosedCallback = this.SaveReadoutSettings;
@@ -124,7 +126,7 @@ namespace KerbalEngineer.Flight.Sections {
                 return;
             }
 
-            this.position = GUILayout.Window(this.GetInstanceID(), this.position, this.Window, "EDIT SECTION – " + this.ParentSection.Name.ToUpper(), this.windowStyle).ClampToScreen();
+            this.position = GUILayout.Window(this.GetInstanceID(), this.position, this.Window, "EDIT SECTION – " + this.ParentSection.Name.ToUpper(), this.windowStyle, GUILayout.Height(Screen.height * 0.47f)).ClampToScreen();
             this.ParentSection.EditorPositionX = this.position.x;
             this.ParentSection.EditorPositionY = this.position.y;
         }
@@ -150,15 +152,15 @@ namespace KerbalEngineer.Flight.Sections {
         ///     Draws the options for editing custom sections.
         /// </summary>
         protected virtual void DrawCustomOptions() {
-            GUILayout.Label("Drag the section to reposition, right-click-drag to resize", this.windowSubtitleStyle);
+            GUILayout.Label("Drag the section to reposition, right-click-drag to resize, Alt+MMB to edit", this.windowSubtitleStyle);
             GUILayout.BeginHorizontal(GUILayout.Height(25.0f));
             this.ParentSection.Name = GUILayout.TextField(this.ParentSection.Name, this.textStyle);
             var isShowingInControlBar = !string.IsNullOrEmpty(this.ParentSection.Abbreviation);
             this.ParentSection.Abbreviation = GUILayout.TextField(this.ParentSection.Abbreviation, this.textStyle, GUILayout.Width(75.0f));
 
-            ParentSection.IsHud = GUILayout.Toggle(this.ParentSection.IsHud, "HUD", this.readoutButtonStyle, GUILayout.Width(50.0f));
+            ParentSection.IsHud = GUILayout.Toggle(this.ParentSection.IsHud, "HUD", this.readoutButtonStyle, GUILayout.Width(ParentSection.IsHud ? 46.0f : 78.0f));
             if (ParentSection.IsHud) {
-                this.ParentSection.IsHudBackground = GUILayout.Toggle(this.ParentSection.IsHudBackground, "BG", this.readoutButtonStyle, GUILayout.Width(50.0f));
+                this.ParentSection.IsHudBackground = GUILayout.Toggle(this.ParentSection.IsHudBackground, "BG", this.readoutButtonStyle, GUILayout.Width(30.0f));
             }
 
             if (isShowingInControlBar && string.IsNullOrEmpty(this.ParentSection.Abbreviation)) {
@@ -230,7 +232,7 @@ namespace KerbalEngineer.Flight.Sections {
         /// </summary>
         private void DrawAvailableReadouts() {
             GUI.skin = HighLogic.Skin;
-            this.scrollPositionAvailable = GUILayout.BeginScrollView(this.scrollPositionAvailable, false, true, GUILayout.Height(200.0f));
+            this.scrollPositionAvailable = GUILayout.BeginScrollView(this.scrollPositionAvailable, false, true, GUILayout.Height(this.position.height * 0.5f));
             GUI.skin = null;
 
             GUILayout.Label("AVAILABLE", this.panelTitleStyle);

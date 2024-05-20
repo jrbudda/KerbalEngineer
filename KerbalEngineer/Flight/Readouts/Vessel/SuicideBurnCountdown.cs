@@ -36,6 +36,7 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
         public SuicideBurnCountdown()
         {
             this.Name = "Suicide Burn Countdown";
+            this.ShortName = "Decel in";
             this.Category = ReadoutCategory.GetCategory("Vessel");
             this.HelpString = "Time until suicide burn should start.";
             this.IsDefault = false;
@@ -47,7 +48,7 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public override void Draw(Unity.Flight.ISectionModule section)
         {
-            if (!SimulationProcessor.ShowDetails || !Surface.ImpactProcessor.ShowDetails) {
+            if (!SimulationProcessor.ShowDetails || !Surface.ImpactProcessor.ShowDetails || Surface.ImpactProcessor.SuicideCountdown <= double.Epsilon) {
                 return;
             }
 

@@ -54,7 +54,7 @@ namespace KerbalEngineer.Flight.Sections {
             this.FloatingPositionX = Screen.width * 0.5f - 125.0f;
             this.FloatingPositionY = 100.0f;
             this.EditorPositionX = Screen.width * 0.5f - SectionEditor.Width * 0.5f;
-            this.EditorPositionY = Screen.height * 0.5f - SectionEditor.Height * 0.5f;
+            this.EditorPositionY = Screen.height * 0.37f - SectionEditor.Height * 0.5f;
             this.ReadoutModules = new List<ReadoutModule>();
             this.InitialiseStyles();
             GuiDisplaySize.OnSizeChanged += this.OnSizeChanged;
