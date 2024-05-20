@@ -129,7 +129,7 @@ namespace KerbalEngineer.Flight.Sections {
 
                 case EventType.MouseDrag:
                     if ((!this.ParentSection.IsHud || this.ParentSection.IsEditorVisible) &&
-                        dragStartedOnUs && (Event.current.button == 1 /* RMB */ || Event.current.alt))
+                        dragStartedOnUs && ResizingWidth())
                     {
                         if (ParentSection.IsHud) ParentSection.HudWidth += Event.current.delta.x;
                         else ParentSection.Width += Event.current.delta.x;
@@ -149,7 +149,7 @@ namespace KerbalEngineer.Flight.Sections {
         private void Window(int windowId) {
             this.ParentSection.Draw();
 
-            if (!this.ParentSection.IsHud || this.ParentSection.IsEditorVisible) {
+            if ((!this.ParentSection.IsHud || this.ParentSection.IsEditorVisible) && !ResizingWidth()) {
                 GUI.DragWindow();
             }
         }
@@ -189,6 +189,8 @@ namespace KerbalEngineer.Flight.Sections {
 
             GuiDisplaySize.OnSizeChanged += this.OnSizeChanged;
         }
+
+        private bool ResizingWidth() { return Event.current.button == 1 /* RMB */ || Event.current.alt; }
 
         #endregion
     }

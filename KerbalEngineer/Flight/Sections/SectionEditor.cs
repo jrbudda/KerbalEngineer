@@ -396,7 +396,8 @@ namespace KerbalEngineer.Flight.Sections {
                 fontSize = 12,
                 fontStyle = FontStyle.Normal,
                 stretchWidth = true,
-                stretchHeight = true
+                stretchHeight = true,
+                fixedHeight = 16
             };
 
             this.categoryButtonStyle = new GUIStyle(HighLogic.Skin.button) {
