@@ -82,12 +82,7 @@ namespace KerbalEngineer.Flight.Sections {
                 onNormal = { background = null },
                 padding = new RectOffset(3, 3, 0, 10),
             };
-
-            var hudBackgroundColorTexture = TextureHelper.CreateTextureFromColour(this.ParentSection == null ? new Color(0.0f, 0.0f, 0.0f, 0.5f) : this.ParentSection.HudBackgroundColor);
-            this.hudWindowBgStyle = new GUIStyle(this.hudWindowStyle) {
-                normal = { background = hudBackgroundColorTexture },
-                onNormal = { background = hudBackgroundColorTexture }
-            };
+            SetBackgroundTexture(); //Initializes hudWindowBgStyle based on hudWindowStyle
 
             //Hardest stroked DrawRect in the universe
             if (borderTexture == null) {
@@ -153,7 +148,7 @@ namespace KerbalEngineer.Flight.Sections {
                 case EventType.MouseDown:
                     dragStartedOnUs = this.windowPosition.Contains(Event.current.mousePosition);
 
-                    if (Event.current.button == 2 /* MMB */ && this.ParentSection.IsHud && dragStartedOnUs) {
+                    if (Event.current.button == 2 /* MMB */ && Event.current.alt && this.ParentSection.IsHud && dragStartedOnUs) {
                         this.ParentSection.IsEditorVisible = !this.ParentSection.IsEditorVisible;
                     }
                     break;
@@ -180,7 +175,7 @@ namespace KerbalEngineer.Flight.Sections {
         private void Window(int windowId) {
             this.ParentSection.Draw();
 
-            if ((!this.ParentSection.IsHud || this.ParentSection.IsEditorVisible) && !ResizingWidth()) {
+            if ((!this.ParentSection.IsHud || this.ParentSection.IsEditorVisible) && !ResizingWidth() && Event.current.button <= 0 /* LMB */) {
                 GUI.DragWindow();
             }
         }
@@ -207,6 +202,14 @@ namespace KerbalEngineer.Flight.Sections {
             this.resizeRequested = true;
         }
 
+        public void SetBackgroundTexture() {
+            var hudBackgroundColorTexture = TextureHelper.CreateTextureFromColour(this.ParentSection == null ? new Color(0.0f, 0.0f, 0.0f, 0.5f) : this.ParentSection.HudBackgroundColor);
+            this.hudWindowBgStyle = new GUIStyle(this.hudWindowStyle) {
+                normal = { background = hudBackgroundColorTexture },
+                onNormal = { background = hudBackgroundColorTexture }
+            };
+        }
+
         #endregion
 
         #region Methods: private
@@ -221,7 +224,7 @@ namespace KerbalEngineer.Flight.Sections {
             GuiDisplaySize.OnSizeChanged += this.OnSizeChanged;
         }
 
-        private bool ResizingWidth() { return Event.current.button == 1 /* RMB */ || Event.current.alt; }
+        private bool ResizingWidth() { return Event.current.button == 1 /* RMB */ || (Event.current.alt && Event.current.button <= 1 /* LMB/RMB */); }
 
         #endregion
     }

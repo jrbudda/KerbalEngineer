@@ -11,11 +11,28 @@ namespace KerbalEngineer.UIControls {
                                   Blue = new ColorPickerElement("B"),
                                  Alpha = new ColorPickerElement("A");
 
+        private static GUIStyle headerStyle = new GUIStyle(HighLogic.Skin.label) {
+            normal = { textColor = Color.white },
+            margin = new RectOffset(0, 0, 0, 0),
+            padding = new RectOffset(0, 0, 0, 0),
+            alignment = TextAnchor.MiddleCenter,
+            //fontSize = 16,
+            fontStyle = FontStyle.Bold,
+            stretchWidth = true,
+            stretchHeight = false,
+            fixedHeight = 20
+        }, checkboxHeaderStyle = new GUIStyle(headerStyle) {
+            margin = new RectOffset(7, 0, 0, 0),
+            alignment = TextAnchor.MiddleLeft,
+        };
+
         /// <summary>
         ///     Draws the color picker
         /// </summary>
-        public Color DrawColorPicker(Color initial) {
-            Color color = initial;
+        public Color DrawColorPicker(Color initialColor, Color defaultColor, string header = "") {
+            Color color = initialColor;
+
+            if (header.Length > 0) GUILayout.Label(header, headerStyle);
 
             GUILayout.BeginHorizontal();
 
@@ -39,14 +56,28 @@ namespace KerbalEngineer.UIControls {
 
             GUILayout.BeginVertical();
             GUILayout.BeginHorizontal();
-            if (GUILayout.Button("RESET")) {
-                color = HighLogic.Skin.label.normal.textColor;
-            }
+            if (GUILayout.Button("RESET")) color = defaultColor;
             GUILayout.EndHorizontal();
             GUILayout.EndVertical();
 
             //Finally return the modified value.
             return color;
+        }
+
+        public Tuple<Color, bool> DrawColorPicker(Color initialColor, Color defaultColor, bool checkboxChecked, string header = "") {
+            bool checkboxRet;
+
+            if (header.Length > 0) {
+                GUILayout.BeginHorizontal();
+                checkboxRet = UIElements.Checkbox(checkboxChecked);
+                GUILayout.Label(header, checkboxHeaderStyle);
+                GUILayout.FlexibleSpace();
+                GUILayout.EndHorizontal();
+            } else {
+                checkboxRet = UIElements.Checkbox(checkboxChecked);
+            }
+
+            return new Tuple<Color, bool>(DrawColorPicker(initialColor, defaultColor, ""), checkboxRet);
         }
 
         private class ColorPickerElement {

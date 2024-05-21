@@ -46,8 +46,8 @@ namespace KerbalEngineer.UIControls {
             this.colorPicker.Depth = this.Depth - 1;
             this.colorPicker.DrawCallback = () => {
                 if (editingReadout != null) {
-                    if (colorPickerHudTarget) editingReadout.HudTextColor = editingReadout.HudValueStyle.normal.textColor = this.colorPicker.DrawColorPicker(editingReadout.HudValueStyle.normal.textColor);
-                    else editingReadout.TextColor = editingReadout.ValueStyle.normal.textColor = this.colorPicker.DrawColorPicker(editingReadout.ValueStyle.normal.textColor);
+                    if (colorPickerHudTarget) editingReadout.HudTextColor = editingReadout.HudValueStyle.normal.textColor = this.colorPicker.DrawColorPicker(editingReadout.HudValueStyle.normal.textColor, HighLogic.Skin.label.normal.textColor);
+                    else editingReadout.TextColor = editingReadout.ValueStyle.normal.textColor = this.colorPicker.DrawColorPicker(editingReadout.ValueStyle.normal.textColor, HighLogic.Skin.label.normal.textColor);
                 }
             };
         }

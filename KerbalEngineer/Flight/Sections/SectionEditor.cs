@@ -45,6 +45,8 @@ namespace KerbalEngineer.Flight.Sections {
         protected GUIStyle categoryButtonStyle;
         protected PopOutElement categoryList;
         protected PopOutReadoutSettings readoutSettings;
+        protected PopOutColorPicker backgroundColorPicker;
+        protected GUIStyle colorPickerButtonStyle;
         protected GUIStyle categoryTitleButtonStyle;
         protected GUIStyle helpBoxStyle;
         protected GUIStyle helpTextStyle;
@@ -91,6 +93,15 @@ namespace KerbalEngineer.Flight.Sections {
                 this.readoutSettings = this.gameObject.AddComponent<PopOutReadoutSettings>();
                 this.readoutSettings.DrawCallback = () => { if (editingReadout != null) this.readoutSettings.Draw(editingReadout); };
                 this.readoutSettings.ClosedCallback = this.SaveReadoutSettings;
+
+                this.backgroundColorPicker = this.gameObject.AddComponent<PopOutColorPicker>();
+                this.backgroundColorPicker.DrawCallback = () => {
+                    var bg = this.backgroundColorPicker.DrawColorPicker(this.ParentSection.HudBackgroundColor, Unity.Flight.OOPSux.DEFAULT_HUD_BACKGROUND_COLOR, this.ParentSection.IsHudBackground, "HUD background");
+                    if (bg.Item1 != this.ParentSection.HudBackgroundColor) {
+                        this.ParentSection.IsHudBackground = true;
+                        this.ParentSection.SetHudBackgroundColor(bg.Item1);
+                    } else this.ParentSection.IsHudBackground = bg.Item2;
+                };
             } catch (Exception ex) {
                 MyLogger.Exception(ex);
             }
@@ -148,19 +159,35 @@ namespace KerbalEngineer.Flight.Sections {
             }
         }
         
+        private Texture2D colorPickerSwatch = new Texture2D(16, 20);
+
         /// <summary>
         ///     Draws the options for editing custom sections.
         /// </summary>
         protected virtual void DrawCustomOptions() {
             GUILayout.Label("Drag the section to reposition, right-click-drag to resize, Alt+MMB to edit", this.windowSubtitleStyle);
+
             GUILayout.BeginHorizontal(GUILayout.Height(25.0f));
+
             this.ParentSection.Name = GUILayout.TextField(this.ParentSection.Name, this.textStyle);
             var isShowingInControlBar = !string.IsNullOrEmpty(this.ParentSection.Abbreviation);
             this.ParentSection.Abbreviation = GUILayout.TextField(this.ParentSection.Abbreviation, this.textStyle, GUILayout.Width(75.0f));
 
             ParentSection.IsHud = GUILayout.Toggle(this.ParentSection.IsHud, "HUD", this.readoutButtonStyle, GUILayout.Width(ParentSection.IsHud ? 46.0f : 78.0f));
             if (ParentSection.IsHud) {
-                this.ParentSection.IsHudBackground = GUILayout.Toggle(this.ParentSection.IsHudBackground, "BG", this.readoutButtonStyle, GUILayout.Width(30.0f));
+                Color normalGuiColor = GUI.color;
+                GUI.color = ParentSection.HudBackgroundColor;
+
+                if (GUILayout.Button(colorPickerSwatch, colorPickerButtonStyle, GUILayout.Width(30.0f))) {
+                    if (Event.current.button == 0 /* LMB */) backgroundColorPicker.Open();
+                    else if (Event.current.button == 1 /* RMB */) this.ParentSection.IsHudBackground = !this.ParentSection.IsHudBackground;
+                }
+
+                if (backgroundColorPicker.enabled && Event.current.type == EventType.Repaint) {
+                    backgroundColorPicker.SetPosition(GUILayoutUtility.GetLastRect().Translate(Position).Translate(new Rect(6, 0, 8, 8)), new Rect(0, 0, 180, 20));
+                }
+            
+                GUI.color = normalGuiColor;
             }
 
             if (isShowingInControlBar && string.IsNullOrEmpty(this.ParentSection.Abbreviation)) {
@@ -264,7 +291,6 @@ namespace KerbalEngineer.Flight.Sections {
             }
         }
 
-        Texture2D swatch = new Texture2D(16, 20);
         private Rect scrollRectInstalled = new Rect();
 
         /// <summary>
@@ -400,6 +426,16 @@ namespace KerbalEngineer.Flight.Sections {
                 stretchWidth = true,
                 stretchHeight = true,
                 fixedHeight = 16
+            };
+
+            this.colorPickerButtonStyle = new GUIStyle(HighLogic.Skin.button) {
+                normal = { textColor = Color.white },
+                margin = new RectOffset(2, 2, 2, 2),
+                padding = new RectOffset(0, 0, 0, 0),
+                alignment = TextAnchor.MiddleCenter,
+                fontSize = 12,
+                fontStyle = FontStyle.Bold,
+                stretchHeight = true
             };
 
             this.categoryButtonStyle = new GUIStyle(HighLogic.Skin.button) {
