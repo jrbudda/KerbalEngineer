@@ -103,6 +103,27 @@ namespace KerbalEngineer.UIControls {
 
             GUILayout.EndHorizontal();
             
+            
+            GUILayout.BeginHorizontal(GUILayout.Height(ROW_HEIGHT));
+
+            GUILayout.BeginHorizontal(GUILayout.Height(ROW_HEIGHT), GUILayout.Width(column1Width));
+            GUILayout.Label("Hide name", textStyle);
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal(GUILayout.Height(ROW_HEIGHT), GUILayout.Width(columns2and3Width));
+            GUILayout.FlexibleSpace();
+            editingReadout.HideName = UIElements.Checkbox(editingReadout.HideName);
+            GUILayout.FlexibleSpace();
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal(GUILayout.Height(ROW_HEIGHT), GUILayout.Width(columns2and3Width));
+            GUILayout.FlexibleSpace();
+            editingReadout.HudHideName = UIElements.Checkbox(editingReadout.HudHideName);
+            GUILayout.FlexibleSpace();
+            GUILayout.EndHorizontal();
+
+            GUILayout.EndHorizontal();
+
 
             GUILayout.BeginHorizontal(GUILayout.Height(ROW_HEIGHT));
 

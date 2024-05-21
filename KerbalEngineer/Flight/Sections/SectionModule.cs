@@ -181,6 +181,11 @@ namespace KerbalEngineer.Flight.Sections {
             HudBackgroundColor = newColor;
             this.Window?.SetBackgroundTexture();
         }
+        
+        /// <summary>
+        ///     Whether to display the names/labels in front of each readout in this section when in HUD mode. Can also be toggled per-readout-type in ReadoutModuleConfigNode.
+        /// </summary>
+        public bool HideHudReadoutNames { get; set; } = false;
 
         /// <summary>
         ///     Gets and sets the name of the section.

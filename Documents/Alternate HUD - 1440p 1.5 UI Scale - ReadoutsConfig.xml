@@ -16,9 +16,36 @@
         <a>1</a>
       </HudTextColor>
       <CharacterLimit>28</CharacterLimit>
-      <HudCharacterLimit>16</HudCharacterLimit>
+      <HudCharacterLimit>17</HudCharacterLimit>
       <DecimalPlaces>-90</DecimalPlaces>
       <HudDecimalPlaces>-90</HudDecimalPlaces>
+      <HideName>false</HideName>
+      <HudHideName>true</HudHideName>
+      <UseShortName>false</UseShortName>
+      <HudUseShortName>true</HudUseShortName>
+    </Value>
+  </SettingItem>
+  <SettingItem>
+    <Name>Situation</Name>
+    <Value xsi:type="ReadoutModuleConfigNode">
+      <TextColor>
+        <r>0.7176471</r>
+        <g>0.996078432</g>
+        <b>0</b>
+        <a>1</a>
+      </TextColor>
+      <HudTextColor>
+        <r>0.7176471</r>
+        <g>0.996078432</g>
+        <b>0</b>
+        <a>1</a>
+      </HudTextColor>
+      <CharacterLimit>20</CharacterLimit>
+      <HudCharacterLimit>17</HudCharacterLimit>
+      <DecimalPlaces>-90</DecimalPlaces>
+      <HudDecimalPlaces>-90</HudDecimalPlaces>
+      <HideName>false</HideName>
+      <HudHideName>true</HudHideName>
       <UseShortName>false</UseShortName>
       <HudUseShortName>true</HudUseShortName>
     </Value>
@@ -42,6 +69,8 @@
       <HudCharacterLimit>26</HudCharacterLimit>
       <DecimalPlaces>-90</DecimalPlaces>
       <HudDecimalPlaces>-90</HudDecimalPlaces>
+      <HideName>false</HideName>
+      <HudHideName>false</HudHideName>
       <UseShortName>false</UseShortName>
       <HudUseShortName>true</HudUseShortName>
     </Value>
@@ -65,6 +94,8 @@
       <HudCharacterLimit>20</HudCharacterLimit>
       <DecimalPlaces>-9000</DecimalPlaces>
       <HudDecimalPlaces>-9000</HudDecimalPlaces>
+      <HideName>false</HideName>
+      <HudHideName>false</HudHideName>
       <UseShortName>false</UseShortName>
       <HudUseShortName>true</HudUseShortName>
     </Value>
@@ -88,6 +119,8 @@
       <HudCharacterLimit>20</HudCharacterLimit>
       <DecimalPlaces>-9000</DecimalPlaces>
       <HudDecimalPlaces>-9000</HudDecimalPlaces>
+      <HideName>false</HideName>
+      <HudHideName>false</HudHideName>
       <UseShortName>false</UseShortName>
       <HudUseShortName>true</HudUseShortName>
     </Value>
@@ -111,6 +144,8 @@
       <HudCharacterLimit>20</HudCharacterLimit>
       <DecimalPlaces>-9000</DecimalPlaces>
       <HudDecimalPlaces>-9000</HudDecimalPlaces>
+      <HideName>false</HideName>
+      <HudHideName>false</HudHideName>
       <UseShortName>false</UseShortName>
       <HudUseShortName>true</HudUseShortName>
     </Value>
@@ -134,6 +169,8 @@
       <HudCharacterLimit>23</HudCharacterLimit>
       <DecimalPlaces>-9000</DecimalPlaces>
       <HudDecimalPlaces>-9000</HudDecimalPlaces>
+      <HideName>false</HideName>
+      <HudHideName>false</HudHideName>
       <UseShortName>true</UseShortName>
       <HudUseShortName>true</HudUseShortName>
     </Value>
@@ -157,6 +194,8 @@
       <HudCharacterLimit>20</HudCharacterLimit>
       <DecimalPlaces>-9000</DecimalPlaces>
       <HudDecimalPlaces>-9000</HudDecimalPlaces>
+      <HideName>false</HideName>
+      <HudHideName>false</HudHideName>
       <UseShortName>false</UseShortName>
       <HudUseShortName>true</HudUseShortName>
     </Value>
@@ -180,6 +219,8 @@
       <HudCharacterLimit>20</HudCharacterLimit>
       <DecimalPlaces>-9000</DecimalPlaces>
       <HudDecimalPlaces>-9000</HudDecimalPlaces>
+      <HideName>false</HideName>
+      <HudHideName>false</HudHideName>
       <UseShortName>false</UseShortName>
       <HudUseShortName>true</HudUseShortName>
     </Value>
@@ -203,6 +244,8 @@
       <HudCharacterLimit>20</HudCharacterLimit>
       <DecimalPlaces>-9000</DecimalPlaces>
       <HudDecimalPlaces>-9000</HudDecimalPlaces>
+      <HideName>false</HideName>
+      <HudHideName>false</HudHideName>
       <UseShortName>false</UseShortName>
       <HudUseShortName>true</HudUseShortName>
     </Value>
@@ -226,6 +269,8 @@
       <HudCharacterLimit>20</HudCharacterLimit>
       <DecimalPlaces>-9000</DecimalPlaces>
       <HudDecimalPlaces>-9000</HudDecimalPlaces>
+      <HideName>false</HideName>
+      <HudHideName>false</HudHideName>
       <UseShortName>false</UseShortName>
       <HudUseShortName>true</HudUseShortName>
     </Value>
@@ -249,6 +294,8 @@
       <HudCharacterLimit>20</HudCharacterLimit>
       <DecimalPlaces>-9000</DecimalPlaces>
       <HudDecimalPlaces>-9000</HudDecimalPlaces>
+      <HideName>false</HideName>
+      <HudHideName>false</HudHideName>
       <UseShortName>false</UseShortName>
       <HudUseShortName>true</HudUseShortName>
     </Value>
@@ -272,6 +319,8 @@
       <HudCharacterLimit>20</HudCharacterLimit>
       <DecimalPlaces>-9000</DecimalPlaces>
       <HudDecimalPlaces>-9000</HudDecimalPlaces>
+      <HideName>false</HideName>
+      <HudHideName>false</HudHideName>
       <UseShortName>false</UseShortName>
       <HudUseShortName>true</HudUseShortName>
     </Value>
@@ -295,6 +344,8 @@
       <HudCharacterLimit>20</HudCharacterLimit>
       <DecimalPlaces>-1</DecimalPlaces>
       <HudDecimalPlaces>0</HudDecimalPlaces>
+      <HideName>false</HideName>
+      <HudHideName>false</HudHideName>
       <UseShortName>false</UseShortName>
       <HudUseShortName>true</HudUseShortName>
     </Value>
@@ -318,6 +369,8 @@
       <HudCharacterLimit>20</HudCharacterLimit>
       <DecimalPlaces>-90</DecimalPlaces>
       <HudDecimalPlaces>0</HudDecimalPlaces>
+      <HideName>false</HideName>
+      <HudHideName>false</HudHideName>
       <UseShortName>false</UseShortName>
       <HudUseShortName>true</HudUseShortName>
     </Value>
@@ -341,6 +394,8 @@
       <HudCharacterLimit>20</HudCharacterLimit>
       <DecimalPlaces>-9000</DecimalPlaces>
       <HudDecimalPlaces>-9000</HudDecimalPlaces>
+      <HideName>false</HideName>
+      <HudHideName>false</HudHideName>
       <UseShortName>false</UseShortName>
       <HudUseShortName>true</HudUseShortName>
     </Value>
@@ -364,6 +419,8 @@
       <HudCharacterLimit>20</HudCharacterLimit>
       <DecimalPlaces>-1</DecimalPlaces>
       <HudDecimalPlaces>0</HudDecimalPlaces>
+      <HideName>false</HideName>
+      <HudHideName>false</HudHideName>
       <UseShortName>false</UseShortName>
       <HudUseShortName>true</HudUseShortName>
     </Value>
@@ -387,6 +444,8 @@
       <HudCharacterLimit>20</HudCharacterLimit>
       <DecimalPlaces>-90</DecimalPlaces>
       <HudDecimalPlaces>0</HudDecimalPlaces>
+      <HideName>false</HideName>
+      <HudHideName>false</HudHideName>
       <UseShortName>false</UseShortName>
       <HudUseShortName>true</HudUseShortName>
     </Value>
@@ -410,6 +469,8 @@
       <HudCharacterLimit>20</HudCharacterLimit>
       <DecimalPlaces>-9000</DecimalPlaces>
       <HudDecimalPlaces>-9000</HudDecimalPlaces>
+      <HideName>false</HideName>
+      <HudHideName>false</HudHideName>
       <UseShortName>false</UseShortName>
       <HudUseShortName>true</HudUseShortName>
     </Value>
@@ -433,29 +494,8 @@
       <HudCharacterLimit>20</HudCharacterLimit>
       <DecimalPlaces>-9000</DecimalPlaces>
       <HudDecimalPlaces>-9000</HudDecimalPlaces>
-      <UseShortName>false</UseShortName>
-      <HudUseShortName>true</HudUseShortName>
-    </Value>
-  </SettingItem>
-  <SettingItem>
-    <Name>Situation</Name>
-    <Value xsi:type="ReadoutModuleConfigNode">
-      <TextColor>
-        <r>0.7176471</r>
-        <g>0.996078432</g>
-        <b>0</b>
-        <a>1</a>
-      </TextColor>
-      <HudTextColor>
-        <r>0.7176471</r>
-        <g>0.996078432</g>
-        <b>0</b>
-        <a>1</a>
-      </HudTextColor>
-      <CharacterLimit>20</CharacterLimit>
-      <HudCharacterLimit>16</HudCharacterLimit>
-      <DecimalPlaces>-90</DecimalPlaces>
-      <HudDecimalPlaces>-90</HudDecimalPlaces>
+      <HideName>false</HideName>
+      <HudHideName>false</HudHideName>
       <UseShortName>false</UseShortName>
       <HudUseShortName>true</HudUseShortName>
     </Value>
@@ -479,6 +519,8 @@
       <HudCharacterLimit>20</HudCharacterLimit>
       <DecimalPlaces>-90</DecimalPlaces>
       <HudDecimalPlaces>-90</HudDecimalPlaces>
+      <HideName>false</HideName>
+      <HudHideName>false</HudHideName>
       <UseShortName>false</UseShortName>
       <HudUseShortName>true</HudUseShortName>
     </Value>

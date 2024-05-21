@@ -39,6 +39,8 @@ namespace KerbalEngineer.Unity.Flight
         float HudWidth { get; set; }
         
         Color HudBackgroundColor { get; set; }
+        
+        bool HideHudReadoutNames { get; set; }
 
         string Name { get; }
     }

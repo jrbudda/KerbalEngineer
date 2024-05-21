@@ -27,6 +27,7 @@
           <b>0</b>
           <a>0.5</a>
         </HudBackgroundColor>
+        <HideHudReadoutNames>false</HideHudReadoutNames>
         <Name>ORBITAL</Name>
         <ReadoutModuleNames>
           <string>Orbital.ApoapsisHeight</string>
@@ -65,6 +66,7 @@
           <b>0</b>
           <a>0.5</a>
         </HudBackgroundColor>
+        <HideHudReadoutNames>false</HideHudReadoutNames>
         <Name>SURFACE</Name>
         <ReadoutModuleNames>
           <string>Surface.AltitudeSeaLevel</string>
@@ -101,6 +103,7 @@
           <b>0</b>
           <a>0.5</a>
         </HudBackgroundColor>
+        <HideHudReadoutNames>false</HideHudReadoutNames>
         <Name>VESSEL</Name>
         <ReadoutModuleNames>
           <string>Vessel.Name</string>
@@ -145,6 +148,7 @@
           <b>0</b>
           <a>0.5</a>
         </HudBackgroundColor>
+        <HideHudReadoutNames>false</HideHudReadoutNames>
         <Name>RENDEZVOUS</Name>
         <ReadoutModuleNames>
           <string>Rendezvous.TargetSelector</string>
@@ -168,8 +172,8 @@
         <Abbreviation>HEAT</Abbreviation>
         <EditorPositionX>1002</EditorPositionX>
         <EditorPositionY>228</EditorPositionY>
-        <FloatingPositionX>1155</FloatingPositionX>
-        <FloatingPositionY>100</FloatingPositionY>
+        <FloatingPositionX>1078</FloatingPositionX>
+        <FloatingPositionY>176</FloatingPositionY>
         <showEditButton>true</showEditButton>
         <showFloatButton>true</showFloatButton>
         <IsEditorVisible>false</IsEditorVisible>
@@ -187,6 +191,7 @@
           <b>0</b>
           <a>0.5</a>
         </HudBackgroundColor>
+        <HideHudReadoutNames>false</HideHudReadoutNames>
         <Name>THERMAL</Name>
         <ReadoutModuleNames>
           <string>Thermal.InternalFlux</string>
@@ -228,6 +233,7 @@
           <b>0</b>
           <a>0.5</a>
         </HudBackgroundColor>
+        <HideHudReadoutNames>false</HideHudReadoutNames>
         <Name>BODY</Name>
         <ReadoutModuleNames>
           <string>Body.MinOrbitHeight</string>
@@ -266,6 +272,7 @@
           <b>0</b>
           <a>0.5</a>
         </HudBackgroundColor>
+        <HideHudReadoutNames>false</HideHudReadoutNames>
         <Name>MANEUVER</Name>
         <ReadoutModuleNames>
           <string>Orbital.NodeProgradeDeltaV</string>
@@ -308,6 +315,7 @@
           <b>0</b>
           <a>0.5</a>
         </HudBackgroundColor>
+        <HideHudReadoutNames>false</HideHudReadoutNames>
         <Name>LANDING</Name>
         <ReadoutModuleNames>
           <string>Surface.ImpactAltitude</string>
@@ -347,6 +355,7 @@
           <b>0</b>
           <a>0.5</a>
         </HudBackgroundColor>
+        <HideHudReadoutNames>false</HideHudReadoutNames>
         <Name>HUD 1_</Name>
         <ReadoutModuleNames>
           <string>Orbital.ApoapsisHeight</string>
@@ -379,13 +388,14 @@
         <IsVisible>true</IsVisible>
         <LineCount>7</LineCount>
         <Width>230</Width>
-        <HudWidth>137</HudWidth>
+        <HudWidth>128</HudWidth>
         <HudBackgroundColor>
           <r>0</r>
           <g>0</g>
           <b>0</b>
           <a>0.42</a>
         </HudBackgroundColor>
+        <HideHudReadoutNames>false</HideHudReadoutNames>
         <Name>HUD 2_</Name>
         <ReadoutModuleNames>
           <string>Surface.MachNumber</string>
@@ -409,7 +419,7 @@
         <Abbreviation>HUD 3</Abbreviation>
         <EditorPositionX>586</EditorPositionX>
         <EditorPositionY>459</EditorPositionY>
-        <FloatingPositionX>1658</FloatingPositionX>
+        <FloatingPositionX>1648</FloatingPositionX>
         <FloatingPositionY>4</FloatingPositionY>
         <showEditButton>true</showEditButton>
         <showFloatButton>true</showFloatButton>
@@ -421,13 +431,14 @@
         <IsVisible>true</IsVisible>
         <LineCount>7</LineCount>
         <Width>230</Width>
-        <HudWidth>108</HudWidth>
+        <HudWidth>105</HudWidth>
         <HudBackgroundColor>
           <r>0</r>
           <g>0</g>
           <b>0</b>
           <a>0.42</a>
         </HudBackgroundColor>
+        <HideHudReadoutNames>false</HideHudReadoutNames>
         <Name>HUD 3</Name>
         <ReadoutModuleNames>
           <string>Surface.Biome</string>
@@ -465,6 +476,7 @@
           <b>0</b>
           <a>0.27</a>
         </HudBackgroundColor>
+        <HideHudReadoutNames>false</HideHudReadoutNames>
         <Name>HUD Navball</Name>
         <ReadoutModuleNames>
           <string>Vessel.Heading</string>
@@ -496,6 +508,7 @@
           <b>0</b>
           <a>0.42</a>
         </HudBackgroundColor>
+        <HideHudReadoutNames>false</HideHudReadoutNames>
         <Name>HUD Left-Left</Name>
         <ReadoutModuleNames>
           <string>Orbital.ApoapsisHeight</string>
@@ -529,6 +542,7 @@
           <b>0</b>
           <a>0.42</a>
         </HudBackgroundColor>
+        <HideHudReadoutNames>false</HideHudReadoutNames>
         <Name>HUD Left-Right</Name>
         <ReadoutModuleNames>
           <string>Vessel.ElectricCharge</string>
@@ -560,6 +574,7 @@
           <b>0</b>
           <a>0.42</a>
         </HudBackgroundColor>
+        <HideHudReadoutNames>false</HideHudReadoutNames>
         <Name>HUD Left-Top</Name>
         <ReadoutModuleNames>
           <string>Vessel.DeltaVCurrentTotal</string>

@@ -21,7 +21,7 @@ namespace KerbalEngineer.UIControls {
         public static bool Checkbox(bool currentValue, float size = 20.0f) {
             GUILayout.BeginVertical();
             GUILayout.FlexibleSpace();
-            bool ret = GUILayout.Toggle(currentValue, currentValue ? "✓" : "✕", checkboxStyle, GUILayout.Height(size), GUILayout.Width(size)); //🗸(<- doesn't work)✓✔ ×✕✖
+            bool ret = GUILayout.Toggle(currentValue, currentValue ? "✓" : ""/*"✕"*/, checkboxStyle, GUILayout.Height(size), GUILayout.Width(size)); //🗸(<- doesn't work)✓✔ ×✕✖
             GUILayout.FlexibleSpace();
             GUILayout.EndVertical();
             return ret;
