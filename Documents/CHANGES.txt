@@ -1,3 +1,8 @@
+1.1.9.1, 2024-5-22, KSP 1.12.5
+ - More-adjustable UI: section width and background color; readout character limit, decimal places, and short/no name
+ - More readouts: Angle-of-attack/sideslip/displacement, bearing and distance to targets and waypoints, electric charge, LF:Ox ratio
+ - Fixed windows staying visible during scene changes
+
 1.1.9.0, 2021-6-27, KSP 1.12.0 #3140
  - Fix backwards compatibility
 
