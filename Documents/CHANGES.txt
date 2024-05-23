@@ -1,3 +1,7 @@
+1.1.9.2, 2024-5-23, KSP 1.12.5
+ - Fixed editor backgrounds disappearing after leaving and re-entering editor mode, editor resources window staying visible during the loading screen, and editor part overlay not resizing
+ - Editor overlay keyprompt now shows MouseMiddle instead of Mouse2
+
 1.1.9.1, 2024-5-22, KSP 1.12.5
  - More-adjustable UI: section width and background color; readout character limit, decimal places, and short/no name
  - More readouts: Angle-of-attack/sideslip/displacement, bearing and distance to targets and waypoints, electric charge, LF:Ox ratio
