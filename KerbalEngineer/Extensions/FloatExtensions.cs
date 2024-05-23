@@ -45,7 +45,7 @@ namespace KerbalEngineer.Extensions
 
         public static string ToForce(this float value, int decimals = -9000)
         {
-            return Units.ToForce(value, decimals);
+            return Units.ToForce(value);
         }
 
         public static string ToMach(this float value, int decimals = -9000)
@@ -75,7 +75,7 @@ namespace KerbalEngineer.Extensions
 
         public static string ToTemperature(this float value, int decimals = -9000)
         {
-            return Units.ToTemperature(value, decimals);
+            return Units.ToTemperature(value);
         }
 
         public static string ToTorque(this float value, int decimals = -9000)
