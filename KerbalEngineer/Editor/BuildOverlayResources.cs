@@ -36,7 +36,7 @@ namespace KerbalEngineer.Editor
         private readonly Dictionary<int, ResourceInfoItem> resources = new Dictionary<int, ResourceInfoItem>();
 
         private bool open = true;
-        private float openPercent;
+        private float openPercent = 0.0f;
         private GUIContent tabContent;
         private Rect tabPosition;
         private Vector2 tabSize;
@@ -74,7 +74,7 @@ namespace KerbalEngineer.Editor
         {
             try
             {
-                if (!Visible || resources.Count == 0)
+                if (!Visible || resources.Count == 0 || EditorLogic.RootPart == null)
                 {
                     return;
                 }

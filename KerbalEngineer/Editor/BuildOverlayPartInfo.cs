@@ -39,7 +39,7 @@ namespace KerbalEngineer.Editor
         private Rect position;
         private Part selectedPart;
         private bool showInfo;
-        private bool skipFrame;
+        private bool skipFrame, resizeWindowNextFrame = false;
         private PointerHoverDetector stageUiPointerHoverDetector;
 
         public static bool ClickToOpen
@@ -145,7 +145,13 @@ namespace KerbalEngineer.Editor
                     if (NamesOnly || skipFrame)
                     {
                         skipFrame = false;
+                        resizeWindowNextFrame = true;
                         return;
+                    }
+
+                    if (resizeWindowNextFrame) {
+                        position.height = 0.0f;
+                        resizeWindowNextFrame = false;
                     }
 
                     if (!showInfo && Input.GetKeyDown(KeyBinder.PartInfoShowHide))
@@ -486,13 +492,23 @@ namespace KerbalEngineer.Editor
                 else if (clickToOpen && namesOnly == false)
                 {
                     GUILayout.Space(2.0f);
-                    GUILayout.Label("Click [" + KeyBinder.PartInfoShowHide + "] to show more info...", BuildOverlay.NameStyle);
+                    GUILayout.Label("Click [" + ToString(KeyBinder.PartInfoShowHide) + "] to show more info...", BuildOverlay.NameStyle);
                 }
             }
             catch (Exception ex)
             {
                 MyLogger.Exception(ex);
             }
+        }
+
+        private string ToString(KeyCode keyCode) {
+            switch (keyCode) {
+                case KeyCode.Mouse0: return "MouseLeft";
+                case KeyCode.Mouse1: return "MouseRight";
+                case KeyCode.Mouse2: return "MouseMiddle";
+            }
+
+            return keyCode.ToString();
         }
     }
 }
