@@ -186,7 +186,7 @@ namespace KerbalEngineer.Flight.Sections {
                 if (backgroundColorPicker.enabled && Event.current.type == EventType.Repaint) {
                     backgroundColorPicker.SetPosition(GUILayoutUtility.GetLastRect().Translate(Position).Translate(new Rect(6, 0, 8, 8)), new Rect(0, 0, 180, 20));
                 }
-            
+                
                 GUI.color = normalGuiColor;
             }
 

@@ -503,9 +503,13 @@ namespace KerbalEngineer.Editor
 
         private string ToString(KeyCode keyCode) {
             switch (keyCode) {
-                case KeyCode.Mouse0: return "MouseLeft";
-                case KeyCode.Mouse1: return "MouseRight";
-                case KeyCode.Mouse2: return "MouseMiddle";
+                case KeyCode.Mouse0: return "Left Mouse";
+                case KeyCode.Mouse1: return "Right Mouse";
+                case KeyCode.Mouse2: return "Middle Mouse";
+                case KeyCode.Mouse3: return "Mouse Button 4";
+                case KeyCode.Mouse4: return "Mouse Button 5";
+                case KeyCode.Mouse5: return "Mouse Button 6";
+                case KeyCode.Mouse6: return "Mouse Button 7";
             }
 
             return keyCode.ToString();

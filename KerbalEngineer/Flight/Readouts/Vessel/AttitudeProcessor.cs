@@ -122,9 +122,9 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
                 ? 360.0f - this.surfaceRotation.eulerAngles.z
                 : -this.surfaceRotation.eulerAngles.z;
 
-            this.headingRate = this.heading - this.previousHeading;
-            this.pitchRate = this.pitch - this.previousPitch;
-            this.rollRate = this.roll - this.previousRoll;
+            this.headingRate = (this.heading - this.previousHeading) / TimeWarp.fixedDeltaTime;
+            this.pitchRate   = (this.pitch - this.previousPitch) / TimeWarp.fixedDeltaTime;
+            this.rollRate    = (this.roll - this.previousRoll) / TimeWarp.fixedDeltaTime;
 
 
             //Also stolen from MechJeb2
