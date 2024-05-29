@@ -88,6 +88,8 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
             get { return instance.rollRate; }
         }
         
+        public static double GlideslopeAngle { get; private set; }
+
         public static double DisplacementAngle { get; private set; }
         public static double AttackAngle { get; private set; }
         public static double SideslipAngle { get; private set; }
@@ -132,21 +134,28 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
             var surfaceVelocity = vessel.obt_velocity - vessel.mainBody.getRFrmVel(vessel.CoMD);
             var surfaceSpeed = surfaceVelocity.magnitude;
             
-            if (surfaceSpeed < 0.05) DisplacementAngle = AttackAngle = SideslipAngle = INVALID_ANGLE;
+            if (surfaceSpeed < 0.05) GlideslopeAngle = DisplacementAngle = AttackAngle = SideslipAngle = INVALID_ANGLE;
             else {
+                Vector3d normSurfVel = surfaceVelocity.normalized;
+
+                //Vertical velocity angle relative to the planet's surface
+                double tempGS = UtilMath.Rad2Deg *
+                                Math.Asin(Mathf.Clamp(Vector3.Dot(this.up, normSurfVel), -1, 1));
+                GlideslopeAngle = double.IsNaN(tempGS) ? INVALID_ANGLE : tempGS;
+
                 // Displacement Angle, angle between surface velocity and the ship-nose vector (KSP "up" vector) -- ignores roll of the craft (0 to 180 degrees)
                 double tempAoD = UtilMath.Rad2Deg *
-                                 Math.Acos(Mathf.Clamp(Vector3.Dot(vessel.ReferenceTransform.up, surfaceVelocity.normalized), -1, 1));
+                                 Math.Acos(Mathf.Clamp(Vector3.Dot(vessel.ReferenceTransform.up, normSurfVel), -1, 1));
                 DisplacementAngle = double.IsNaN(tempAoD) ? INVALID_ANGLE : tempAoD;
 
                 // Angle of Attack, angle between surface velocity and the ship-nose vector (KSP "up" vector) in the plane that has no ship-right/left in it (-180 to +180 degrees)
-                var srfProj = Vector3.ProjectOnPlane(surfaceVelocity.normalized, vessel.ReferenceTransform.right);
+                var srfProj = Vector3.ProjectOnPlane(normSurfVel, vessel.ReferenceTransform.right);
                 double tempAoA = UtilMath.Rad2Deg * Math.Atan2(Vector3.Dot(srfProj.normalized, vessel.ReferenceTransform.forward),
-                                                                Vector3.Dot(srfProj.normalized, vessel.ReferenceTransform.up));
+                                                               Vector3.Dot(srfProj.normalized, vessel.ReferenceTransform.up));
                 AttackAngle = double.IsNaN(tempAoA) ? INVALID_ANGLE : tempAoA;
 
                 // Angle of Sideslip, angle between surface velocity and the ship-nose vector (KSP "up" vector) in the plane that has no ship-top/bottom in it (KSP "forward"/"back"; -180 to +180 degrees)
-                srfProj = Vector3.ProjectOnPlane(surfaceVelocity.normalized, vessel.ReferenceTransform.forward);
+                srfProj = Vector3.ProjectOnPlane(normSurfVel, vessel.ReferenceTransform.forward);
                 double tempAoS = UtilMath.Rad2Deg * Math.Atan2(Vector3.Dot(srfProj.normalized, vessel.ReferenceTransform.right),
                                                                Vector3.Dot(srfProj.normalized, vessel.ReferenceTransform.up));
                 SideslipAngle = double.IsNaN(tempAoA) ? INVALID_ANGLE : tempAoS;
@@ -161,6 +170,13 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
             this.north = Vector3.ProjectOnPlane((vessel.mainBody.position + vessel.mainBody.transform.up * (float)vessel.mainBody.Radius) - this.centreOfMass, this.up).normalized;
 
             return Quaternion.Inverse(Quaternion.Euler(90.0f, 0.0f, 0.0f) * Quaternion.Inverse(vessel.transform.rotation) * Quaternion.LookRotation(this.north, this.up));
+        }
+
+        //Not sure why this is in Mathf but not Math...
+        public static double Clamp(double value, double min, double max) {
+            if (value < min) return min;
+            if (value > max) return max;
+            return value;
         }
 
         #endregion

@@ -35,7 +35,7 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
             this.Name = "LF:Ox Ratio";
             this.ShortName = "LF:Ox";
             this.Category = ReadoutCategory.GetCategory("Vessel");
-            this.HelpString = "Ratio of Liquid Fuel to Oxidizer in the vessel. More than 100% means you have more LF than oxidizer for standard rocket engines, so you have extra for LF-only engines.";
+            this.HelpString = "Ratio of Liquid Fuel to Oxidizer in the vessel. More than 100% means you have more LF than oxidizer for standard rocket engines, so you have extra for LF-only engines. The number in parentheses is how much excess LF you have.";
             this.IsDefault = false;
         }
 
@@ -73,9 +73,11 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
                     }
                 }
 
+                int excess = (int)(currentLF - (currentOx / FUEL_MIX));
+
                 int decimals = section.IsHud ? HudDecimalPlaces : DecimalPlaces;
                 if (decimals < 0) decimals = 1;
-                this.DrawLine(Units.ToPercent(ratio, decimals), section);
+                this.DrawLine(Units.ToPercent(ratio, decimals) + (excess > 0 ? " (+" : " (") + excess + ")", section);
             }
         }
 
