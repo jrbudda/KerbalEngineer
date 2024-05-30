@@ -41,6 +41,7 @@ namespace KerbalEngineer.Flight.Sections {
 
         protected SectionEditor editor;
         protected bool isHud;
+        protected bool isVisible;
         protected int numberOfReadouts;
 
         #endregion
@@ -163,7 +164,19 @@ namespace KerbalEngineer.Flight.Sections {
         /// <summary>
         ///     Gets and sets the visibility of the section.
         /// </summary>
-        public bool IsVisible { get; set; }
+        public bool IsVisible {
+            get { return this.isVisible; }
+            set {
+                if (value && value != this.isVisible) this.IsHudVisible = true;
+                this.isVisible = value;
+            }
+        }
+        
+        /// <summary>
+        ///     Gets and sets the HUD visibility of the section, for use with the group-toggle hotkeys.
+        /// </summary>
+        [XmlIgnore]
+        public bool IsHudVisible { get; set; } = true;
 
         /// <summary>
         ///     Gets the number of drawn readout lines.
@@ -191,6 +204,11 @@ namespace KerbalEngineer.Flight.Sections {
         ///     Gets and sets the name of the section.
         /// </summary>
         public string Name { get; set; }
+        
+        /// <summary>
+        ///     Which group of sections this is in, for toggling visibility of several HUD elements at once.
+        /// </summary>
+        public int HudGroup { get; set; } = 1;
 
         /// <summary>
         ///     Gets and sets the names of the installed readout modules. (Only used with serialisation.)

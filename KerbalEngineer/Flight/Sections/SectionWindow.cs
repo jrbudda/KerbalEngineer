@@ -117,7 +117,7 @@ namespace KerbalEngineer.Flight.Sections {
         /// </summary>
         private void OnGUI() {
             if (!HighLogic.LoadedSceneIsFlight || this.ParentSection == null || !this.ParentSection.IsVisible || DisplayStack.Instance == null ||
-                (DisplayStack.Instance.Hidden && !this.ParentSection.IsHud) || !FlightEngineerCore.IsDisplayable)
+                (DisplayStack.Instance.Hidden && !this.ParentSection.IsHud) || (this.ParentSection.IsHud && !this.ParentSection.IsHudVisible) || !FlightEngineerCore.IsDisplayable)
             { return; }
 
             if (this.resizeRequested) {

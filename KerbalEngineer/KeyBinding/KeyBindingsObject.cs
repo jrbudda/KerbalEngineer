@@ -28,5 +28,10 @@ namespace KerbalEngineer.KeyBinding
         public KeyCode FlightShowHide { get; set; }
 
         public KeyCode PartInfoShowHide { get; set; } = KeyCode.Mouse2;
+        
+        public KeyCode HudGroup1ShowHide { get; set; }
+        public KeyCode HudGroup2ShowHide { get; set; }
+        public KeyCode HudGroup3ShowHide { get; set; }
+        public KeyCode HudGroup4ShowHide { get; set; }
     }
 }

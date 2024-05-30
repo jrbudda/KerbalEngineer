@@ -32,6 +32,7 @@ namespace KerbalEngineer.Unity.Flight
         bool IsEditorVisible { get; set; }
 
         bool IsVisible { get; set; }
+        bool IsHudVisible { get; set; }
 
         bool IsHud { get; set; }
         
@@ -43,5 +44,7 @@ namespace KerbalEngineer.Unity.Flight
         bool HideHudReadoutNames { get; set; }
 
         string Name { get; }
+
+        int HudGroup { get; set; }
     }
 }

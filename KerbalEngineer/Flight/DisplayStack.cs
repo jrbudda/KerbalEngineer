@@ -34,6 +34,7 @@ using UnityEngine;
 namespace KerbalEngineer.Flight
 {
     using KeyBinding;
+    using UnityEngine.UI;
     using Upgradeables;
 
     /// <summary>
@@ -162,11 +163,12 @@ namespace KerbalEngineer.Flight
                 {
                     return;
                 }
-
-                if (Input.GetKeyDown(KeyBinder.FlightShowHide))
-                {
-                    this.Hidden = !this.Hidden;
-                }
+                
+                if (Input.GetKeyDown(KeyBinder.FlightShowHide)) this.Hidden = !this.Hidden;
+                if (Input.GetKeyDown(KeyBinder.HudGroup1ShowHide)) ToggleHudGroup(1);
+                if (Input.GetKeyDown(KeyBinder.HudGroup2ShowHide)) ToggleHudGroup(2);
+                if (Input.GetKeyDown(KeyBinder.HudGroup3ShowHide)) ToggleHudGroup(3);
+                if (Input.GetKeyDown(KeyBinder.HudGroup4ShowHide)) ToggleHudGroup(4);
             }
             catch (Exception ex)
             {
@@ -373,6 +375,23 @@ namespace KerbalEngineer.Flight
                 {
                     section.Draw();
                 }
+            }
+        }
+
+        private void ToggleHudGroup(int group) {
+            bool groupVisible = IsHudGroupVisible(group, SectionLibrary.StockSections) || IsHudGroupVisible(group, SectionLibrary.CustomSections);
+            SetHudGroupVisibility(group, SectionLibrary.StockSections, !groupVisible);
+            SetHudGroupVisibility(group, SectionLibrary.CustomSections, !groupVisible);
+        }
+        private bool IsHudGroupVisible(int group, IEnumerable<SectionModule> modules) {
+            foreach (SectionModule section in modules) {
+                if (section.HudGroup == group && section.IsHud && section.IsHudVisible) return true;
+            }
+            return false;
+        }
+        private void SetHudGroupVisibility(int group, IEnumerable<SectionModule> modules, bool visible) {
+            foreach (SectionModule section in modules) {
+                if (section.HudGroup == group) section.IsHudVisible = visible;
             }
         }
 
