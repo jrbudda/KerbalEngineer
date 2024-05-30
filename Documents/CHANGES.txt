@@ -1,3 +1,9 @@
+1.1.9.3, 2024-5-30, KSP 1.12.5
+ - Added hotkeys for toggling visibility of groups of HUD sections. Edit <install location>/GameData/KerbalEngineer/Settings/SectionLibrary.xml to change which HudGroup each section is in.
+ - Added glideslope readout
+ - LF:Ox ratio readout now displays how much excess LF you have
+ - Fixed pitch/yaw/roll rate readouts not taking delta-time into account and not using the decimal-place override
+ 
 1.1.9.2, 2024-5-23, KSP 1.12.5
  - Fixed editor backgrounds disappearing after leaving and re-entering editor mode, editor resources window staying visible during the loading screen, and editor part overlay not resizing
  - Editor overlay keyprompt now shows MouseMiddle instead of Mouse2
