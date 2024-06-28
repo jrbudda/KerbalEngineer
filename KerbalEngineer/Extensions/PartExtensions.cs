@@ -684,8 +684,8 @@ namespace KerbalEngineer.Extensions
                     return;
                 }
 
-                MaximumThrust = engine.maxThrust * (engine.thrustPercentage * 0.01);
-                MinimumThrust = engine.minThrust;
+                MaximumThrust = engine.MaxThrustOutputVac();
+                MinimumThrust = engine.MaxThrustOutputAtm();
                 Propellants = engine.propellants;
             }
         }
