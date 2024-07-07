@@ -1,7 +1,8 @@
 1.1.9.4, 2024-7-7, KSP 1.12.5 #3190 (jrbudda)
  - Add Cargo info to chip and tape part
  - Add french translatino of chip and tape descriptions (thanks don-vip)
- - Fix units on the other gravity readout
+ - Fix units on the other gravity readout (4 years later)
+ - Minor tweaks to J2583's excellent contributions.
  
 1.1.9.3, 2024-5-30, KSP 1.12.5 (J2583)
  - Added hotkeys for toggling visibility of groups of HUD sections. Edit <install location>/GameData/KerbalEngineer/Settings/SectionLibrary.xml to change which HudGroup each section is in.
@@ -15,6 +16,7 @@
 
 1.1.9.1, 2024-5-22, KSP 1.12.5 (J2583)
  - More-adjustable UI: section width and background color; readout character limit, decimal places, and short/no name
+  - Note that not all readouts have adjustable decimals.
  - More readouts: Angle-of-attack/sideslip/displacement, bearing and distance to targets and waypoints, electric charge, LF:Ox ratio
  - Fixed windows staying visible during scene changes
 
