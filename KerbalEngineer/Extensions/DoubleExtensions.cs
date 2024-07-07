@@ -29,67 +29,67 @@ namespace KerbalEngineer.Extensions
             return double.IsNaN(value) == false && double.IsInfinity(value) == false;
         }
 
-        public static string ToAcceleration(this double value)
+        public static string ToAcceleration(this double value, int decimals = -9000)
         {
-            return Units.ToAcceleration(value);
+            return Units.ToAcceleration(value, decimals);
         }
 
-        public static string ToAngle(this double value)
+        public static string ToAngle(this double value, int decimals = -9000)
         {
-            return Units.ToAngle(value);
+            return Units.ToAngle(value, decimals);
         }
 
-        public static string ToDistance(this double value)
+        public static string ToDistance(this double value, int decimals = -9000)
         {
-            return Units.ToDistance(value);
+            return Units.ToDistance(value, decimals);
         }
 
-        public static string ToFlux(this double value)
+        public static string ToFlux(this double value, int decimals = -9000)
         {
             return Units.ToFlux(value);
         }
 
-        public static string ToForce(this double value)
+        public static string ToForce(this double value, int decimals = -9000)
         {
             return Units.ToForce(value);
         }
 
-        public static string ToMach(this double value)
+        public static string ToMach(this double value, int decimals = -9000)
         {
             return Units.ToMach(value);
         }
 
-        public static string ToMass(this double value)
+        public static string ToMass(this double value, int decimals = -9000)
         {
-            return Units.ToMass(value);
+            return Units.ToMass(value, decimals);
         }
 
-        public static string ToPercent(this double value)
+        public static string ToPercent(this double value, int decimals = -9000)
         {
-            return Units.ToPercent(value);
+            return Units.ToPercent(value, decimals);
         }
 
-        public static string ToPressure(this double value)
+        public static string ToPressure(this double value, int decimals = -9000)
         {
             return Units.ToPressure(value);
         }
 
-        public static string ToRate(this double value)
+        public static string ToRate(this double value, int decimals = -9000)
         {
-            return Units.ToRate(value);
+            return Units.ToRate(value, decimals);
         }
 
-        public static string ToSpeed(this double value)
+        public static string ToSpeed(this double value, int decimals = -9000)
         {
-            return Units.ToSpeed(value);
+            return Units.ToSpeed(value, decimals);
         }
 
-        public static string ToTemperature(this double value)
+        public static string ToTemperature(this double value, int decimals = -9000)
         {
             return Units.ToTemperature(value);
         }
 
-        public static string ToTorque(this double value)
+        public static string ToTorque(this double value, int decimals = -9000)
         {
             return Units.ToTorque(value);
         }

@@ -112,6 +112,36 @@ namespace KerbalEngineer.KeyBinding
                 Save();
             }
         }
+        
+        public static KeyCode HudGroup1ShowHide {
+            get { return Bindings.HudGroup1ShowHide; }
+            set {
+                Bindings.HudGroup1ShowHide = value;
+                Save();
+            }
+        }
+        public static KeyCode HudGroup2ShowHide {
+            get { return Bindings.HudGroup2ShowHide; }
+            set
+            {
+                Bindings.HudGroup2ShowHide = value;
+                Save();
+            }
+        }
+        public static KeyCode HudGroup3ShowHide {
+            get { return Bindings.HudGroup3ShowHide; }
+            set {
+                Bindings.HudGroup3ShowHide = value;
+                Save();
+            }
+        }
+        public static KeyCode HudGroup4ShowHide {
+            get { return Bindings.HudGroup4ShowHide; }
+            set {
+                Bindings.HudGroup4ShowHide = value;
+                Save();
+            }
+        }
 
         /// <summary>
         ///     Gets and sets the input lock state.
@@ -241,6 +271,10 @@ namespace KerbalEngineer.KeyBinding
             RenderKeyBind("Editor Show/Hide", EditorShowHide, binding => EditorShowHide = binding);
             RenderKeyBind("Flight Show/Hide", FlightShowHide, binding => FlightShowHide = binding);
             RenderKeyBind("Part Info Show/Hide", PartInfoShowHide, binding => PartInfoShowHide = binding);
+            RenderKeyBind("HUD Group 1 Show/Hide", HudGroup1ShowHide, binding => HudGroup1ShowHide = binding);
+            RenderKeyBind("HUD Group 2 Show/Hide", HudGroup2ShowHide, binding => HudGroup2ShowHide = binding);
+            RenderKeyBind("HUD Group 3 Show/Hide", HudGroup3ShowHide, binding => HudGroup3ShowHide = binding);
+            RenderKeyBind("HUD Group 4 Show/Hide", HudGroup4ShowHide, binding => HudGroup4ShowHide = binding);
             GUILayout.EndVertical();
 
             if (GUILayout.Button("Close", HighLogic.Skin.button))

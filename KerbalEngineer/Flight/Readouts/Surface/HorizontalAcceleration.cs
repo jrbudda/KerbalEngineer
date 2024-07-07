@@ -40,6 +40,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
         public HorizontalAcceleration()
         {
             this.Name = "Horizontal Acceleration";
+            this.ShortName = "HAccel";
             this.Category = ReadoutCategory.GetCategory("Surface");
             this.HelpString = "Shows the vessel's horizontal acceleration across a celestial body's surface.";
             this.IsDefault = false;
@@ -51,7 +52,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
 
         public override void Draw(Unity.Flight.ISectionModule section)
         {
-            this.DrawLine(this.acceleration.ToAcceleration(), section.IsHud);
+            this.DrawLine(this.acceleration.ToAcceleration(section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
         }
 
         public override void FixedUpdate()

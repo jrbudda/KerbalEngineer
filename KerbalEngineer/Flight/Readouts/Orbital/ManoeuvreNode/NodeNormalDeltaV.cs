@@ -51,7 +51,7 @@ namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
                 return;
             }
 
-            this.DrawLine("Node DeltaV (Normal)", ManoeuvreProcessor.NormalDeltaV.ToSpeed(), section.IsHud);
+            this.DrawLine("Node DeltaV (Normal)", ManoeuvreProcessor.NormalDeltaV.ToSpeed(), section);
         }
 
         public override void Reset()

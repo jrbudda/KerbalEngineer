@@ -389,7 +389,7 @@ namespace KerbalEngineer.VesselSimulator {
                     }
                 }
 
-                stage.thrustOffsetAngle = Math.Asin(sinThrustOffsetAngle) * 180 / Math.PI;
+                stage.thrustOffsetAngle = Math.Asin(sinThrustOffsetAngle) * Units.RAD_TO_DEG;
 
                 // Calculate the total cost of the vessel at this point
                 stage.totalCost = 0d;

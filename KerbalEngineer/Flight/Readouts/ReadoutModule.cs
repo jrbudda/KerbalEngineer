@@ -31,7 +31,7 @@ namespace KerbalEngineer.Flight.Readouts {
     using Extensions;
     using Unity.Flight;
 
-    public abstract class ReadoutModule {
+    public abstract class ReadoutModule : ReadoutModuleConfigNode {
         #region Fields
 
         private int lineCountEnd;
@@ -50,10 +50,9 @@ namespace KerbalEngineer.Flight.Readouts {
 
         #region Properties
 
+        public string Name { get; set; }
+        public string ShortName { get; set; }
 
-        /// <summary>
-        ///     Gets ans sets the readout category.
-        /// </summary>
         public ReadoutCategory Category { get; set; }
 
         /// <summary>
@@ -65,7 +64,7 @@ namespace KerbalEngineer.Flight.Readouts {
         ///     Gets the width of the content. (Sum of NameStyle + ValueStyle widths.)
         /// </summary>
         public float ContentWidth {
-            get { return 230.0f * GuiDisplaySize.Offset; }
+            get { return OOPSux.DEFAULT_SECTION_WIDTH * GuiDisplaySize.Offset; }
         }
 
         /// <summary>
@@ -77,7 +76,7 @@ namespace KerbalEngineer.Flight.Readouts {
         ///     Gets and sets the help string which is shown in the editor.
         /// </summary>
         public string HelpString { get; set; }
-
+        
         /// <summary>
         ///     Gets and sets whether the readout should be shown on new installs.
         /// </summary>
@@ -87,12 +86,7 @@ namespace KerbalEngineer.Flight.Readouts {
         ///     Gets the number of drawn lines.
         /// </summary>
         public int LineCount { get; private set; }
-
-        /// <summary>
-        ///     Gets and sets the readout name.
-        /// </summary>
-        public string Name { get; set; }
-
+        
         /// <summary>
         ///     Gets and sets whether the readout has requested a section resize.
         /// </summary>
@@ -108,11 +102,16 @@ namespace KerbalEngineer.Flight.Readouts {
         ///     Gets and sets the text field style.
         /// </summary>
         public GUIStyle TextFieldStyle { get; set; }
-
+        
         /// <summary>
         ///     Gets and sets the value style.
         /// </summary>
         public GUIStyle ValueStyle { get; set; }
+
+        /// <summary>
+        ///     Gets and sets the HUD value style.
+        /// </summary>
+        public GUIStyle HudValueStyle { get; set; }
 
         /// <summary>
         ///     Gets and sets the name style.
@@ -174,45 +173,46 @@ namespace KerbalEngineer.Flight.Readouts {
 
         #region Methods: protected
 
-        protected void DrawLine(string value, bool compact) {
-            GUILayout.BeginHorizontal(GUILayout.Width(this.ContentWidth));
-
-            if (!compact) {
-                GUILayout.Label(this.Name, NameStyle);
+        protected void DrawLine(string value, Unity.Flight.ISectionModule section) {
+            if (!section.IsHud) {
+                GUILayout.BeginHorizontal(GUILayout.Width(section.Width * GuiDisplaySize.Offset));
+                if (!this.HideName) GUILayout.Label((this.UseShortName && !string.IsNullOrEmpty(this.ShortName)) ? this.ShortName : this.Name, NameStyle);
                 GUILayout.FlexibleSpace();
-                GUILayout.Label(value.ToLength(20), ValueStyle);
+                GUILayout.Label(value.ToLength(CharacterLimit), ValueStyle);
             } else {
-                GUILayout.Label(this.Name, NameStyle, GUILayout.Height(NameStyle.fontSize * 1.2f));
+                GUILayout.BeginHorizontal(GUILayout.Width(section.HudWidth * GuiDisplaySize.Offset));
+                if (!this.HudHideName && !section.HideHudReadoutNames) GUILayout.Label((this.HudUseShortName && !string.IsNullOrEmpty(this.ShortName)) ? this.ShortName : this.Name, NameStyle, GUILayout.Height(NameStyle.fontSize * 1.2f));
                 GUILayout.FlexibleSpace();
-                GUILayout.Label(value.ToLength(20), ValueStyle, GUILayout.Height(ValueStyle.fontSize * 1.2f));
+                GUILayout.Label(value.ToLength(HudCharacterLimit), HudValueStyle, GUILayout.Height(HudValueStyle.fontSize * 1.2f));
             }
             GUILayout.EndHorizontal();
 
             this.lineCountEnd++;
         }
 
-        protected void DrawLine(string name, string value, bool compact = false) {
-            GUILayout.BeginHorizontal(GUILayout.Width(this.ContentWidth));
-            if (!compact) {
-                GUILayout.Label(name, NameStyle);
+        protected void DrawLine(string name, string value, Unity.Flight.ISectionModule section) {
+            if (!section.IsHud) {
+                GUILayout.BeginHorizontal(GUILayout.Width(section.Width * GuiDisplaySize.Offset));
+                if (!this.HideName) GUILayout.Label(name, NameStyle);
                 GUILayout.FlexibleSpace();
-                GUILayout.Label(value.ToLength(20), ValueStyle);
+                GUILayout.Label(value.ToLength(CharacterLimit), ValueStyle);
             } else {
-                GUILayout.Label(name, NameStyle, GUILayout.Height(NameStyle.fontSize * 1.2f));
+                GUILayout.BeginHorizontal(GUILayout.Width(section.HudWidth * GuiDisplaySize.Offset));
+                if (!this.HudHideName && !section.HideHudReadoutNames) GUILayout.Label(name, NameStyle, GUILayout.Height(NameStyle.fontSize * 1.2f));
                 GUILayout.FlexibleSpace();
-                GUILayout.Label(value.ToLength(20), ValueStyle, GUILayout.Height(ValueStyle.fontSize * 1.2f));
+                GUILayout.Label(value.ToLength(HudCharacterLimit), HudValueStyle, GUILayout.Height(HudValueStyle.fontSize * 1.2f));
             }
             GUILayout.EndHorizontal();
             this.lineCountEnd++;
         }
 
-        protected void DrawLine(Action drawAction, bool showName = true, bool compact = false) {
-            GUILayout.BeginHorizontal(GUILayout.Width(this.ContentWidth));
-            if (showName) {
-                if (!compact) {
-                    GUILayout.Label(this.Name, NameStyle);
+        protected void DrawLine(Action drawAction, Unity.Flight.ISectionModule section, bool showName = true) {
+            GUILayout.BeginHorizontal(GUILayout.Width((section.IsHud ? section.HudWidth : section.Width) * GuiDisplaySize.Offset));
+            if (showName && !(section.IsHud ? this.HudHideName : this.HideName) && !section.HideHudReadoutNames) {
+                if (!section.IsHud) {
+                    GUILayout.Label((this.UseShortName && !string.IsNullOrEmpty(this.ShortName)) ? this.ShortName : this.Name, NameStyle);
                 } else {
-                    GUILayout.Label(this.Name, NameStyle, GUILayout.Height(NameStyle.fontSize * 1.2f));
+                    GUILayout.Label((this.HudUseShortName && !string.IsNullOrEmpty(this.ShortName)) ? this.ShortName : this.Name, NameStyle, GUILayout.Height(NameStyle.fontSize * 1.2f));
                 }
                 GUILayout.FlexibleSpace();
             }
@@ -221,8 +221,8 @@ namespace KerbalEngineer.Flight.Readouts {
             this.lineCountEnd++;
         }
 
-        protected void DrawMessageLine(string value, bool compact = false) {
-            GUILayout.BeginHorizontal(GUILayout.Width(this.ContentWidth));
+        protected void DrawMessageLine(string value, float width, bool compact = false) {
+            GUILayout.BeginHorizontal(GUILayout.Width(width * GuiDisplaySize.Offset));
             if (!compact) {
                 GUILayout.Label(value, MessageStyle);
             } else {
@@ -232,6 +232,8 @@ namespace KerbalEngineer.Flight.Readouts {
             this.lineCountEnd++;
         }
 
+        public bool UsingShortName(Unity.Flight.ISectionModule section) { return  !string.IsNullOrEmpty(ShortName) && (section.IsHud ? HudUseShortName : UseShortName); }
+
         #endregion
 
         #region Methods: private
@@ -240,13 +242,9 @@ namespace KerbalEngineer.Flight.Readouts {
         ///     Initialises all the styles required for this object.
         /// </summary>
         private void InitialiseStyles(bool force) {
-
             if (NameStyle != null && !force) return;
 
             ReadoutModule existing = ReadoutLibrary.GetReadout(this.Name);
-            Color c = HighLogic.Skin.label.normal.textColor;
-            if (existing != null)
-                c = existing.ValueStyle.normal.textColor;
 
             NameStyle = new GUIStyle(HighLogic.Skin.label) {
                 normal =
@@ -269,6 +267,10 @@ namespace KerbalEngineer.Flight.Readouts {
                 fontStyle = FontStyle.Normal,
                 fixedHeight = 20.0f * GuiDisplaySize.Offset,
             };
+            HudValueStyle = new GUIStyle(ValueStyle);
+            this.ValueStyle.normal.textColor = existing == null ? HighLogic.Skin.label.normal.textColor : existing.ValueStyle.normal.textColor;
+            this.HudValueStyle.normal.textColor = existing == null ? HighLogic.Skin.label.normal.textColor : existing.HudValueStyle.normal.textColor;
+            
 
             MessageStyle = new GUIStyle(HighLogic.Skin.label) {
                 normal =
@@ -314,11 +316,6 @@ namespace KerbalEngineer.Flight.Readouts {
                 fontSize = (int)(11 * GuiDisplaySize.Offset),
                 fixedHeight = 18.0f * GuiDisplaySize.Offset
             };
-
-
-           this.ValueStyle.normal.textColor = c;
-  
-
         }
 
         private void OnSizeChanged() {

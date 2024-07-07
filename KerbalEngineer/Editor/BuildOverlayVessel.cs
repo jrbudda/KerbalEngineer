@@ -49,7 +49,7 @@ namespace KerbalEngineer.Editor
 
         private Stage lastStage;
         private bool open = true;
-        private float openPercent;
+        private float openPercent = 0.0f;
         private GUIContent tabContent;
         private Rect tabPosition;
         private Vector2 tabSize;

@@ -34,13 +34,16 @@ namespace KerbalEngineer.UIControls
         #region Fields
 
         private Rect button;
-        private Rect position;
+        private Rect position = new Rect(-9000.0f, -9000.0f, 0, 0);
+        private int windowId;
+        private bool hasWindowId = false;
 
         #endregion
 
         #region Properties
 
-        public bool Resize { get; set; }
+        public int ResizeCounter { get; set; }
+        public int Depth { get; set; } = -10000;
 
         public Callback DrawCallback { get; set; }
         public Callback ClosedCallback { get; set; }
@@ -53,6 +56,22 @@ namespace KerbalEngineer.UIControls
 
         #endregion
 
+        public void Open() {
+            if (this.enabled && hasWindowId) GUI.BringWindowToFront(windowId);
+            this.enabled = true;
+        }
+
+        public void Close() {
+            OnClose();
+            this.enabled = false;
+            this.ClosedCallback?.Invoke();
+            position = new Rect(-9000.0f, -9000.0f, 0, 0); //There's a 1-frame delay before we're repositioned the next time we're opened, this keeps it off-screen for that frame
+        }
+
+        protected virtual void OnClose() { }
+
+        protected virtual bool AllowClose() { return true; }
+
         #region Initialisation
 
         private void Awake()
@@ -60,7 +79,7 @@ namespace KerbalEngineer.UIControls
             try
             {
                 this.enabled = false;
-                this.Resize = true;
+                this.ResizeCounter = 1;
             }
             catch (Exception ex)
             {
@@ -113,16 +132,13 @@ namespace KerbalEngineer.UIControls
 
         private void Update()
         {
-            try
-            {
-                if ((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2)) && !this.position.MouseIsOver() && !this.button.MouseIsOver())
+            try {
+                if ((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2)) &&
+                    !this.position.MouseIsOver() && !this.button.MouseIsOver() && this.enabled && this.AllowClose())
                 {
-                    this.enabled = false;
-                    this.ClosedCallback.Invoke();
+                    Close();
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 MyLogger.Exception(ex);
             }
         }
@@ -133,32 +149,27 @@ namespace KerbalEngineer.UIControls
 
         private void OnGUI()
         {
-            try
-            {
-                if (this.Resize)
-                {
+            try {
+                if (this.ResizeCounter > 0) {
                     this.position.height = 0;
-                    this.Resize = false;
+                    this.ResizeCounter--;
                 }
 
                 GUI.skin = null;
                 this.position = GUILayout.Window(this.GetInstanceID(), this.position, this.Window, string.Empty, this.windowStyle);
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 MyLogger.Exception(ex);
             }
         }
 
-        private void Window(int windowId)
+        private void Window(int _windowId)
         {
-            try
-            {
-                GUI.BringWindowToFront(windowId);
-                this.DrawCallback.Invoke();
-            }
-            catch (Exception ex)
-            {
+            try {
+                windowId = _windowId;
+                hasWindowId = true;
+                GUI.depth = Depth;
+                if (this.DrawCallback != null) this.DrawCallback.Invoke();
+            } catch (Exception ex) {
                 MyLogger.Exception(ex);
             }
         }
@@ -169,15 +180,12 @@ namespace KerbalEngineer.UIControls
 
         public void SetPosition(Rect button, Rect size)
         {
-            try
-            {
+            try {
                 this.position.x = button.x;
                 this.position.y = button.y + button.height;
                 this.position.width = size.width;
                 this.button = button;
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 MyLogger.Exception(ex);
             }
         }

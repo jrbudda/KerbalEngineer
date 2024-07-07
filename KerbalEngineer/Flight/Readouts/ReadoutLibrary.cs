@@ -119,6 +119,8 @@ namespace KerbalEngineer.Flight.Readouts {
                 readouts.Add(new ImpactMarker());
                 readouts.Add(new ImpactAltitude());
                 readouts.Add(new ImpactBiome());
+                readouts.Add(new SurfaceDistanceToWaypoint());
+                readouts.Add(new BearingToWaypoint());
 
                 // Vessel
                 readouts.Add(new Name());
@@ -140,12 +142,18 @@ namespace KerbalEngineer.Flight.Readouts {
                 readouts.Add(new SuicideBurnDeltaV());
                 readouts.Add(new SuicideBurnCountdown());
                 readouts.Add(new SuicideBurnLength());
+                readouts.Add(new ElectricCharge());
+                readouts.Add(new LfOxRatio());
                 readouts.Add(new IntakeAirUsage());
                 readouts.Add(new IntakeAirDemand());
                 readouts.Add(new IntakeAirSupply());
                 readouts.Add(new IntakeAirDemandSupply());
                 readouts.Add(new PartCount());
                 readouts.Add(new Throttle());
+                readouts.Add(new Glideslope());
+                readouts.Add(new AngleOfAttack());
+                readouts.Add(new AngleOfSideslip());
+                readouts.Add(new AngleOfDisplacement());
                 readouts.Add(new Heading());
                 readouts.Add(new Pitch());
                 readouts.Add(new Roll());
@@ -183,6 +191,8 @@ namespace KerbalEngineer.Flight.Readouts {
                 readouts.Add(new Rendezvous.SpeedAtClosestApproach());
                 readouts.Add(new TargetLatitude());
                 readouts.Add(new TargetLongitude());
+                readouts.Add(new SurfaceDistanceToTarget());
+                readouts.Add(new BearingToTarget());
 
                 // Thermal
                 readouts.Add(new InternalFlux());
@@ -292,11 +302,32 @@ namespace KerbalEngineer.Flight.Readouts {
             try {
                 SettingHandler handler = SettingHandler.Load("ReadoutsConfig.xml", new Type[] { typeof(ReadoutModuleConfigNode)});
                 foreach (ReadoutModule readout in readouts) {
-                    ReadoutModuleConfigNode r = handler.Get<ReadoutModuleConfigNode>(readout.Name, null);
-                    if (r != null) {
-                        readout.ValueStyle.normal.textColor = r.Color;
+                    ReadoutModuleConfigNode readoutNode = handler.Get<ReadoutModuleConfigNode>(readout.Name, null);
+                    if (readoutNode != null) {
+                        readout.CopyFrom(readoutNode);
+                        readout.ValueStyle.normal.textColor = readoutNode.TextColor;
+                        readout.HudValueStyle.normal.textColor = readoutNode.HudTextColor;
                     }
                 }
+
+                handler.Save("ReadoutsConfig.xml");
+            } catch (Exception ex) {
+                MyLogger.Exception(ex);
+            }
+        }
+        
+        public static void SaveReadoutConfig(ReadoutModule readout) {
+            try {
+                SettingHandler handler = SettingHandler.Load("ReadoutsConfig.xml", new Type[] { typeof(ReadoutModuleConfigNode)});
+                var readoutNode = handler.Get<ReadoutModuleConfigNode>(readout.Name, null);
+                if (readoutNode == null) readoutNode = new ReadoutModuleConfigNode();
+
+                readoutNode.CopyFrom(readout);
+                readoutNode.TextColor = readout.ValueStyle.normal.textColor;
+                readoutNode.HudTextColor = readout.HudValueStyle.normal.textColor;
+
+                handler.Set(readout.Name, readoutNode);
+
                 handler.Save("ReadoutsConfig.xml");
             } catch (Exception ex) {
                 MyLogger.Exception(ex);
@@ -319,26 +350,5 @@ namespace KerbalEngineer.Flight.Readouts {
                 MyLogger.Exception(ex);
             }
         }
-
-
-        public static void SaveReadoutConfig(ReadoutModule readout) {
-            try {
-                SettingHandler handler = SettingHandler.Load("ReadoutsConfig.xml", new Type[] { typeof(ReadoutModuleConfigNode)});
-                var r = handler.Get<ReadoutModuleConfigNode>(readout.Name, null);
-
-                if (r == null) {
-                    r = new ReadoutModuleConfigNode();
-                }
-
-                r.Name = readout.Name;
-                r.Color = readout.ValueStyle.normal.textColor;
-
-                handler.Set(r.Name, r);
-                handler.Save("ReadoutsConfig.xml");
-            } catch (Exception ex) {
-                MyLogger.Exception(ex);
-            }
-        }
-
     }
 }

@@ -34,6 +34,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
         public HorizontalSpeed()
         {
             this.Name = "Horizontal Speed";
+            this.ShortName = "HSpeed";
             this.Category = ReadoutCategory.GetCategory("Surface");
             this.HelpString = "Shows the vessel's horizontal speed across a celestial body's surface.";
             this.IsDefault = true;
@@ -45,12 +46,12 @@ namespace KerbalEngineer.Flight.Readouts.Surface
 
         public override void Draw(Unity.Flight.ISectionModule section)
         {
-            this.DrawLine(FlightGlobals.ActiveVessel.horizontalSrfSpeed.ToSpeed(), section.IsHud);
+            this.DrawLine(FlightGlobals.ActiveVessel.horizontalSrfSpeed.ToSpeed(section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
 
             // This workaround was used for KSP 1.0.3 and 1.0.4 where horizontalSrfSpeed was really badly broken
             //var ves = FlightGlobals.ActiveVessel;
             //double horizSpeed = Math.Sqrt(ves.srfSpeed * ves.srfSpeed - ves.verticalSpeed * ves.verticalSpeed);
-            //this.DrawLine(horizSpeed.ToSpeed(), section.IsHud);
+            //this.DrawLine(horizSpeed.ToSpeed(section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
         }
 
         #endregion

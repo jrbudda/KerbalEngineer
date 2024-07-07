@@ -51,7 +51,7 @@ namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
                 return;
             }
 
-            this.DrawLine("Node Burn Time (½)", TimeFormatter.ConvertToString(ManoeuvreProcessor.HalfBurnTime), section.IsHud);
+            this.DrawLine("Node Burn Time (½)", TimeFormatter.ConvertToString(ManoeuvreProcessor.HalfBurnTime), section);
         }
 
         public override void Reset()

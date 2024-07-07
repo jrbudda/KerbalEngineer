@@ -81,7 +81,7 @@ namespace KerbalEngineer.Editor
         {
             get
             {
-                return (nameStyle !=null && !hasChanged) ? nameStyle : (nameStyle = new GUIStyle
+                return (nameStyle != null && !hasChanged) ? nameStyle : (nameStyle = new GUIStyle
                 {
                     normal =
                     {
@@ -105,7 +105,7 @@ namespace KerbalEngineer.Editor
         {
             get
             {
-                return (tabStyle !=null & !hasChanged) ? tabStyle : (tabStyle = new GUIStyle
+                return (tabStyle != null && !hasChanged) ? tabStyle : (tabStyle = new GUIStyle
                 {
                     normal =
                     {
@@ -154,17 +154,20 @@ namespace KerbalEngineer.Editor
             }
         }
 
-        private static bool hasChanged;
+        private static bool hasChanged = false, resetHasChanged = false;
 
         protected void OnGUI() {
-           // hasChanged = false;
+            if (hasChanged && Event.current.type == EventType.Repaint) {
+                if (resetHasChanged) hasChanged = resetHasChanged = false;
+                else resetHasChanged = true;
+            }
         }
 
         public static GUIStyle ValueStyle
         {
             get
             {
-                return (valueStyle !=null && !hasChanged) ? valueStyle : (valueStyle = new GUIStyle
+                return (valueStyle != null && !hasChanged) ? valueStyle : (valueStyle = new GUIStyle
                 {
                     normal =
                     {
@@ -188,7 +191,7 @@ namespace KerbalEngineer.Editor
         {
             get
             {
-                return windowStyle ?? (windowStyle = new GUIStyle
+                return (windowStyle != null && !hasChanged) ? windowStyle : (windowStyle = new GUIStyle
                 {
                     normal =
                     {
@@ -237,6 +240,7 @@ namespace KerbalEngineer.Editor
                     return;
                 }
                 instance = this;
+                tabStyle = windowStyle = null; //The background textures need to be reinitialized each scene change
                 buildOverlayPartInfo = this.gameObject.AddComponent<BuildOverlayPartInfo>();
                 buildOverlayVessel = this.gameObject.AddComponent<BuildOverlayVessel>();
                 buildOverlayResources = this.gameObject.AddComponent<BuildOverlayResources>();

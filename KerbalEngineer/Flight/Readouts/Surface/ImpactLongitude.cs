@@ -47,7 +47,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
         {
             if (ImpactProcessor.ShowDetails)
             {
-                this.DrawLine(Units.ToAngleDMS(ImpactProcessor.Longitude) + (ImpactProcessor.Longitude < 0.0 ? " W" : " E"), section.IsHud);
+                this.DrawLine(Units.ToAngleDMS(ImpactProcessor.Longitude) + (ImpactProcessor.Longitude < 0.0 ? " W" : " E"), section);
             }
         }
 

@@ -46,7 +46,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
         {
             if (ImpactProcessor.ShowDetails)
             {
-                this.DrawLine(ImpactProcessor.Altitude.ToDistance(), section.IsHud);
+                this.DrawLine(ImpactProcessor.Altitude.ToDistance(section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
             }
         }
 

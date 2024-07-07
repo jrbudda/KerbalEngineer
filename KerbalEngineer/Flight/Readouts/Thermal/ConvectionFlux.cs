@@ -36,7 +36,7 @@ namespace KerbalEngineer.Flight.Readouts.Thermal
         {
             if (ThermalProcessor.ShowDetails && FlightGlobals.ActiveVessel.atmDensity > 0.0)
             {
-                DrawLine(ThermalProcessor.ConvectionFlux.ToFlux(), section.IsHud);
+                DrawLine(ThermalProcessor.ConvectionFlux.ToFlux(section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
             }
         }
 

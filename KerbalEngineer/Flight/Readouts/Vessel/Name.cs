@@ -46,7 +46,7 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
         {
             if (SimulationProcessor.ShowDetails)
             {
-                DrawLine(FlightGlobals.ActiveVessel.vesselName, section.IsHud);
+                DrawLine(FlightGlobals.ActiveVessel.vesselName, section);
             }
         }
 

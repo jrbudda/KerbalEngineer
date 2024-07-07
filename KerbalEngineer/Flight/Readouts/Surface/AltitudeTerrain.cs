@@ -27,6 +27,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
         public AltitudeTerrain()
         {
             Name = "Altitude (Terrain)";
+            ShortName = "Alt (T)";
             Category = ReadoutCategory.GetCategory("Surface");
             HelpString = "Shows the vessel's altitude above the terrain and water's surface, or altitude above underwater terrain whilst splashed down.";
             IsDefault = true;
@@ -38,11 +39,11 @@ namespace KerbalEngineer.Flight.Readouts.Surface
             || FlightGlobals.ActiveVessel.situation == Vessel.Situations.SPLASHED
             || FlightGlobals.ActiveVessel.situation == Vessel.Situations.LANDED)
             {
-                DrawLine((FlightGlobals.ship_altitude - FlightGlobals.ActiveVessel.terrainAltitude).ToDistance(), section.IsHud);
+                DrawLine((FlightGlobals.ship_altitude - FlightGlobals.ActiveVessel.terrainAltitude).ToDistance(section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
             }
             else
             {
-                DrawLine((FlightGlobals.ship_altitude).ToDistance(), section.IsHud);
+                DrawLine((FlightGlobals.ship_altitude).ToDistance(section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
             }
         }
     }

@@ -36,7 +36,7 @@ namespace KerbalEngineer.Flight.Readouts.Thermal
         {
             if (ThermalProcessor.ShowDetails)
             {
-                DrawLine(Units.ToTemperature(ThermalProcessor.HottestSkinTemperature, ThermalProcessor.HottestSkinTemperatureMax), section.IsHud);
+                DrawLine(Units.ToTemperature(ThermalProcessor.HottestSkinTemperature, ThermalProcessor.HottestSkinTemperatureMax), section);
             }
         }
 

@@ -18,6 +18,13 @@
 
 namespace KerbalEngineer.Unity.Flight
 {
+    using UnityEngine;
+
+    public struct OOPSux {
+        public const float DEFAULT_SECTION_WIDTH = 230.0f;
+        public static Color DEFAULT_HUD_BACKGROUND_COLOR = new Color(0.0f, 0.0f, 0.0f, 0.5f);
+    }
+
     public interface ISectionModule
     {
         bool IsDeleted { get; }
@@ -25,9 +32,19 @@ namespace KerbalEngineer.Unity.Flight
         bool IsEditorVisible { get; set; }
 
         bool IsVisible { get; set; }
+        bool IsHudVisible { get; set; }
 
         bool IsHud { get; set; }
+        
+        float Width { get; set; }
+        float HudWidth { get; set; }
+        
+        Color HudBackgroundColor { get; set; }
+        
+        bool HideHudReadoutNames { get; set; }
 
         string Name { get; }
+
+        int HudGroup { get; set; }
     }
 }

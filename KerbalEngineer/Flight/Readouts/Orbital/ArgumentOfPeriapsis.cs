@@ -46,7 +46,7 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
 
         public override void Draw(Unity.Flight.ISectionModule section)
         {
-            this.DrawLine(FlightGlobals.ship_orbit.argumentOfPeriapsis.ToAngle(), section.IsHud);
+            this.DrawLine(FlightGlobals.ship_orbit.argumentOfPeriapsis.ToAngle(section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
         }
 
         #endregion

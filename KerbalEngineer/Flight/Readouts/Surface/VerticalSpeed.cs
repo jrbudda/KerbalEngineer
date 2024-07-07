@@ -33,6 +33,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
         public VerticalSpeed()
         {
             this.Name = "Vertical Speed";
+            this.ShortName = "VSpeed";
             this.Category = ReadoutCategory.GetCategory("Surface");
             this.HelpString = "Shows the vessel's vertical speed up and down.";
             this.IsDefault = true;
@@ -44,7 +45,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
 
         public override void Draw(Unity.Flight.ISectionModule section)
         {
-            this.DrawLine(FlightGlobals.ship_verticalSpeed.ToSpeed(), section.IsHud);
+            this.DrawLine(FlightGlobals.ship_verticalSpeed.ToSpeed(section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
         }
 
         #endregion

@@ -32,6 +32,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
         public Situation()
         {
             this.Name = "Situation";
+            this.ShortName = "Sit";
             this.Category = ReadoutCategory.GetCategory("Surface");
             this.HelpString = "Shows the vessel's current scientific situation. (Landed, Splashed, Flying Low/High, In Space Low/High)";
             this.IsDefault = true;
@@ -46,27 +47,27 @@ namespace KerbalEngineer.Flight.Readouts.Surface
             switch (ScienceUtil.GetExperimentSituation(FlightGlobals.ActiveVessel))
             {
                 case ExperimentSituations.SrfLanded:
-                    this.DrawLine("Landed", section.IsHud);
+                    this.DrawLine("Landed", section);
                     break;
 
                 case ExperimentSituations.SrfSplashed:
-                    this.DrawLine("Splashed", section.IsHud);
+                    this.DrawLine("Splashed", section);
                     break;
 
                 case ExperimentSituations.FlyingLow:
-                    this.DrawLine("Flying Low", section.IsHud);
+                    this.DrawLine("Flying Low", section);
                     break;
 
                 case ExperimentSituations.FlyingHigh:
-                    this.DrawLine("Flying High", section.IsHud);
+                    this.DrawLine("Flying High", section);
                     break;
 
                 case ExperimentSituations.InSpaceLow:
-                    this.DrawLine("In Space Low", section.IsHud);
+                    this.DrawLine("In Space Low", section);
                     break;
 
                 case ExperimentSituations.InSpaceHigh:
-                    this.DrawLine("In Space High", section.IsHud);
+                    this.DrawLine("In Space High", section);
                     break;
             }
         }

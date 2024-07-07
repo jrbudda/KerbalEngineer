@@ -79,7 +79,7 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
         public override void Draw(Unity.Flight.ISectionModule section)
         {
-            this.DrawLine(this.demand.ToString("F4") + " / " + this.supply.ToString("F4"), section.IsHud);
+            this.DrawLine(this.demand.ToString("F4") + " / " + this.supply.ToString("F4"), section);
         }
 
         public override void Update()

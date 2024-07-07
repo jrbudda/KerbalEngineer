@@ -27,6 +27,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
         public MachNumber()
         {
             Name = "Mach Number";
+            ShortName = "Mach";
             Category = ReadoutCategory.GetCategory("Surface");
             HelpString = "Shows the vessel's mach number.";
             IsDefault = true;
@@ -36,7 +37,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
         {
             if (FlightGlobals.ActiveVessel.atmDensity > 0.0)
             {
-                DrawLine(FlightGlobals.ActiveVessel.mach.ToMach(), section.IsHud);
+                DrawLine(FlightGlobals.ActiveVessel.mach.ToMach(section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
             }
         }
     }

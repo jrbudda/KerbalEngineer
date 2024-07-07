@@ -60,7 +60,7 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
                 else
                     str = Math.Sqrt(speedsqr).ToSpeed();
             }
-            this.DrawLine(str, section.IsHud);
+            this.DrawLine(str, section);
         }
 
         #endregion

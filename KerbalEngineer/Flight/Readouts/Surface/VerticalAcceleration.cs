@@ -40,6 +40,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
         public VerticalAcceleration()
         {
             this.Name = "Vertical Acceleration";
+            this.ShortName = "VAccel";
             this.Category = ReadoutCategory.GetCategory("Surface");
             this.HelpString = "Shows the vessel's vertical acceleration up and down.";
             this.IsDefault = false;
@@ -51,7 +52,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
 
         public override void Draw(Unity.Flight.ISectionModule section)
         {
-            this.DrawLine(this.acceleration.ToAcceleration(), section.IsHud);
+            this.DrawLine(this.acceleration.ToAcceleration(section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
         }
 
         public override void FixedUpdate()

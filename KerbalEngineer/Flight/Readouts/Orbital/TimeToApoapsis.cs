@@ -33,6 +33,7 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
         public TimeToApoapsis()
         {
             this.Name = "Time to Apoapsis";
+            this.ShortName = "TtAp";
             this.Category = ReadoutCategory.GetCategory("Orbital");
             this.HelpString = "Shows the time until the vessel reaches apoapsis, the highest point of the orbit.";
             this.IsDefault = true;
@@ -44,7 +45,7 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
 
         public override void Draw(Unity.Flight.ISectionModule section)
         {
-            this.DrawLine(TimeFormatter.ConvertToString(FlightGlobals.ship_orbit.timeToAp), section.IsHud);
+            this.DrawLine(TimeFormatter.ConvertToString(FlightGlobals.ship_orbit.timeToAp), section);
         }
 
         #endregion

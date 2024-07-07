@@ -33,6 +33,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
         public AltitudeSeaLevel()
         {
             this.Name = "Altitude (Sea Level)";
+            this.ShortName = "Alt (S)";
             this.Category = ReadoutCategory.GetCategory("Surface");
             this.HelpString = "Shows the vessel's altitude above sea level.";
             this.IsDefault = false;
@@ -44,7 +45,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
 
         public override void Draw(Unity.Flight.ISectionModule section)
         {
-            this.DrawLine(FlightGlobals.ship_altitude.ToDistance(), section.IsHud);
+            this.DrawLine(FlightGlobals.ship_altitude.ToDistance(section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
         }
 
         #endregion

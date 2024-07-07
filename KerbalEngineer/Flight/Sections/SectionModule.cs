@@ -32,15 +32,17 @@ using UnityEngine;
 namespace KerbalEngineer.Flight.Sections {
     using Presets;
     using Unity.Flight;
+
     /// <summary>
     ///     Object for management and display of readout modules.
     /// </summary>
     public class SectionModule : ISectionModule {
         #region Fields
 
-        private SectionEditor editor;
-        private bool isHud;
-        private int numberOfReadouts;
+        protected SectionEditor editor;
+        protected bool isHud;
+        protected bool isVisible;
+        protected int numberOfReadouts;
 
         #endregion
 
@@ -53,7 +55,7 @@ namespace KerbalEngineer.Flight.Sections {
             this.FloatingPositionX = Screen.width * 0.5f - 125.0f;
             this.FloatingPositionY = 100.0f;
             this.EditorPositionX = Screen.width * 0.5f - SectionEditor.Width * 0.5f;
-            this.EditorPositionY = Screen.height * 0.5f - SectionEditor.Height * 0.5f;
+            this.EditorPositionY = Screen.height * 0.37f - SectionEditor.Height * 0.5f;
             this.ReadoutModules = new List<ReadoutModule>();
             this.InitialiseStyles();
             GuiDisplaySize.OnSizeChanged += this.OnSizeChanged;
@@ -104,7 +106,7 @@ namespace KerbalEngineer.Flight.Sections {
         /// <summary>
         ///     Gets and sets whether the section editor is visible.
         /// </summary>
-        public bool IsEditorVisible {
+        public virtual bool IsEditorVisible {
             get { return this.editor != null; }
             set {
                 if (value && this.editor == null) {
@@ -118,7 +120,7 @@ namespace KerbalEngineer.Flight.Sections {
         /// <summary>
         ///     Gets and sets whether the section is in a floating state.
         /// </summary>
-        public bool IsFloating {
+        public virtual bool IsFloating {
             get { return this.Window != null; }
             set {
                 if (value && this.Window == null) {
@@ -162,7 +164,19 @@ namespace KerbalEngineer.Flight.Sections {
         /// <summary>
         ///     Gets and sets the visibility of the section.
         /// </summary>
-        public bool IsVisible { get; set; }
+        public bool IsVisible {
+            get { return this.isVisible; }
+            set {
+                if (value && value != this.isVisible) this.IsHudVisible = true;
+                this.isVisible = value;
+            }
+        }
+        
+        /// <summary>
+        ///     Gets and sets the HUD visibility of the section, for use with the group-toggle hotkeys.
+        /// </summary>
+        [XmlIgnore]
+        public bool IsHudVisible { get; set; } = true;
 
         /// <summary>
         ///     Gets the number of drawn readout lines.
@@ -170,9 +184,31 @@ namespace KerbalEngineer.Flight.Sections {
         public int LineCount { get; set; }
 
         /// <summary>
+        ///     Gets and sets the width of the section. (Only used with serialisation.)
+        /// </summary>
+        public float Width { get; set; } = OOPSux.DEFAULT_SECTION_WIDTH;
+        public float HudWidth { get; set; } = OOPSux.DEFAULT_SECTION_WIDTH;
+        
+        public Color HudBackgroundColor { get; set; } = OOPSux.DEFAULT_HUD_BACKGROUND_COLOR;
+        public void SetHudBackgroundColor(Color newColor) {
+            HudBackgroundColor = newColor;
+            this.Window?.SetBackgroundTexture();
+        }
+        
+        /// <summary>
+        ///     Whether to display the names/labels in front of each readout in this section when in HUD mode. Can also be toggled per-readout-type in ReadoutModuleConfigNode.
+        /// </summary>
+        public bool HideHudReadoutNames { get; set; } = false;
+
+        /// <summary>
         ///     Gets and sets the name of the section.
         /// </summary>
         public string Name { get; set; }
+        
+        /// <summary>
+        ///     Which group of sections this is in, for toggling visibility of several HUD elements at once.
+        /// </summary>
+        public int HudGroup { get; set; } = 1;
 
         /// <summary>
         ///     Gets and sets the names of the installed readout modules. (Only used with serialisation.)

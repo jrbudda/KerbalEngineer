@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>KerbalEngineer</RootNamespace>
     <AssemblyName>KerbalEngineer</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -119,18 +119,21 @@
     <Compile Include="Flight\Readouts\Orbital\TrueAnomaly.cs" />
     <Compile Include="Flight\Readouts\Orbital\TimeToEquatorialAscendingNode.cs" />
     <Compile Include="Flight\Readouts\Orbital\TimeToEquatorialDescendingNode.cs" />
+    <Compile Include="Flight\Readouts\Rendezvous\BearingToTarget.cs" />
     <Compile Include="Flight\Readouts\Rendezvous\RelativeSpeed.cs" />
     <Compile Include="Flight\Readouts\Rendezvous\RelativeVelocity.cs" />
     <Compile Include="Flight\Readouts\Rendezvous\SemiMinorAxis.cs" />
     <Compile Include="Flight\Readouts\Rendezvous\SemiMajorAxis.cs" />
     <Compile Include="Flight\Readouts\Rendezvous\SeparationAtClosestApproach.cs" />
     <Compile Include="Flight\Readouts\Rendezvous\SpeedAtClosestApproach.cs" />
+    <Compile Include="Flight\Readouts\Rendezvous\SurfaceDistanceToTarget.cs" />
     <Compile Include="Flight\Readouts\Rendezvous\TargetLatitude.cs" />
     <Compile Include="Flight\Readouts\Rendezvous\TargetLongitude.cs" />
     <Compile Include="Flight\Readouts\Rendezvous\TimeTilClosestApproach.cs" />
     <Compile Include="Flight\Readouts\Rendezvous\TimeToRelativeDescendingNode.cs" />
     <Compile Include="Flight\Readouts\Rendezvous\TimeToRelativeAscendingNode.cs" />
     <Compile Include="Flight\Readouts\Rendezvous\TimeToTransferAngle.cs" />
+    <Compile Include="Flight\Readouts\Surface\BearingToWaypoint.cs" />
     <Compile Include="Flight\Readouts\Surface\DynamicPressure.cs" />
     <Compile Include="Flight\Readouts\Surface\AtmosphericPressure.cs" />
     <Compile Include="Flight\Readouts\Surface\ImpactMarker.cs" />
@@ -138,6 +141,8 @@
     <Compile Include="Flight\Readouts\Surface\Slope.cs" />
     <Compile Include="Flight\Readouts\Surface\Biome.cs" />
     <Compile Include="Flight\Readouts\Surface\HorizontalAcceleration.cs" />
+    <Compile Include="Flight\Readouts\Surface\SurfaceDistanceProcessor.cs" />
+    <Compile Include="Flight\Readouts\Surface\SurfaceDistanceToWaypoint.cs" />
     <Compile Include="Flight\Readouts\Surface\VerticalAcceleration.cs" />
     <Compile Include="Flight\Readouts\Surface\MachNumber.cs" />
     <Compile Include="Flight\Readouts\Thermal\CoolestSkinTemperature.cs" />
@@ -154,7 +159,13 @@
     <Compile Include="Flight\Readouts\Thermal\HottestTemperature.cs" />
     <Compile Include="Flight\Readouts\Thermal\HottestPart.cs" />
     <Compile Include="Flight\Readouts\Thermal\ThermalProcessor.cs" />
+    <Compile Include="Flight\Readouts\Vessel\AngleOfAttack.cs" />
+    <Compile Include="Flight\Readouts\Vessel\AngleOfDisplacement.cs" />
+    <Compile Include="Flight\Readouts\Vessel\AngleOfSideslip.cs" />
+    <Compile Include="Flight\Readouts\Vessel\ElectricCharge.cs" />
+    <Compile Include="Flight\Readouts\Vessel\Glideslope.cs" />
     <Compile Include="Flight\Readouts\Vessel\Gravity.cs" />
+    <Compile Include="Flight\Readouts\Vessel\LfOxRatio.cs" />
     <Compile Include="Flight\Readouts\Vessel\Name.cs" />
     <Compile Include="Flight\Readouts\Vessel\AttitudeProcessor.cs" />
     <Compile Include="Flight\Readouts\Vessel\DeltaVCurrentTotal.cs" />
@@ -280,6 +291,8 @@
     <Compile Include="Settings\SettingItem.cs" />
     <Compile Include="TapeDriveAnimator.cs" />
     <Compile Include="KeyBinding\KeyBindPopup.cs" />
+    <Compile Include="UIControls\PopOutReadoutSettings.cs" />
+    <Compile Include="UIControls\UIElements.cs" />
     <Compile Include="VesselSimulator\AttachNodeSim.cs" />
     <Compile Include="VesselSimulator\EngineSim.cs" />
     <Compile Include="Helpers\Pool.cs" />
@@ -292,7 +305,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
-      <HintPath>X:\Steam\steamapps\common\Kerbal Space Program\KSP_x64_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>$(KSP_DEV)\English\KSP_x64_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System">
@@ -304,43 +317,43 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>X:\Steam\steamapps\common\Kerbal Space Program\KSP_x64_Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>$(KSP_DEV)\English\KSP_x64_Data\Managed\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.AnimationModule">
-      <HintPath>X:\Steam\steamapps\common\Kerbal Space Program\KSP_x64_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+      <HintPath>$(KSP_DEV)\English\KSP_x64_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.AssetBundleModule">
-      <HintPath>X:\Steam\steamapps\common\Kerbal Space Program\KSP_x64_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
+      <HintPath>$(KSP_DEV)\English\KSP_x64_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>X:\Steam\steamapps\common\Kerbal Space Program\KSP_x64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>$(KSP_DEV)\English\KSP_x64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>X:\Steam\steamapps\common\Kerbal Space Program\KSP_x64_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      <HintPath>$(KSP_DEV)\English\KSP_x64_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
-      <HintPath>X:\Steam\steamapps\common\Kerbal Space Program\KSP_x64_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+      <HintPath>$(KSP_DEV)\English\KSP_x64_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>X:\Steam\steamapps\common\Kerbal Space Program\KSP_x64_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+      <HintPath>$(KSP_DEV)\English\KSP_x64_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.TextRenderingModule">
-      <HintPath>X:\Steam\steamapps\common\Kerbal Space Program\KSP_x64_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+      <HintPath>$(KSP_DEV)\English\KSP_x64_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>X:\Steam\steamapps\common\Kerbal Space Program\KSP_x64_Data\Managed\UnityEngine.UI.dll</HintPath>
+      <HintPath>$(KSP_DEV)\English\KSP_x64_Data\Managed\UnityEngine.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UIModule">
-      <HintPath>X:\Steam\steamapps\common\Kerbal Space Program\KSP_x64_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+      <HintPath>$(KSP_DEV)\English\KSP_x64_Data\Managed\UnityEngine.UIModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -366,11 +379,11 @@
         PostBuildMacros;
       </PostBuildEventDependsOn>
     <PostBuildEvent>xcopy "$(SolutionDir)AssetBundles\*" "$(SolutionDir)Output\KerbalEngineer\AssetBundles\*" /E /Y
-xcopy "$(SolutionDir)Output\*" "$(SolutionDir)..\..\KSP-Environment\GameData\*" /E /Y
+xcopy "$(SolutionDir)Output\*" "$(KSP_DEV)\English\GameData\*" /E /Y
 del "$(SolutionDir)Release\*" /Q
 xcopy "$(SolutionDir)Documents\*" "$(SolutionDir)Release\Documents\*" /E /Y
-"C:\Program Files (x86)\7-Zip\7z.exe" a -tzip -mx3 "$(SolutionDir)Release\$(ProjectName)-@(VersionNumber).zip" "$(SolutionDir)Output\*"
-"C:\Program Files (x86)\7-Zip\7z.exe" a -tzip -mx3 "$(SolutionDir)Release\$(ProjectName)-@(VersionNumber).zip" "$(SolutionDir)Documents\*"</PostBuildEvent>
+"C:\Program Files\7-Zip\7z.exe" a -tzip -mx3 "$(SolutionDir)Release\$(ProjectName)-@(VersionNumber).zip" "$(SolutionDir)Output\*"
+"C:\Program Files\7-Zip\7z.exe" a -tzip -mx3 "$(SolutionDir)Release\$(ProjectName)-@(VersionNumber).zip" "$(SolutionDir)Documents\*"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

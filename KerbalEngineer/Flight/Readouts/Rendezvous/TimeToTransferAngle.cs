@@ -47,7 +47,7 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous
         {
             if (RendezvousProcessor.ShowDetails)
             {
-                this.DrawLine(TimeFormatter.ConvertToString(RendezvousProcessor.TimeToTransferAngle), section.IsHud);
+                this.DrawLine(TimeFormatter.ConvertToString(RendezvousProcessor.TimeToTransferAngle), section);
             }
         }
 

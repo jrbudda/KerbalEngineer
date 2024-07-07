@@ -198,6 +198,11 @@ namespace KerbalEngineer.TrackingStation
             //}
         }
 
+        protected override void OnDestroy() {
+            base.OnDestroy();
+            Close();
+        }
+
         /// <summary>
         ///     Closes the menu.
         /// </summary>

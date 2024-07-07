@@ -53,15 +53,16 @@ namespace KerbalEngineer.Flight.Readouts.Surface {
             }
 
             this.DrawLine(() => {
-                if(!section.IsHud)
+                if (!section.IsHud)
                     GUILayout.Label(FlightGlobals.ship_geeForce.ToString("F3") + " / " + this.maxGeeForce.ToString("F3"), this.ValueStyle);
                 else
-                    GUILayout.Label(FlightGlobals.ship_geeForce.ToString("F3") + " / " + this.maxGeeForce.ToString("F3"), this.ValueStyle, GUILayout.Height(ValueStyle.fontSize*1.2f));
+                    GUILayout.Label(FlightGlobals.ship_geeForce.ToString("F3") + " / " + this.maxGeeForce.ToString("F3"), this.HudValueStyle, GUILayout.Height(HudValueStyle.fontSize * 1.2f));
+
                 if (GUILayout.Button("R", section.IsHud ? this.CompactButtonStyle : this.ButtonStyle,
                     GUILayout.Width(ButtonStyle.fixedHeight))) {
                     this.maxGeeForce = 0.0;
                 }
-            }, true, section.IsHud);
+            }, section, true);
 
         }
 

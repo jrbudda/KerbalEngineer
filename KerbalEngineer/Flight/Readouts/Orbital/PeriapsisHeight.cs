@@ -33,6 +33,7 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
         public PeriapsisHeight()
         {
             this.Name = "Periapsis Height";
+            this.ShortName = "Pe";
             this.Category = ReadoutCategory.GetCategory("Orbital");
             this.HelpString = "Shows the vessel's periapsis height relative to sea level. (Periapsis is the lowest point of an orbit.)";
             this.IsDefault = true;
@@ -44,7 +45,7 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
 
         public override void Draw(Unity.Flight.ISectionModule section)
         {
-            this.DrawLine(FlightGlobals.ship_orbit.PeA.ToDistance(), section.IsHud);
+            this.DrawLine(FlightGlobals.ship_orbit.PeA.ToDistance(section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
         }
 
         #endregion

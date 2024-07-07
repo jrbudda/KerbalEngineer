@@ -41,9 +41,9 @@ namespace KerbalEngineer.Flight.Readouts.Body {
 
         public override void Draw(Unity.Flight.ISectionModule section) {
             if (FlightGlobals.ActiveVessel.mainBody.atmosphere) {
-                this.DrawLine(FlightGlobals.ActiveVessel.mainBody.scienceValues.flyingAltitudeThreshold.ToDistance(), section.IsHud);
+                this.DrawLine(FlightGlobals.ActiveVessel.mainBody.scienceValues.flyingAltitudeThreshold.ToDistance(section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
             } else
-                this.DrawLine("N/A", section.IsHud);
+                this.DrawLine("N/A", section);
 
         }
 

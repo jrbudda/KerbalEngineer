@@ -26,6 +26,7 @@ namespace KerbalEngineer.Flight.Readouts.Thermal
         public CriticalPart()
         {
             Name = "Critical Part";
+            ShortName = "Crit Part";
             Category = ReadoutCategory.GetCategory("Thermal");
             HelpString = "This part is structually most critical. If it endures too high temperature there is a high chance for major structual failure!";
             IsDefault = true;
@@ -35,7 +36,7 @@ namespace KerbalEngineer.Flight.Readouts.Thermal
         {
             if (ThermalProcessor.ShowDetails)
             {
-                DrawLine(ThermalProcessor.CriticalPartName, section.IsHud);
+                DrawLine(ThermalProcessor.CriticalPartName, section);
             }
         }
 

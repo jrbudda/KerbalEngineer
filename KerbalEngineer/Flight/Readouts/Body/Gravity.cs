@@ -41,7 +41,7 @@ namespace KerbalEngineer.Flight.Readouts.Body {
         #region Methods: public
 
         public override void Draw(Unity.Flight.ISectionModule section) {
-            this.DrawLine(Helpers.Units.ToSpeed(FlightGlobals.ActiveVessel.mainBody.gravParameter / Math.Pow(FlightGlobals.currentMainBody.Radius , 2)), section.IsHud);
+            this.DrawLine(Helpers.Units.ToSpeed(FlightGlobals.ActiveVessel.mainBody.gravParameter / Math.Pow(FlightGlobals.currentMainBody.Radius , 2), section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
         }
 
         #endregion

@@ -33,7 +33,7 @@
         }
 
         /// <summary>
-        ///     Loads and object from disk.
+        ///     Loads an object from disk.
         /// </summary>
         public static bool LoadObject<T>(string path, out T obj)
         {

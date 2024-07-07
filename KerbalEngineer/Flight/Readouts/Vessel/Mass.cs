@@ -46,7 +46,7 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
         {
             if (SimulationProcessor.ShowDetails)
             {
-                this.DrawLine(Units.ToMass(SimulationProcessor.LastStage.mass, SimulationProcessor.LastStage.totalMass), section.IsHud);
+                this.DrawLine(Units.ToMass(SimulationProcessor.LastStage.mass, SimulationProcessor.LastStage.totalMass, section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
             }
         }
 

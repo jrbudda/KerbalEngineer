@@ -33,6 +33,7 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
         public ApoapsisHeight()
         {
             this.Name = "Apoapsis Height";
+            this.ShortName = "Ap";
             this.Category = ReadoutCategory.GetCategory("Orbital");
             this.HelpString = "Shows the vessel's apoapsis height relative to sea level. (Apoapsis is the highest point of an orbit.)";
             this.IsDefault = true;
@@ -44,7 +45,7 @@ namespace KerbalEngineer.Flight.Readouts.Orbital
 
         public override void Draw(Unity.Flight.ISectionModule section)
         {
-            this.DrawLine(FlightGlobals.ship_orbit.ApA.ToDistance(), section.IsHud);
+            this.DrawLine(FlightGlobals.ship_orbit.ApA.ToDistance(section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
         }
 
         #endregion

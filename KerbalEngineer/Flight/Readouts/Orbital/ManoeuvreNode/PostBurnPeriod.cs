@@ -51,7 +51,7 @@ namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
                 return;
             }
 
-            this.DrawLine(TimeFormatter.ConvertToString(ManoeuvreProcessor.PostBurnPeriod, "F3"), section.IsHud);
+            this.DrawLine(TimeFormatter.ConvertToString(ManoeuvreProcessor.PostBurnPeriod, "F3"), section);
         }
 
         public override void Reset()

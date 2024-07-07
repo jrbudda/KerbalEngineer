@@ -43,9 +43,9 @@ namespace KerbalEngineer.Flight.Readouts.Body {
 
         public override void Draw(Unity.Flight.ISectionModule section) {
             if (!Double.IsInfinity(FlightGlobals.currentMainBody.sphereOfInfluence))
-                this.DrawLine(FlightGlobals.currentMainBody.sphereOfInfluence.ToDistance(), section.IsHud);
+                this.DrawLine(FlightGlobals.currentMainBody.sphereOfInfluence.ToDistance(section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
             else
-                this.DrawLine("N/A", section.IsHud);
+                this.DrawLine("N/A", section);
         }
 
         #endregion

@@ -23,62 +23,62 @@ namespace KerbalEngineer.Extensions
 
     public static class FloatExtensions
     {
-        public static string ToAcceleration(this float value)
+        public static string ToAcceleration(this float value, int decimals = -9000)
         {
-            return Units.ToAcceleration(value);
+            return Units.ToAcceleration(value, decimals);
         }
 
-        public static string ToAngle(this float value)
+        public static string ToAngle(this float value, int decimals = -9000)
         {
-            return Units.ToAngle(value);
+            return Units.ToAngle(value, decimals);
         }
 
-        public static string ToDistance(this float value)
+        public static string ToDistance(this float value, int decimals = -9000)
         {
-            return Units.ToDistance(value);
+            return Units.ToDistance(value, decimals);
         }
 
-        public static string ToFlux(this float value)
+        public static string ToFlux(this float value, int decimals = -9000)
         {
             return Units.ToFlux(value);
         }
 
-        public static string ToForce(this float value)
+        public static string ToForce(this float value, int decimals = -9000)
         {
             return Units.ToForce(value);
         }
 
-        public static string ToMach(this float value)
+        public static string ToMach(this float value, int decimals = -9000)
         {
             return Units.ToMach(value);
         }
 
-        public static string ToMass(this float value)
+        public static string ToMass(this float value, int decimals = -9000)
         {
-            return Units.ToMass(value);
+            return Units.ToMass(value, decimals);
         }
 
-        public static string ToPercent(this float value)
+        public static string ToPercent(this float value, int decimals = -9000)
         {
-            return Units.ToPercent(value);
+            return Units.ToPercent(value, decimals);
         }
 
-        public static string ToRate(this float value)
+        public static string ToRate(this float value, int decimals = -9000)
         {
-            return Units.ToRate(value);
+            return Units.ToRate(value, decimals);
         }
 
-        public static string ToSpeed(this float value)
+        public static string ToSpeed(this float value, int decimals = -9000)
         {
-            return Units.ToSpeed(value);
+            return Units.ToSpeed(value, decimals);
         }
 
-        public static string ToTemperature(this float value)
+        public static string ToTemperature(this float value, int decimals = -9000)
         {
             return Units.ToTemperature(value);
         }
 
-        public static string ToTorque(this float value)
+        public static string ToTorque(this float value, int decimals = -9000)
         {
             return Units.ToTorque(value);
         }

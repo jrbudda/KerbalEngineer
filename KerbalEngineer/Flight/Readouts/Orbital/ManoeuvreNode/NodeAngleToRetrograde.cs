@@ -51,7 +51,7 @@ namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
                 return;
             }
 
-            this.DrawLine("Node Angle to Retrograde", ManoeuvreProcessor.AngleToRetrograde.ToAngle(), section.IsHud);
+            this.DrawLine("Node Angle to Retrograde", ManoeuvreProcessor.AngleToRetrograde.ToAngle(), section);
         }
 
         public override void Reset()

@@ -48,7 +48,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
 
         public override void Draw(Unity.Flight.ISectionModule section)
         {
-            this.DrawLine(this.GetSlopeAngleAndHeading(), section.IsHud);
+            this.DrawLine(this.GetSlopeAngleAndHeading(), section);
         }
 
         #endregion
@@ -76,7 +76,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface
                     {
                         raddotnorm = 0.0;
                     }
-                    var slope = Math.Acos(raddotnorm) * 180 / Math.PI;
+                    var slope = Math.Acos(raddotnorm) * Units.RAD_TO_DEG;
                     result = Units.ToAngle(slope, 1);
                     if (slope < 0.05)
                     {
@@ -88,13 +88,10 @@ namespace KerbalEngineer.Flight.Readouts.Surface
                         var east = Vector3d.Cross(rad, Vector3d.up).normalized;
                         var north = Vector3d.Cross(rad, east).normalized;
                         var sidedoteast = Vector3d.Dot(side, east);
-                        var direction = Math.Acos(sidedoteast) * 180 / Math.PI;
+                        var direction = Math.Acos(sidedoteast) * Units.RAD_TO_DEG;
                         var sidedotnorth = Vector3d.Dot(side, north);
-                        if (sidedotnorth < 0)
-                        {
-                            direction = 360 - direction;
-                        }
-                        result += " @ " + Units.ToAngle(direction, 1);
+                        if (sidedotnorth < 0) direction = 360 - direction;
+                        result += " @ " + Units.ToAngle(direction, 1).PadLeft(5);
                     }
                 }
 
