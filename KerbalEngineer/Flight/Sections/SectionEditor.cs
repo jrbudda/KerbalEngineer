@@ -34,7 +34,7 @@ namespace KerbalEngineer.Flight.Sections {
     public class SectionEditor : MonoBehaviour {
         #region Constants
 
-        public const float Height = 500.0f;
+        public const float Height = 640.0f;
         public const float Width = 500.0f;
 
         #endregion
@@ -137,7 +137,7 @@ namespace KerbalEngineer.Flight.Sections {
                 return;
             }
 
-            this.position = GUILayout.Window(this.GetInstanceID(), this.position, this.Window, "EDIT SECTION – " + this.ParentSection.Name.ToUpper(), this.windowStyle, GUILayout.Height(Screen.height * 0.47f)).ClampToScreen();
+            this.position = GUILayout.Window(this.GetInstanceID(), this.position, this.Window, "EDIT SECTION – " + this.ParentSection.Name.ToUpper(), this.windowStyle).ClampToScreen();
             this.ParentSection.EditorPositionX = this.position.x;
             this.ParentSection.EditorPositionY = this.position.y;
         }
@@ -259,7 +259,7 @@ namespace KerbalEngineer.Flight.Sections {
         /// </summary>
         private void DrawAvailableReadouts() {
             GUI.skin = HighLogic.Skin;
-            this.scrollPositionAvailable = GUILayout.BeginScrollView(this.scrollPositionAvailable, false, true, GUILayout.Height(this.position.height * 0.5f));
+            this.scrollPositionAvailable = GUILayout.BeginScrollView(this.scrollPositionAvailable, false, true, GUILayout.Height(this.position.height * 0.4f));
             GUI.skin = null;
 
             GUILayout.Label("AVAILABLE", this.panelTitleStyle);

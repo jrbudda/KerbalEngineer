@@ -175,13 +175,13 @@ namespace KerbalEngineer.UIControls {
 
             GUILayout.BeginHorizontal(GUILayout.Height(ROW_HEIGHT), GUILayout.Width(columns2and3Width));
             GUILayout.FlexibleSpace();
-            editingReadout.DecimalPlaces = UIElements.IntTextBox(editingReadout.DecimalPlaces);
+            editingReadout.DecimalPlacesStr = UIElements.DPTextBox(editingReadout.DecimalPlacesStr);
             GUILayout.FlexibleSpace();
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal(GUILayout.Height(ROW_HEIGHT), GUILayout.Width(columns2and3Width));
             GUILayout.FlexibleSpace();
-            editingReadout.HudDecimalPlaces = UIElements.IntTextBox(editingReadout.HudDecimalPlaces);
+            editingReadout.HudDecimalPlacesStr = UIElements.DPTextBox(editingReadout.HudDecimalPlacesStr);
             GUILayout.FlexibleSpace();
             GUILayout.EndHorizontal();
 

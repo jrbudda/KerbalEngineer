@@ -33,7 +33,7 @@ namespace KerbalEngineer.UIControls {
                 if (int.TryParse(returnedString, out int parsedInt)) target = parsedInt;
             }
         }
-        
+
         public static int IntTextBox(int currentValue, int digits = 3, float width = 30.0f) {
             string currentString = currentValue.ToString();
             string returnedString = GUILayout.TextField(currentString, digits, GUILayout.Width(width));
@@ -41,6 +41,10 @@ namespace KerbalEngineer.UIControls {
                 if (int.TryParse(returnedString, out int parsedInt)) return parsedInt;
             }
             return currentValue;
+        }
+
+        public static string DPTextBox(string currentValue, int digits = 3, float width = 30.0f) {
+            return GUILayout.TextField(currentValue, digits, GUILayout.Width(width));
         }
     }
 }
