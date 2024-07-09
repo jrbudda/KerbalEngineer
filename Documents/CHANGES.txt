@@ -1,3 +1,6 @@
+1.1.9.5 2024-7-8 KSP 1.12.5 #3190 (jrbudda)
+ - Merge support for realfuel residuals 
+
 1.1.9.4, 2024-7-7, KSP 1.12.5 #3190 (jrbudda)
  - Add Cargo info to chip and tape part
  - Add french translatino of chip and tape descriptions (thanks don-vip)
