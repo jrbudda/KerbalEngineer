@@ -70,6 +70,9 @@ namespace KerbalEngineer.VesselSimulator {
         public ResourceContainer resourceDrains = new ResourceContainer();
         public ResourceContainer resourceFlowStates = new ResourceContainer();
         public ResourceContainer resources = new ResourceContainer();
+        // For RF residual calcs
+        public ResourceContainer resourceCapacities = new ResourceContainer();
+        public ResourceContainer residuals = new ResourceContainer();
         public double startMass = 0d;
         public double crewMassOffset = 0d;
         public String vesselName;
@@ -91,6 +94,8 @@ namespace KerbalEngineer.VesselSimulator {
             partSim.resourceDrains.Reset();
             partSim.resourceFlowStates.Reset();
             partSim.resources.Reset();
+            partSim.resourceCapacities.Reset();
+            partSim.residuals.Reset();
             partSim.parent = null;
             partSim.baseCost = 0d;
             partSim.baseMass = 0d;
@@ -180,6 +185,7 @@ namespace KerbalEngineer.VesselSimulator {
                     if (log != null) log.AppendLine(resource.resourceName, " = ", resource.amount);
 
                     partSim.resources.Add(resource.info.id, resource.amount);
+                    partSim.resourceCapacities.Add(resource.info.id, resource.maxAmount);
                     partSim.resourceFlowStates.Add(resource.info.id, resource.flowState ? 1 : 0);
                 } else {
                     if (log != null) log.AppendLine(resource.resourceName, " is NaN. Skipping.");
@@ -814,7 +820,10 @@ namespace KerbalEngineer.VesselSimulator {
                 int type = resourceDrains.Types[i];
 
                 if (resourceDrains[type] > 0) {
-                    time = Math.Min(time, resources[type] / resourceDrains[type]);
+                    double amount = resources[type];
+                    if (residuals.HasType(type))
+                        amount -= residuals[type];
+                    time = Math.Min(time, amount / resourceDrains[type]);
                     //if (log != null) log.AppendLine("type = " + ResourceContainer.GetResourceName(type) + "  amount = " + resources[type] + "  rate = " + resourceDrains[type] + "  time = " + time);
                 }
             }

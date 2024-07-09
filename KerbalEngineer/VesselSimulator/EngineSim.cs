@@ -46,6 +46,8 @@ namespace KerbalEngineer.VesselSimulator
 
         public double thrust = 0;
 
+        private double resourceMin;
+
         // Add thrust vector to account for directional losses
         public Vector3 thrustVec;
 
@@ -134,7 +136,15 @@ namespace KerbalEngineer.VesselSimulator
             engineSim.resourceFlowModes.Reset();
             engineSim.appliedForces.Clear();
 
-
+            engineSim.resourceMin = SimManager.RESOURCE_MIN;
+            if (SimManager.RFResiduals)
+            {
+                var residualsField = engineMod.GetType().GetField("predictedMaximumResiduals");
+                if (residualsField != null)
+                {
+                    engineSim.resourceMin = (double)residualsField.GetValue(engineMod);
+                }
+            }
 
             double flowRate = 0.0;
             if (engineSim.partSim.hasVessel)
@@ -397,10 +407,14 @@ namespace KerbalEngineer.VesselSimulator
                     sourcePartSets.Add(type, sourcePartSet);
                 }
 
+                double thisResourceMin = resourceMin;
+                if (SimManager.RFResiduals)
+                    thisResourceMin *= partSim.resourceCapacities[type];    // Residuals as percentages, otherwise just absolute "empty".
+
                 switch ((ResourceFlowMode)this.resourceFlowModes[type])
                 {
                     case ResourceFlowMode.NO_FLOW:
-                        if (partSim.resources[type] > SimManager.RESOURCE_MIN && partSim.resourceFlowStates[type] != 0)
+                        if (partSim.resources[type] > thisResourceMin && partSim.resourceFlowStates[type] != 0)
                         {
                             sourcePartSet.Add(partSim);
                         }
@@ -411,7 +425,7 @@ namespace KerbalEngineer.VesselSimulator
                         for (int i = 0; i < allParts.Count; i++)
                         {
                             PartSim aPartSim = allParts[i];
-                            if (aPartSim.resources[type] > SimManager.RESOURCE_MIN && aPartSim.resourceFlowStates[type] != 0)
+                            if (aPartSim.resources[type] > thisResourceMin && aPartSim.resourceFlowStates[type] != 0)
                             {
                                 sourcePartSet.Add(aPartSim);
                             }
@@ -434,7 +448,7 @@ namespace KerbalEngineer.VesselSimulator
                             var aPartSim = allParts[i];
                             //if (log != null) log.Append(aPartSim.name, ":" + aPartSim.partId, " contains ", aPartSim.resources[type])
                             //                  .AppendLine((aPartSim.resourceFlowStates[type] == 0) ? " (disabled)" : "");
-                            if (aPartSim.resources[type] <= SimManager.RESOURCE_MIN || aPartSim.resourceFlowStates[type] == 0)
+                            if (aPartSim.resources[type] <= thisResourceMin || aPartSim.resourceFlowStates[type] == 0)
                             {
                                 continue;
                             }
@@ -544,6 +558,8 @@ namespace KerbalEngineer.VesselSimulator
                                         .AppendLine(" to ", partSim.name, ":", partSim.partId);
 
                     partSim.resourceDrains.Add(type, amount);
+                    if (SimManager.RFResiduals)
+                        partSim.residuals.AddMax(type, partSim.resourceCapacities[type] * resourceMin);
                     drainingParts.Add(partSim);
                 }
             }

@@ -524,6 +524,14 @@ namespace KerbalEngineer.Editor
             SimManager.vectoredThrust = GUILayout.Toggle(SimManager.vectoredThrust, "ENABLED", buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
             GUILayout.EndHorizontal();
 
+            if (SimManager.hasInstalledRealFuels)
+            {
+                GUILayout.BeginHorizontal();
+                GUILayout.Label("Simulate using residual predictions:", settingStyle);
+                SimManager.RFResiduals = GUILayout.Toggle(SimManager.RFResiduals, "ENABLED", buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
+                GUILayout.EndHorizontal();
+            }
+
             GUILayout.BeginHorizontal();
             GUILayout.Label("Verbose Simulation Log:", settingStyle);
             SimManager.logOutput = GUILayout.Toggle(SimManager.logOutput, "ENABLED", buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));

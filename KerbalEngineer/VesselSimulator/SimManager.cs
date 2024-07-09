@@ -95,6 +95,22 @@ namespace KerbalEngineer.VesselSimulator
 
         public static double Mach { get; set; }
 
+        private static bool useRFResiduals = false;
+        public static bool RFResiduals
+        {
+            get
+            {
+                return useRFResiduals;
+            }
+            set
+            {
+                if (hasInstalledRealFuels)
+                    useRFResiduals = value;
+                else
+                    useRFResiduals = false;
+            }
+        }
+
         public static String failMessage { get; private set; }
 
         #endregion
@@ -150,6 +166,8 @@ namespace KerbalEngineer.VesselSimulator
                     hasInstalledKIDS = true;
                 }
             }
+
+            useRFResiduals = hasInstalledRealFuels;
             log.Flush();
         }
 
