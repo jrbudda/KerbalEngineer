@@ -42,14 +42,14 @@ namespace KerbalEngineer.Drawing {
             GLTriangleStrip(Verts, c, map);
 
             for (int i = 0; i <= num; i++) {
-                Verts.Add(center + radius * 0.45 * (QuaternionD.AngleAxis(rotation + i * 360 / num, up) * north));
-                Verts.Add(center + radius * 0.6 * (QuaternionD.AngleAxis(rotation + i * 360 / num, up) * north));
+                Verts.Add(center + radius * 0.50 * (QuaternionD.AngleAxis(rotation + i * 360 / num, up) * north));
+                Verts.Add(center + radius * 0.55 * (QuaternionD.AngleAxis(rotation + i * 360 / num, up) * north));
             }
             GLTriangleStrip(Verts, c, map);
 
 
             for (int i = 0; i <= num; i++) {
-                Verts.Add(center);
+                Verts.Add(center + radius * 0.175 * (QuaternionD.AngleAxis(rotation + i * 360 / num, up) * north));
                 Verts.Add(center + radius * 0.2 * (QuaternionD.AngleAxis(rotation + i * 360 / num, up) * north));
             }
             GLTriangleStrip(Verts, c, map);

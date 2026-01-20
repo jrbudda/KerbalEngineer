@@ -47,11 +47,13 @@ namespace KerbalEngineer.Flight.Readouts.Miscellaneous
         {
             GUILayout.BeginHorizontal();
             GUILayout.Label("GUI Size: " + GuiDisplaySize.Increment, this.NameStyle);
-            if (GUILayout.Button("<", this.ButtonStyle))
+            GUILayout.FlexibleSpace();
+            GUIStyle s = section.IsHud ? this.CompactButtonStyle : this.ButtonStyle;
+            if (GUILayout.Button("▼", s, GUILayout.Width(this.ContentWidth / 8), GUILayout.Height(s.fixedHeight)))
             {
                 GuiDisplaySize.Increment--;
             }
-            if (GUILayout.Button(">", this.ButtonStyle))
+            if (GUILayout.Button("▲", s, GUILayout.Width(this.ContentWidth / 8), GUILayout.Height(s.fixedHeight)))
             {
                 GuiDisplaySize.Increment++;
             }

@@ -571,11 +571,11 @@ namespace KerbalEngineer.Editor
 
             GUILayout.BeginHorizontal();
             GUILayout.Label("GUI Size: " + GuiDisplaySize.Increment, settingStyle);
-            if (GUILayout.Button("<", buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset)))
+            if (GUILayout.Button("▼", buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset)))
             {
                 GuiDisplaySize.Increment--;
             }
-            if (GUILayout.Button(">", buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset)))
+            if (GUILayout.Button("▲", buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset)))
             {
                 GuiDisplaySize.Increment++;
             }
