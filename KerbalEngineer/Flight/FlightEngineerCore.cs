@@ -312,6 +312,9 @@ namespace KerbalEngineer.Flight {
         private void Start() {
             try {
                 SectionLibrary.Load();
+                foreach (var section in SectionLibrary.GetAllSections()) {
+                    section.CreatePendingWindow();
+                }
             } catch (Exception ex) {
                 MyLogger.Exception(ex);
             }

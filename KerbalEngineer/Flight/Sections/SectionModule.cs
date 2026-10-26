@@ -40,6 +40,7 @@ namespace KerbalEngineer.Flight.Sections {
         #region Fields
 
         protected SectionEditor editor;
+        protected bool floatingPending;
         protected bool isHud;
         protected bool isVisible;
         protected int numberOfReadouts;
@@ -123,11 +124,28 @@ namespace KerbalEngineer.Flight.Sections {
         public virtual bool IsFloating {
             get { return this.Window != null; }
             set {
+                this.floatingPending = false;
                 if (value && this.Window == null) {
-                    this.Window = FlightEngineerCore.Instance.AddSectionWindow(this);
+                    // FlightEngineerCore only exists in flight and at the space center.
+                    // SectionLibrary's static constructor can run in the tracking station,
+                    // so defer the window until FlightEngineerCore calls CreatePendingWindow.
+                    if (FlightEngineerCore.Instance != null) {
+                        this.Window = FlightEngineerCore.Instance.AddSectionWindow(this);
+                    } else {
+                        this.floatingPending = true;
+                    }
                 } else if (!value && this.Window != null) {
                     Object.Destroy(this.Window);
                 }
+            }
+        }
+
+        /// <summary>
+        ///     Creates the floating window requested while there was no FlightEngineerCore.
+        /// </summary>
+        public void CreatePendingWindow() {
+            if (this.floatingPending) {
+                this.IsFloating = true;
             }
         }
 
@@ -327,7 +345,10 @@ namespace KerbalEngineer.Flight.Sections {
             if (this.numberOfReadouts != this.ReadoutModules.Count) {
                 this.numberOfReadouts = this.ReadoutModules.Count;
                 if (!this.IsFloating) {
-                    DisplayStack.Instance.RequestResize();
+                    // DisplayStack only exists in flight.
+                    if (DisplayStack.Instance != null) {
+                        DisplayStack.Instance.RequestResize();
+                    }
                 } else {
                     this.Window.RequestResize();
                 }
