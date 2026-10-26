@@ -893,10 +893,8 @@ namespace KerbalEngineer.VesselSimulator {
                 loopcount++;
 
                 if (loopcount == 1000) {
-                    Debug.Log("RCS exceeded loop count");
-                    Debug.Log("stageStartMass = " + preMAss);
-                    Debug.Log("burnTime = " + RCSBurnTime);
-                    Debug.Log("StepEndMass   = " + mass);
+                    MyLogger.Log("RCS exceeded loop count\nstageStartMass = " + preMAss
+                        + "\nburnTime = " + RCSBurnTime + "\nStepEndMass   = " + mass);
                     break;
                 }
 
