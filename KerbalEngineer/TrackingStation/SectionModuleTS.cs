@@ -51,7 +51,7 @@ namespace KerbalEngineer.TrackingStation {
                     Debug.Log("[FlightEngineer]: Destroying editor");
                     Object.Destroy(this.editor);
                     DisplayStackTS.editor = null;
-                    Debug.Log("[FlightEngineer]: Created editor");
+                    Debug.Log("[FlightEngineer]: Destroyed editor");
                 }
             }
         }
