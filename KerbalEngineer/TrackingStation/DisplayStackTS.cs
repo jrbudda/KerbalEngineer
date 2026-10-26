@@ -90,7 +90,7 @@ namespace KerbalEngineer.TrackingStation {
                 this.Load();
                 //Debug.Log("[KerbalEngineer]: DisplayStackTS->Start");
             } catch (Exception ex) {
-                Debug.Log(ex.ToString() + ex.InnerException == null ? "" : ex.InnerException.ToString());
+                MyLogger.Exception(ex, "DisplayStackTS->Start");
             }
         }
 
