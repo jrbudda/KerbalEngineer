@@ -191,6 +191,7 @@ namespace KerbalEngineer.TrackingStation {
                 handler.Set("windowPositionX", this.windowPosition.x);
                 handler.Set("windowPositionY", this.windowPosition.y);
                 handler.Save("DisplayStackTS.xml");
+                SectionLibrary.SaveTS();
             } catch (Exception ex) {
                 MyLogger.Exception(ex, "DisplayStackTS->Save");
             }
