@@ -327,9 +327,10 @@ namespace KerbalEngineer.Flight.Sections {
             if (this.numberOfReadouts != this.ReadoutModules.Count) {
                 this.numberOfReadouts = this.ReadoutModules.Count;
                 if (!this.IsFloating) {
-                    DisplayStack.Instance.RequestResize();
+                    DisplayStack.Instance?.RequestResize();
+                    TrackingStation.DisplayStackTS.Instance?.RequestResize();
                 } else {
-                    this.Window.RequestResize();
+                    this.Window?.RequestResize();
                 }
             }
         }
